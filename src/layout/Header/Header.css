@@ -1,0 +1,8 @@
+.header {
+  width: 100%;
+  padding: 1em;
+
+  background-color: var(--main-dark);
+  border-bottom: solid 1em var(--main-light);
+  color: var(--text-color);
+}
