@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lalezar&display=swap");
 
+/**  the scope the custom properties can be used in **/
 :root {
   /** TEXT **/
   --main-font: "Lalezar", cursive;
