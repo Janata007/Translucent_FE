@@ -40,7 +40,7 @@ const CompanyService = {
 
   async addSectorToCompany(token, companyId, sectorId) {
     return await fetch(
-      "${COMPANY_ENDPOINTS.ADD_SECTOR_TO_COMPANY}/${companyId}/addSector/${sectorId}",
+      `${COMPANY_ENDPOINTS.ADD_SECTOR_TO_COMPANY}/${companyId}/addSector/${sectorId}`,
       {
         method: "POST",
         headers: {
@@ -55,7 +55,7 @@ const CompanyService = {
 
   async deleteSectorFromCompany(token, companyId, sectorId) {
     return await fetch(
-      "${COMPANY_ENDPOINTS.DELETE_SECTOR_FROM_COMPANY}/${companyId}/removeSector/${sectorId}",
+      `${COMPANY_ENDPOINTS.DELETE_SECTOR_FROM_COMPANY}/${companyId}/removeSector/${sectorId}`,
       {
         method: "POST",
         headers: {
@@ -70,7 +70,7 @@ const CompanyService = {
 
   async getOfferedServicesForCompany(token, id) {
     return await fetch(
-      "${COMPANY_ENDPOINTS.GET_OFFERED_SERVICES_FOR_COMPANY}/${id}",
+      `${COMPANY_ENDPOINTS.GET_OFFERED_SERVICES_FOR_COMPANY}/${id}`,
       {
         method: "GET",
         headers: {
@@ -88,7 +88,7 @@ const CompanyService = {
       serviceNeeded: serviceNeeded,
     });
     return await fetch(
-      "${COMPANY_ENDPOINTS.GET_COMPANIES_FOR_NEEDED_SERVICE}/${id}?${requestParams}",
+      `${COMPANY_ENDPOINTS.GET_COMPANIES_FOR_NEEDED_SERVICE}/${id}?${requestParams}`,
       {
         method: "GET",
         headers: {

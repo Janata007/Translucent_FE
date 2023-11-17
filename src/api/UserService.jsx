@@ -14,7 +14,7 @@ const UserService = {
   },
 
   async getUserWithSector(userId) {
-    return await fetch("${USER_ENDPOINTS.GET_USER_WITH_SECTOR}/${userId}", {
+    return await fetch(`${USER_ENDPOINTS.GET_USER_WITH_SECTOR}/${userId}`, {
       method: "GET",
     }).then(async (response) => {
       const responseTemplateVO = await response.json();
@@ -23,7 +23,7 @@ const UserService = {
   },
 
   async getUser(userId) {
-    return await fetch("${USER_ENDPOINTS.GET_USER}/${userId}", {
+    return await fetch(`${USER_ENDPOINTS.GET_USER}/${userId}`, {
       method: "GET",
     }).then(async (response) => {
       const user = await response.json();
@@ -36,7 +36,7 @@ const UserService = {
       username: username,
     });
     return await fetch(
-      "${USER_ENDPOINTS.GET_USER_BY_USERNAME}?${requestParams}",
+      `${USER_ENDPOINTS.GET_USER_BY_USERNAME}?${requestParams}`,
       {
         method: "GET",
       }
@@ -51,7 +51,7 @@ const UserService = {
       visible: visible,
     });
     return await fetch(
-      "${USER_ENDPOINTS.SET_WORK_VISIBLE_FOR_USER}/${userId}?${requestParams}",
+      `${USER_ENDPOINTS.SET_WORK_VISIBLE_FOR_USER}/${userId}?${requestParams}`,
       {
         method: "PUT",
       }
@@ -62,7 +62,7 @@ const UserService = {
   },
 
   async getAllUsers() {
-    return await fetch("${USER_ENDPOINTS.GET_ALL_USERS}", {
+    return await fetch(`${USER_ENDPOINTS.GET_ALL_USERS}`, {
       method: "GET",
     }).then(async (response) => {
       const users = await response.json();
@@ -72,7 +72,7 @@ const UserService = {
 
   async getAllUsersInSector(sectorId) {
     return await fetch(
-      "${USER_ENDPOINTS.GET_ALL_USERS_IN_SECTOR}/${sectorId}",
+      `${USER_ENDPOINTS.GET_ALL_USERS_IN_SECTOR}/${sectorId}`,
       {
         method: "GET",
       }
@@ -84,7 +84,7 @@ const UserService = {
 
   async getAllUsersInCompany(companyId) {
     return await fetch(
-      "${USER_ENDPOINTS.GET_ALL_USERS_IN_COMPANY}/${companyId}",
+      `${USER_ENDPOINTS.GET_ALL_USERS_IN_COMPANY}/${companyId}`,
       {
         method: "GET",
       }
@@ -95,7 +95,7 @@ const UserService = {
   },
 
   async saveUser(newUser) {
-    return await fetch("${USER_ENDPOINTS.SAVE_USER}", {
+    return await fetch(`${USER_ENDPOINTS.SAVE_USER}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

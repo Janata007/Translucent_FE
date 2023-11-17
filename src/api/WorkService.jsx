@@ -2,7 +2,7 @@ import { WORK_ENDPOINTS } from "../constants/ENDPOINTS";
 
 const WorkService = {
   async saveTask(token, task, byUserId, forUserId) {
-    return await fetch("${WORK_ENDPOINTS.SAVE_TASK}/${byUserId}/${forUserId}", {
+    return await fetch(`${WORK_ENDPOINTS.SAVE_TASK}/${byUserId}/${forUserId}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -16,7 +16,7 @@ const WorkService = {
   },
 
   async getAllTasks(token) {
-    return await fetch("${WORK_ENDPOINTS.GET_ALL_TASKS}", {
+    return await fetch(`${WORK_ENDPOINTS.GET_ALL_TASKS}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer ${token}",
@@ -28,7 +28,7 @@ const WorkService = {
   },
 
   async removeTask(token, id) {
-    return await fetch("${WORK_ENDPOINTS.REMOVE_TASK}/${id}", {
+    return await fetch(`${WORK_ENDPOINTS.REMOVE_TASK}/${id}`, {
       method: "POST",
       headers: {
         Authorization: "Bearer ${token}",
@@ -41,7 +41,7 @@ const WorkService = {
 
   async getTaskWithUserForUser(token, taskId) {
     return await fetch(
-      "${WORK_ENDPOINTS.GET_TASK_WITH_USER_FOR_USER}/${taskId}",
+      `${WORK_ENDPOINTS.GET_TASK_WITH_USER_FOR_USER}/${taskId}`,
       { method: "GET", headers: { Authorization: "Bearer ${token}" } }
     ).then(async (response) => {
       const taskWithUserForUser = await response.json();
@@ -50,7 +50,7 @@ const WorkService = {
   },
 
   async getTasksForUser(token, userId) {
-    return await fetch("${WORK_ENDPOINTS.GET_TASKS_FOR_USER}/${userId}", {
+    return await fetch(`${WORK_ENDPOINTS.GET_TASKS_FOR_USER}/${userId}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer ${token}",
@@ -63,7 +63,7 @@ const WorkService = {
 
   async getTaskWithFeedbackList(token, taskId) {
     return await fetch(
-      "${WORK_ENDPOINTS.GET_TASK_WITH_FEEDBACK_LIST}/${taskId}/feedback",
+      `${WORK_ENDPOINTS.GET_TASK_WITH_FEEDBACK_LIST}/${taskId}/feedback`,
       {
         method: "GET",
         headers: {
@@ -78,7 +78,7 @@ const WorkService = {
 
   async setTaskToFinished(token, id) {
     return await fetch(
-      "${WORK_ENDPOINTS.SET_TASK_TO_FINISHED}/${id}/finished",
+      `${WORK_ENDPOINTS.SET_TASK_TO_FINISHED}/${id}/finished`,
       {
         method: "PUT",
         headers: {

@@ -1,7 +1,7 @@
 const ArrangementService = {
   async saveNewArrangement(newArrangement, userId) {
     return await fetch(
-      "${ARRANGEMENT_ENDPOINTS.SAVE_NEW_ARRANGEMENT}/${userId}",
+      `${ARRANGEMENT_ENDPOINTS.SAVE_NEW_ARRANGEMENT}/${userId}`,
       {
         method: "POST",
         headers: {
@@ -17,7 +17,7 @@ const ArrangementService = {
 
   async getAllArrangementsForUser(userId) {
     return await fetch(
-      "${ARRANGEMENT_ENDPOINTS.GET_ALL_ARRANGEMENTS_FOR_USER}/${userId}",
+      `${ARRANGEMENT_ENDPOINTS.GET_ALL_ARRANGEMENTS_FOR_USER}/${userId}`,
       {
         method: "GET",
       }
@@ -29,7 +29,7 @@ const ArrangementService = {
 
   async addParticipantToArrangement(userId, arrangementId) {
     return await fetch(
-      "${ARRANGEMENT_ENDPOINTS.ADD_PARTICIPANT_TO_ARRANGEMENT}/${userId}/${arrangementId}",
+      `${ARRANGEMENT_ENDPOINTS.ADD_PARTICIPANT_TO_ARRANGEMENT}/${userId}/${arrangementId}`,
       {
         method: "POST",
       }
@@ -41,7 +41,7 @@ const ArrangementService = {
 
   async removeParticipantFromArrangement(userId, arrangementId) {
     return await fetch(
-      "${ARRANGEMENT_ENDPOINTS.REMOVE_PARTICIPANT_FROM_ARRANGEMENT}/${userId}/${arrangementId}",
+      `${ARRANGEMENT_ENDPOINTS.REMOVE_PARTICIPANT_FROM_ARRANGEMENT}/${userId}/${arrangementId}`,
       {
         method: "POST",
       }
