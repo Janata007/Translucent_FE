@@ -1,8 +1,29 @@
 .footer {
   width: 100%;
-  padding: 1em;
+  height: 10%;
+  padding: 0.5em;
 
   background-color: var(--main-dark);
-  border-top: solid 1em var(--main-light);
+  border-top: var(--light-border);
   color: var(--text-color);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-icons {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.footer-icon svg {
+  height: 50px;
+  width: 50px;
+}
+
+.footer-icon:voer svg {
+  cursor: pointer;
+  fill: var(--main-light);
 }
