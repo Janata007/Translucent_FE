@@ -9,7 +9,7 @@ import { AuthProvider } from "./hooks/useAuth";
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <AuthProvider basename={`${process.env.PUBLIC_URL}`}>
         <Routes>
           <Route
             path={ROUTES.HOME}

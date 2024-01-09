@@ -21,7 +21,7 @@ export const useSessionStorage = (keyName, defaultValue) => {
     } catch (err) {
       console.log(err);
     }
-    setStoredValuen(newValue);
+    setStoredValue(newValue);
   };
   return [storedValue, setValue];
 };
