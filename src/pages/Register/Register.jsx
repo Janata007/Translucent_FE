@@ -4,6 +4,7 @@ import Footer from "../../layout/Footer/Footer";
 import Main from "../../layout/Main/Main";
 import "../page.css";
 import "./Register.css";
+import RegisterForm from "../../components/forms/RegisterForm/RegisterForm";
 
 const Register = () => {
   return (

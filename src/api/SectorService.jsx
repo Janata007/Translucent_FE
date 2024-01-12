@@ -19,7 +19,7 @@ const SectorService = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: "Beaerer ${token}",
+        Authorization: `Beaerer ${token}`,
       },
       body: JSON.stringify(sector),
     }).then(async (response) => {
@@ -29,10 +29,10 @@ const SectorService = {
   },
 
   async findById(token, id) {
-    return await fetch(SECTOR_ENDPOINTS.FIND_BY_ID, {
+    return await fetch(`${SECTOR_ENDPOINTS.FIND_BY_ID}/${id}`, {
       method: "GET",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const sector = await response.json();
@@ -41,11 +41,11 @@ const SectorService = {
   },
 
   async getOfferedServicesForSector(token, id) {
-    return await (SECTOR_ENDPOINTS.GET_OFFERED_SERVICES_FOR_SECTOR,
+    return await (`${SECTOR_ENDPOINTS.GET_OFFERED_SERVICES_FOR_SECTOR}/${id}`,
     {
       method: "GET",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const offeredServices = await response.json();

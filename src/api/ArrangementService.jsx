@@ -1,3 +1,5 @@
+import { ARRANGEMENT_ENDPOINTS } from "../constants/ENDPOINTS";
+
 const ArrangementService = {
   async saveNewArrangement(newArrangement, userId) {
     return await fetch(

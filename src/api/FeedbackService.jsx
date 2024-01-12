@@ -8,8 +8,9 @@ const FeedbackService = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Beaerer ${token}",
+          Authorization: `Beaerer ${token}`,
         },
+        body: JSON.stringify(feedback),
       }
     ).then(async (response) => {
       const userFeedback = await response.json();

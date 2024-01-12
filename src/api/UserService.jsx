@@ -1,4 +1,4 @@
-import { USER_ENDPOINTS } from "..constants/USER_ENDPOINTS";
+import { USER_ENDPOINTS } from "../constants/ENDPOINTS";
 import { SUCCESSFUL_LOGIN_RESPONSE } from "../constants/mocks/MOCK_RESPONSES";
 
 const UserService = {
@@ -19,25 +19,33 @@ const UserService = {
       });
   },
 
-  async getUserWithSector(userId) {
+  async getUserWithSector(userId, token) {
     return await fetch(`${USER_ENDPOINTS.GET_USER_WITH_SECTOR}/${userId}`, {
       method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Beaerer ${token}`,
+      },
     }).then(async (response) => {
       const responseTemplateVO = await response.json();
       return responseTemplateVO;
     });
   },
 
-  async getUser(userId) {
+  async getUser(userId, token) {
     return await fetch(`${USER_ENDPOINTS.GET_USER}/${userId}`, {
       method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Beaerer ${token}`,
+      },
     }).then(async (response) => {
       const user = await response.json();
       return user;
     });
   },
 
-  async getUserByUsername(username) {
+  async getUserByUsername(username, token) {
     const requestParams = new URLSearchParams({
       username: username,
     });
@@ -45,6 +53,10 @@ const UserService = {
       `${USER_ENDPOINTS.GET_USER_BY_USERNAME}?${requestParams}`,
       {
         method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Beaerer ${token}`,
+        },
       }
     ).then(async (response) => {
       const user = await response.json();
@@ -52,7 +64,7 @@ const UserService = {
     });
   },
 
-  async setWorkVisibleForUser(userId, visible) {
+  async setWorkVisibleForUser(userId, visible, token) {
     const requestParams = new URLSearchParams({
       visible: visible,
     });
@@ -60,6 +72,10 @@ const UserService = {
       `${USER_ENDPOINTS.SET_WORK_VISIBLE_FOR_USER}/${userId}?${requestParams}`,
       {
         method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Beaerer ${token}`,
+        },
       }
     ).then(async (response) => {
       const user = await response.json();
@@ -67,20 +83,28 @@ const UserService = {
     });
   },
 
-  async getAllUsers() {
+  async getAllUsers(token) {
     return await fetch(`${USER_ENDPOINTS.GET_ALL_USERS}`, {
       method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Beaerer ${token}`,
+      },
     }).then(async (response) => {
       const users = await response.json();
       return users;
     });
   },
 
-  async getAllUsersInSector(sectorId) {
+  async getAllUsersInSector(sectorId, token) {
     return await fetch(
       `${USER_ENDPOINTS.GET_ALL_USERS_IN_SECTOR}/${sectorId}`,
       {
         method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Beaerer ${token}`,
+        },
       }
     ).then(async (response) => {
       const usersInSector = await response.json();
@@ -88,11 +112,15 @@ const UserService = {
     });
   },
 
-  async getAllUsersInCompany(companyId) {
+  async getAllUsersInCompany(companyId, token) {
     return await fetch(
       `${USER_ENDPOINTS.GET_ALL_USERS_IN_COMPANY}/${companyId}`,
       {
         method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Beaerer ${token}`,
+        },
       }
     ).then(async (response) => {
       const usersInCompany = await response.json();
@@ -100,11 +128,12 @@ const UserService = {
     });
   },
 
-  async saveUser(newUser) {
+  async saveUser(newUser, token) {
     return await fetch(`${USER_ENDPOINTS.SAVE_USER}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        Authorization: `Beaerer ${token}`,
       },
       body: JSON.stringify(newUser),
     }).then(async (response) => {

@@ -6,8 +6,9 @@ const CompanyService = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(company),
     }).then(async (response) => {
       const company = await response.json();
       return company;
@@ -15,10 +16,10 @@ const CompanyService = {
   },
 
   async findCompanyById(token, id) {
-    return await fetch(COMPANY_ENDPOINTS.FIND_COMPANY_BY_ID, {
+    return await fetch(`${COMPANY_ENDPOINTS.FIND_COMPANY_BY_ID}/${id}`, {
       method: "GET",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const company = response.json();
@@ -27,10 +28,10 @@ const CompanyService = {
   },
 
   async deleteCompanyById(token, id) {
-    return await fetch(COMPANY_ENDPOINTS.DELETE_COMPANY_BY_ID, {
+    return await fetch(`${COMPANY_ENDPOINTS.DELETE_COMPANY_BY_ID}/${id}`, {
       method: "POST",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const company = await response.json();
@@ -44,7 +45,7 @@ const CompanyService = {
       {
         method: "POST",
         headers: {
-          Authorization: "Bearer ${token}",
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -59,7 +60,7 @@ const CompanyService = {
       {
         method: "POST",
         headers: {
-          Authorization: "Bearer ${token}",
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -74,7 +75,7 @@ const CompanyService = {
       {
         method: "GET",
         headers: {
-          Authorization: "Bearer ${token}",
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -92,7 +93,7 @@ const CompanyService = {
       {
         method: "GET",
         headers: {
-          Authorization: "Bearer ${token}",
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {

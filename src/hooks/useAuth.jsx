@@ -19,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     navigate(ROUTES.LOGIN, { replace: true });
   };
 
+  const initialValue = { token, login, logout };
   const value = useMemo(
     () =>
       ({

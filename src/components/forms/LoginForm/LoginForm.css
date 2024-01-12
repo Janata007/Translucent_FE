@@ -14,24 +14,25 @@
 }
 
 .register-link p {
-  font-size: 1.5rem;
-
   color: var(--text-color);
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: 2px;
   -webkit-text-stroke: 1px black;
 }
 
 .register-link span {
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   background-color: var(--text-color);
-  border: solid 8px var(--main-light);
+  border: solid 5px var(--main-light);
 }
 
 .register-link span:hover {
   cursor: pointer;
   background-color: var(--main-light);
   border-color: var(--text-color);
+}
+.form-label {
+  font-size: 1.5rem;
 }

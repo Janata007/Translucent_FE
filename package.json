@@ -2,7 +2,8 @@
   "name": "translucent-fe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Janata007.github.io//Translucent_FE",
+  "homepage": "https://Janata007.github.io/Translucent_FE",
+  "description": "diplomska FE",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -14,6 +15,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "license": "ISC",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",

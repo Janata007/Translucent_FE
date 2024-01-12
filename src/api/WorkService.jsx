@@ -6,7 +6,7 @@ const WorkService = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(task),
     }).then(async (response) => {
@@ -19,7 +19,7 @@ const WorkService = {
     return await fetch(`${WORK_ENDPOINTS.GET_ALL_TASKS}`, {
       method: "GET",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const tasks = await response.json();
@@ -31,7 +31,7 @@ const WorkService = {
     return await fetch(`${WORK_ENDPOINTS.REMOVE_TASK}/${id}`, {
       method: "POST",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const task = await response.json();
@@ -42,7 +42,7 @@ const WorkService = {
   async getTaskWithUserForUser(token, taskId) {
     return await fetch(
       `${WORK_ENDPOINTS.GET_TASK_WITH_USER_FOR_USER}/${taskId}`,
-      { method: "GET", headers: { Authorization: "Bearer ${token}" } }
+      { method: "GET", headers: { Authorization: `Bearer ${token}` } }
     ).then(async (response) => {
       const taskWithUserForUser = await response.json();
       return taskWithUserForUser;
@@ -53,7 +53,7 @@ const WorkService = {
     return await fetch(`${WORK_ENDPOINTS.GET_TASKS_FOR_USER}/${userId}`, {
       method: "GET",
       headers: {
-        Authorization: "Bearer ${token}",
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const tasks = await response.json();
@@ -67,7 +67,7 @@ const WorkService = {
       {
         method: "GET",
         headers: {
-          Authorization: "Bearer ${token}",
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -82,7 +82,7 @@ const WorkService = {
       {
         method: "PUT",
         headers: {
-          Authorization: "Bearer ${token}",
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {

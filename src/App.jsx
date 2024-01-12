@@ -6,12 +6,11 @@ import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { AuthProvider } from "./hooks/useAuth";
-import Register from "./pages/Register/Register";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <AuthProvider basename={`${process.env.PUBLIC_URL}`}>
+    <BrowserRouter basename={`${process.env.PUBLIC_URL}`}>
+      <AuthProvider>
         <Routes>
           <Route
             path={ROUTES.HOME}

@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
-import { userNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import UserService from "../../../api/UserService";
 import { useAuth } from "../../../hooks/useAuth";
-import "../forms/Form.css";
+import { isNonEmptyString } from "../../../util/helperFunctions";
+import { ROUTES } from "../../../constants/ROUTES";
+import "../Form.css";
+import "./LoginForm.css";
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -12,10 +15,12 @@ const LoginForm = () => {
   });
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const naivgate = useNavigate();
+  const navigate = useNavigate();
+
   const noEmptyFields = () => {
-    return Object.values(loginData).every((v) => isNonEmptyString(v)); //from helperFunctions
+    return Object.values(loginData).every((v) => isNonEmptyString(v));
   };
+
   const checkErrors = () => {
     if (loginData.username.length === 0)
       usernameRef.current.classList.add("error");
