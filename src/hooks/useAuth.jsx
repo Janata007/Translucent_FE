@@ -18,17 +18,15 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     navigate(ROUTES.LOGIN, { replace: true });
   };
-
-  const initialValue = { token, login, logout };
+  // const initialValue = { token, login, logout };
   const value = useMemo(
-    () =>
-      ({
-        token,
-        login,
-        logout,
-      }[token])
+    () => ({
+      token,
+      login,
+      logout,
+    }),
+    [token]
   );
-
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
