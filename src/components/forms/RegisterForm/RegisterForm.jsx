@@ -24,7 +24,12 @@ const RegisterForm = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
+  const setDefaultValuesForOtherFields = () => {
+    registerData.confirmPassword = registerData.password;
+    registerData.sectorId = "0";
+  };
   const noEmptyFields = () => {
+    console.log(Object.values(registerData).every((v) => isNonEmptyString(v)));
     return Object.values(registerData).every((v) => isNonEmptyString(v));
   };
 
@@ -41,10 +46,12 @@ const RegisterForm = () => {
   const onRegister = async (e) => {
     e.preventDefault();
     checkErrors();
+    setDefaultValuesForOtherFields();
     if (noEmptyFields()) {
       await UserService.saveUser(registerData).then((response) =>
         console.log(response)
       );
+      navigate(ROUTES.LOGIN);
     }
   };
   return (
@@ -141,7 +148,11 @@ const RegisterForm = () => {
         </div>
 
         <div className="form-actions">
-          <button className="form-button" onClick={(e) => onRegister(e)}>
+          <button
+            type="button"
+            className="form-button"
+            onClick={(e) => onRegister(e)}
+          >
             Register
           </button>
         </div>

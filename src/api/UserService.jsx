@@ -128,17 +128,24 @@ const UserService = {
     });
   },
 
-  async saveUser(newUser, token) {
+  async saveUser(newUser) {
+    console.log("Endpoint pinged: " + USER_ENDPOINTS.SAVE_USER);
     return await fetch(`${USER_ENDPOINTS.SAVE_USER}`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Beaerer ${token}`,
       },
       body: JSON.stringify(newUser),
     }).then(async (response) => {
-      const user = await response.json();
-      return user;
+      const r = await response.clone();
+      const responseText = await response.text();
+      if (responseText == "") {
+        //todo: insert existing user modal
+        return null;
+      } else {
+        const user = r.json();
+        return user;
+      }
     });
   },
 };
