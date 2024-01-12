@@ -1,7 +1,6 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
 }
 
 .form-label {
@@ -31,7 +30,7 @@
 
 .form-actions {
   width: 100%;
-
+  margin: 1em 0 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;

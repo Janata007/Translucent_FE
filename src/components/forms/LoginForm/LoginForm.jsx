@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { userNavigate } from "react-router";
-import UserService from "../../api/UserService";
-import { useAuth } from "../../hooks/useAuth";
+import UserService from "../../../api/UserService";
+import { useAuth } from "../../../hooks/useAuth";
 import "../forms/Form.css";
 
 const LoginForm = () => {
@@ -34,9 +34,7 @@ const LoginForm = () => {
       );
     }
   };
-  const onRegisterLink = () => {
-    console.log("navigated to register page");
-  };
+
   return (
     <div className="form-container">
       <form action="POST" className="form login">

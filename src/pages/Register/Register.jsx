@@ -5,13 +5,16 @@ import Main from "../../layout/Main/Main";
 import "../page.css";
 import "./Register.css";
 
-const Home = () => {
+const Register = () => {
   return (
     <div className="register page">
       <Header />
       <Main />
+      <Main>
+        <RegisterForm />
+      </Main>
       <Footer />
     </div>
   );
 };
-export default Home;
+export default Register;
