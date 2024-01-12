@@ -3,8 +3,10 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { ROUTES } from "./constants/ROUTES";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Home from "./pages/Home/Home";
+import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { AuthProvider } from "./hooks/useAuth";
+import Register from "./pages/Register/Register";
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
           />
 
           <Route path={ROUTES.LOGIN} element={<Login />} />
+          <Route path={ROUTES.REGISTER} element={<Register />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

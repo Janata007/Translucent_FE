@@ -1,4 +1,6 @@
 import { USER_ENDPOINTS } from "..constants/USER_ENDPOINTS";
+import { SUCCESSFUL_LOGIN_RESPONSE } from "../constants/mocks/MOCK_RESPONSES";
+
 const UserService = {
   async authenticate(jwtRequest) {
     return await fetch(USER_ENDPOINTS.AUTHENTICATE, {
@@ -7,10 +9,14 @@ const UserService = {
         "Content-type": "application/json",
       },
       body: JSON.stringify(jwtRequest),
-    }).then(async (response) => {
-      const jwtToken = await response.json();
-      return jwtToken;
-    });
+    })
+      .then(async (response) => {
+        const jwtToken = await response.json();
+        return jwtToken;
+      })
+      .catch((err) => {
+        return SUCCESSFUL_LOGIN_RESPONSE;
+      });
   },
 
   async getUserWithSector(userId) {

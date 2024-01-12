@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useSessionStorage("token", null);
 
   const login = async (data) => {
-    token(data);
+    setToken(data);
     navigate(ROUTES.HOME, { replase: true });
   };
 
