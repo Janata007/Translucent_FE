@@ -13,7 +13,7 @@ const UserService = {
       .then(async (response) => {
         const jwtToken = await response.json();
         return jwtToken;
-      })
+      }) //todo: change for actual impl
       .catch((err) => {
         return SUCCESSFUL_LOGIN_RESPONSE;
       });

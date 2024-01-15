@@ -89,7 +89,7 @@ const CompanyService = {
       serviceNeeded: serviceNeeded,
     });
     return await fetch(
-      `${COMPANY_ENDPOINTS.GET_COMPANIES_FOR_NEEDED_SERVICE}/${id}?${requestParams}`,
+      `${COMPANY_ENDPOINTS.GET_COMPANIES_FOR_NEEDED_SERVICE}?${requestParams}`,
       {
         method: "GET",
         headers: {
