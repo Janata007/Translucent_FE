@@ -11,12 +11,10 @@ const SearchBar = () => {
   const [value, setValue] = useState(""); //search bar value
   const [suggestions, setSuggestions] = useState([]); //return from BE
   const [hideSuggestions, setHideSuggestions] = useState(true);
-  const [result, setResult] = useState(null);
   const { token } = useAuth();
 
-  const findResult = (company) => {
+  const redirect = (company) => {
     console.log(company.id);
-    setResult(suggestions.find((suggestion) => suggestion.name === company));
     navigate(ROUTES.COMPANY + company.id);
   };
 
@@ -78,7 +76,7 @@ const SearchBar = () => {
               <div
                 className="suggestion"
                 id={suggestion.id}
-                onClick={() => findResult(suggestion)}
+                onClick={() => redirect(suggestion)}
               >
                 {suggestion["name"]}
               </div>

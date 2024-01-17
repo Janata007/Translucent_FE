@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { AuthProvider } from "./hooks/useAuth";
+import Company from "./pages/Company/Company";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
 
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.REGISTER} element={<Register />} />
+          <Route path={ROUTES.COMPANY} element={<Company />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
