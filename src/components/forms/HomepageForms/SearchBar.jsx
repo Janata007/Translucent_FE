@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 import CompanyService from "../../../api/CompanyService";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { useAuth } from "../../../hooks/useAuth";
-import styles from "./SearchBar.css";
-import CompanyResult from "../../../pages/Company/Company";
+import "./SearchBar.css";
+import { ROUTES } from "../../../constants/ROUTES";
 
 const SearchBar = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState(""); //search bar value
   const [suggestions, setSuggestions] = useState([]); //return from BE
   const [hideSuggestions, setHideSuggestions] = useState(true);
@@ -13,12 +15,15 @@ const SearchBar = () => {
   const { token } = useAuth();
 
   const findResult = (company) => {
-    console.log("findResult method");
-    setResult(suggestions.find((suggestion) => suggestion.company === company));
+    console.log(company.id);
+    setResult(suggestions.find((suggestion) => suggestion.name === company));
+    navigate(ROUTES.COMPANY + company.id);
   };
 
   const fetchData = async (value) => {
-    const { companies } = await CompanyService.getCompaniesForNeededServices(
+    value = value.toUpperCase();
+    console.log(value);
+    const companies = await CompanyService.getCompaniesForNeededServices(
       token,
       value
     );
@@ -51,34 +56,35 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className={styles["container"]}>
+      <div className="container">
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
           type="search"
-          className={styles["textbox"]}
+          className="textbox"
           placeholder="Search data..."
           value={value}
           onChange={handleSearchInputChange}
         />
         <div
-          className={`${styles.suggestions} ${
-            hideSuggestions && styles.hidden
-          }`}
+          // className={`${styles.suggestions} ${
+          //   hideSuggestions && styles.hidden
+          // }`}
+          className="suggestions"
         >
-          {console.log(suggestions)}
-          {suggestions.map((suggestion) => (
-            <div
-              className={styles.suggestion}
-              id={suggestion.id}
-              onClick={() => findResult(suggestion["name"])}
-            >
-              {suggestion["name"]}
-            </div>
-          ))}
+          {suggestions &&
+            suggestions.map &&
+            suggestions.map((suggestion) => (
+              <div
+                className="suggestion"
+                id={suggestion.id}
+                onClick={() => findResult(suggestion)}
+              >
+                {suggestion["name"]}
+              </div>
+            ))}
         </div>
       </div>
-      {result && <CompanyResult {...result} />}
     </>
   );
 };

@@ -1,6 +1,8 @@
 .container {
   width: 30rem;
-  position: relative;
+  position: absolute;
+  top: 10%;
+  left: 10%;
 }
 
 .textbox {
@@ -10,7 +12,9 @@
   box-sizing: border-box;
   padding: 1px 10px;
   transition: 0.2s ease-in-out;
-  width: 100%;
+  width: 50%;
+
+  justify-content: space-around;
 }
 .textbox:focus {
   /* We'll change the border color of the textbox as long as it is being focused */
@@ -24,15 +28,15 @@
   border: 1px solid #f3f3f3;
   background-color: white;
   max-height: 20rem;
-  width: 100%;
+  width: 50%;
   height: fit-content;
-  position: absolute;
+  position: center;
   z-index: 10;
 }
 
 .suggestions.hidden {
   /* Will hide the suggestions */
-  visibility: hidden; /*We can also use `opacity: 0`
+  visibility: hidden;
 }
 
 .suggestion {
@@ -47,5 +51,5 @@
 
 .suggestion:hover {
   /* Changing background color on hover */
-  background-color: #f3f3f3;
+  background-color: var(--main-lighter);
 }

@@ -98,6 +98,7 @@ const CompanyService = {
       }
     ).then(async (response) => {
       const companies = await response.json();
+      console.log(companies);
       return companies;
     });
   },

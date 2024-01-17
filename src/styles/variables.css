@@ -12,6 +12,7 @@
   --main-dark: #10192b;
   --main-light: #ca5b90;
   --main-accent: #5c90b5;
+  --main-lighter: #de8fb5;
 
   /** UTILITIES **/
   --light-border: solid 0.4em var(--main-light);

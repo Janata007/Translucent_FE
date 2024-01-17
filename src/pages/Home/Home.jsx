@@ -10,8 +10,9 @@ const Home = () => {
   return (
     <div className="home page">
       <Header />
-      <Main />
-      <SearchBar></SearchBar>
+      <Main>
+        <SearchBar></SearchBar>
+      </Main>
       <Footer />
     </div>
   );
