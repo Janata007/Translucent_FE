@@ -4,14 +4,17 @@ import Grid from "@mui/material/Grid";
 import CompanyPost from "./CompanyPost";
 import Main from "../../layout/Main/Main";
 import Header from "../../layout/Header/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../layout/Footer/Footer";
 import { useAuth } from "../../hooks/useAuth";
 import CompanyService from "../../api/CompanyService";
+import { ROUTES } from "../../constants/ROUTES";
+import CreateSector from "../Sector/CreateSector";
 
 const Company = () => {
   let { id } = useParams();
   const { token } = useAuth();
+  let navigate = useNavigate();
   let company = {
     id: 5,
     name: "Software development",
@@ -44,6 +47,13 @@ const Company = () => {
           ))}
         </Grid> */}
         <CompanyPost key={company.id} company={company}></CompanyPost>
+        <button
+          type="button"
+          className="form-button"
+          onClick={() => navigate(ROUTES.CREATE_SECTOR)}
+        >
+          Create new sector
+        </button>
       </Main>
       <Footer />
     </div>

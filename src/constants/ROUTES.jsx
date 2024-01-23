@@ -3,4 +3,5 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   COMPANY: "/company/:id",
+  CREATE_SECTOR: "/sector",
 };
