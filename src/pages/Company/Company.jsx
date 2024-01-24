@@ -9,32 +9,34 @@ import Footer from "../../layout/Footer/Footer";
 import { useAuth } from "../../hooks/useAuth";
 import CompanyService from "../../api/CompanyService";
 import { ROUTES } from "../../constants/ROUTES";
-import CreateSector from "../Sector/CreateSector";
+import CompanyMainPost from "./CompanyMainPost";
 
 const Company = () => {
+  const [loaded, setLoaded] = useState(false); //for rerender after promise is fulfilled
   let { id } = useParams();
   const { token } = useAuth();
   let navigate = useNavigate();
-  let company = {
+  const [hidden, setHidden] = useState(true); //for adding a sector to company
+  const [sectors, setSectors] = useState([]);
+  const [company, setCompany] = useState({
     id: 5,
-    name: "Software development",
-    description: "Software development company",
+    name: "Companyy",
+    description: "company",
     sectorList: [
       {
         id: 4,
-        name: "Marketing_sector",
+        name: "hurbur",
         code: "MS01",
         offeredServices: ["MARKETING"],
       },
     ],
-  };
+  });
 
   useEffect(() => {
-    const fetchData = async (id) => {
-      console.log(id);
-      company = await CompanyService.findCompanyById(token, id);
-      return company;
-    };
+    async function fetchCompanyData() {
+      setCompany(await CompanyService.findCompanyById(token, id));
+    }
+    fetchCompanyData();
   }, []);
 
   return (
@@ -46,7 +48,8 @@ const Company = () => {
             <CompanyPost key={name} post={"name"} />
           ))}
         </Grid> */}
-        <CompanyPost key={company.id} company={company}></CompanyPost>
+        {/* <CompanyPost key={company.id} company={company}></CompanyPost> */}
+        <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
         <button
           type="button"
           className="form-button"
@@ -54,6 +57,14 @@ const Company = () => {
         >
           Create new sector
         </button>
+        <button
+          type="button"
+          className="form-button"
+          onClick={() => setHidden(false)}
+        >
+          Add sector to company
+        </button>
+        <div className="sector-add"></div>
       </Main>
       <Footer />
     </div>
