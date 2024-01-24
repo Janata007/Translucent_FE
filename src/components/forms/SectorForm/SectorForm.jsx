@@ -4,7 +4,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import { ROUTES } from "../../../constants/ROUTES";
 import SectorService from "../../../api/SectorService";
 import { isNonEmptyString } from "../../../util/helperFunctions";
-import "./Form.css";
+import "../Form.css";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
@@ -49,6 +49,7 @@ const SectorForm = () => {
   };
 
   const onCreate = async (e) => {
+    console.log(sectorData.offeredServices);
     e.preventDefault();
     checkErrors();
     if (noEmptyFields()) {
@@ -127,20 +128,18 @@ const SectorForm = () => {
               defaultValue={[]}
               isMulti
               options={options}
+              onChange={(e) => {
+                let services = [];
+                e.forEach((e) => {
+                  services = [...services, e.value];
+                });
+                setSectorData({
+                  ...sectorData,
+                  offeredServices: services,
+                });
+              }}
             />
           </div>
-          <input
-            className="form-input"
-            type="text"
-            ref={offeredServicesRef}
-            id="offeredServices"
-            onChange={(e) =>
-              setSectorData({
-                ...sectorData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
         </div>
 
         <div className="form-actions">
