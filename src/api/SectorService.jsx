@@ -39,6 +39,17 @@ const SectorService = {
       return sector;
     });
   },
+  async getAllSectors(token) {
+    return await fetch(`${SECTOR_ENDPOINTS.GET_ALL_SECTORS}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(async (response) => {
+      const sectors = await response.json();
+      return sectors;
+    });
+  },
 
   async getOfferedServicesForSector(token, id) {
     return await (`${SECTOR_ENDPOINTS.GET_OFFERED_SERVICES_FOR_SECTOR}/${id}`,

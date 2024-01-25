@@ -4,4 +4,5 @@ export const ROUTES = {
   REGISTER: "/register",
   COMPANY: "/company/:id",
   CREATE_SECTOR: "/sector",
+  ADD_SECTOR_TO_COMPANY: "/company/:id/addSector",
 };

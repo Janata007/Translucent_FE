@@ -7,6 +7,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import { AuthProvider } from "./hooks/useAuth";
 import Company from "./pages/Company/Company";
+import AddSector from "./pages/Sector/AddSectorToCompany";
 import CreateSector from "./pages/Sector/CreateSector";
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.REGISTER} element={<Register />} />
           <Route path={ROUTES.COMPANY} element={<Company />} />
+          <Route path={ROUTES.ADD_SECTOR_TO_COMPANY} element={<AddSector />} />
           <Route path={ROUTES.CREATE_SECTOR} element={<CreateSector />} />
         </Routes>
       </AuthProvider>

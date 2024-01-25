@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 
-function Sectorost(props) {
+function SectorPost(props) {
   const { sector } = props;
 
   return (
@@ -15,14 +15,14 @@ function Sectorost(props) {
         <Card sx={{ display: "flex" }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
-              {company.name}
+              {sector.name}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              {company.description}
+              {sector.description}
             </Typography>
             <Typography variant="subtitle2" div>
-              {company.sectorList.map((sector) => (
-                <div key={sector.id}>{sector.name}</div>
+              {sector.offeredServices.map((service) => (
+                <div key={service.id}>{service.name}</div>
               ))}
             </Typography>
           </CardContent>
@@ -32,8 +32,8 @@ function Sectorost(props) {
   );
 }
 
-CompanyPost.propTypes = {
-  company: PropTypes.shape({
+SectorPost.propTypes = {
+  Sector: PropTypes.shape({
     name: PropTypes.string.isRequired,
     code: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -41,4 +41,4 @@ CompanyPost.propTypes = {
   }).isRequired,
 };
 
-export default CompanyPost;
+export default SectorPost;
