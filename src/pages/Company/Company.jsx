@@ -32,12 +32,18 @@ const Company = () => {
       },
     ],
   });
+  const redirect = (company) => {
+    console.log(company.id);
+    navigate(ROUTES.ADD_SECTOR_TO_COMPANY + company.id);
+  };
+  async function fetchCompanyData() {
+    await CompanyService.findCompanyById(token, id).then((data) => {
+      setCompany(data);
+      setSectors(data.sectorList);
+    });
+  }
 
   useEffect(() => {
-    async function fetchCompanyData() {
-      setCompany(await CompanyService.findCompanyById(token, id));
-      setSectors(company.sectorList);
-    }
     fetchCompanyData();
   }, []);
 
@@ -47,7 +53,12 @@ const Company = () => {
       <Main>
         <Grid container spacing={4}>
           {sectors.map((sector) => (
-            <SectorPost key={sector.id} sector={sector} />
+            <SectorPost
+              name={sector.name}
+              code={sector.code}
+              description={sector.description}
+              offeredServices={[sector.offeredServices]}
+            />
           ))}
         </Grid>
         <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
@@ -61,7 +72,7 @@ const Company = () => {
         <button
           type="button"
           className="form-button"
-          onClick={() => setHidden(false)}
+          onClick={() => redirect(company)}
         >
           Add sector to company
         </button>

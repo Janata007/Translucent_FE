@@ -6,22 +6,21 @@ import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 
-function SectorPost(props) {
-  const { sector } = props;
-
+function SectorPost({ name, code, description, offeredServices }) {
+  console.log(offeredServices);
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
         <Card sx={{ display: "flex" }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
-              {sector.name}
+              {name}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              {sector.description}
+              {description}
             </Typography>
             <Typography variant="subtitle2" div>
-              {sector.offeredServices.map((service) => (
+              {offeredServices.map((service) => (
                 <div key={service.id}>{service.name}</div>
               ))}
             </Typography>
@@ -32,13 +31,13 @@ function SectorPost(props) {
   );
 }
 
-SectorPost.propTypes = {
-  Sector: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    code: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    offeredServices: PropTypes.array.isRequired,
-  }).isRequired,
-};
+// SectorPost.propTypes = {
+//   Sector: PropTypes.shape({
+//     name: PropTypes.string.isRequired,
+//     code: PropTypes.string.isRequired,
+//     description: PropTypes.string.isRequired,
+//     offeredServices: PropTypes.array.isRequired,
+//   }).isRequired,
+// };
 
 export default SectorPost;

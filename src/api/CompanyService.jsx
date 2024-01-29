@@ -50,6 +50,7 @@ const CompanyService = {
       }
     ).then(async (response) => {
       const company = await response.json();
+      console.log(company);
       return company;
     });
   },

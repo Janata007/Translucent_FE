@@ -47,6 +47,7 @@ const SectorService = {
       },
     }).then(async (response) => {
       const sectors = await response.json();
+      console.log(sectors);
       return sectors;
     });
   },

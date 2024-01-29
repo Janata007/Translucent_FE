@@ -47,6 +47,16 @@
   letter-spacing: 2px;
   -webkit-text-stroke: 1px black;
 }
+.form-button2 {
+  width: 40%;
+  background-color: var(--main-light);
+  border: solid 5px var(--text-color);
+
+  color: var(--text-color);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px black;
+}
 
 .form-button:hover {
   cursor: pointer;

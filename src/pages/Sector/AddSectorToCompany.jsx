@@ -11,35 +11,59 @@ import { ROUTES } from "../../constants/ROUTES";
 import SectorPost from "./SectorPost";
 
 const AddSector = () => {
-  const [loaded, setLoaded] = useState(false); //for rerender after promise is fulfilled
+  const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   let { id } = useParams();
   const { token } = useAuth();
   let navigate = useNavigate();
   const [sectorId, setSectorId] = useState(0);
   const [sectors, setSectors] = useState([]);
 
+  const fetchData = async () => {
+    await SectorService.getAllSectors(token)
+      .then((data) => {
+        setSectors([...data]);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
   useEffect(() => {
-    async function fetchSectors() {
-      setSectors(await SectorService.getAllSectors(token));
-    }
-    fetchSectors();
-    console.log(sectors);
+    fetchData();
   }, []);
 
-  async function addSector() {
-    await CompanyService.addSectorToCompany(token, id, sectorId);
+  async function addSector(sector) {
+    await CompanyService.addSectorToCompany(token, id, sector.id);
   }
 
   return (
     <div className="sector list page">
       <Header />
       <Main>
-        {/* <Grid container spacing={4}>
-          {sectors.map((sector) => (
-            <SectorPost key={sector.id} post={"sector"} />
-          ))}
-        </Grid> */}
-        {/* <SectorPost key={sectors[1].id} sector={sectors[1]}></SectorPost> */}
+        <div className="sectorGrid">
+          {isLoading ? (
+            <p>check</p>
+          ) : (
+            <Grid container spacing={4}>
+              {sectors.map((sector) => (
+                <>
+                  <SectorPost
+                    name={sector.name}
+                    code={sector.code}
+                    description={sector.description}
+                    offeredServices={[sector.offeredServices]}
+                  />
+                  <button
+                    type="button"
+                    className="form-button2"
+                    onClick={() => addSector(sector)}
+                  >
+                    Add to company
+                  </button>
+                </>
+              ))}
+            </Grid>
+          )}
+        </div>
         <button
           type="button"
           className="form-button"
