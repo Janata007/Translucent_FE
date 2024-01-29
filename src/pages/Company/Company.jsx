@@ -10,6 +10,7 @@ import { useAuth } from "../../hooks/useAuth";
 import CompanyService from "../../api/CompanyService";
 import { ROUTES } from "../../constants/ROUTES";
 import CompanyMainPost from "./CompanyMainPost";
+import SectorPost from "../Sector/SectorPost";
 
 const Company = () => {
   const [loaded, setLoaded] = useState(false); //for rerender after promise is fulfilled
@@ -35,6 +36,7 @@ const Company = () => {
   useEffect(() => {
     async function fetchCompanyData() {
       setCompany(await CompanyService.findCompanyById(token, id));
+      setSectors(company.sectorList);
     }
     fetchCompanyData();
   }, []);
@@ -43,12 +45,11 @@ const Company = () => {
     <div className="company info page">
       <Header />
       <Main>
-        {/* <Grid container spacing={4}>
-          {company.map((name) => (
-            <CompanyPost key={name} post={"name"} />
+        <Grid container spacing={4}>
+          {sectors.map((sector) => (
+            <SectorPost key={sector.id} sector={sector} />
           ))}
-        </Grid> */}
-        {/* <CompanyPost key={company.id} company={company}></CompanyPost> */}
+        </Grid>
         <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
         <button
           type="button"
