@@ -20,7 +20,7 @@ const SectorService = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Beaerer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(sector),
     }).then(async (response) => {

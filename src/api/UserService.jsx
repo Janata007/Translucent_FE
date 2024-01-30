@@ -24,7 +24,7 @@ const UserService = {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Beaerer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const responseTemplateVO = await response.json();
@@ -37,7 +37,7 @@ const UserService = {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Beaerer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const user = await response.json();
@@ -55,7 +55,7 @@ const UserService = {
         method: "GET",
         headers: {
           "Content-type": "application/json",
-          Authorization: `Beaerer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -74,7 +74,7 @@ const UserService = {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
-          Authorization: `Beaerer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -88,7 +88,7 @@ const UserService = {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Beaerer ${token}`,
+        Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
       const users = await response.json();
@@ -103,7 +103,7 @@ const UserService = {
         method: "GET",
         headers: {
           "Content-type": "application/json",
-          Authorization: `Beaerer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {
@@ -119,7 +119,7 @@ const UserService = {
         method: "GET",
         headers: {
           "Content-type": "application/json",
-          Authorization: `Beaerer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     ).then(async (response) => {

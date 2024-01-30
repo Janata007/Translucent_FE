@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../../../hooks/useAuth";
-import WorkService from "../../../api/WorkService";
+import { useAuth } from "../../../../hooks/useAuth";
+import WorkService from "../../../../api/WorkService";
 
 const TaskInfo = () => {
   const [tasks, setTasks] = useState([]);
@@ -16,9 +16,9 @@ const TaskInfo = () => {
         setIsLoading(false);
       });
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="taskContainer">

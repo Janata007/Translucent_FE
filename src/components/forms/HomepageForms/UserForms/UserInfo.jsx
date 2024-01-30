@@ -1,9 +1,32 @@
 import { useState, useEffect } from "react";
-import UserService from "../../../api/UserService";
-import { useAuth } from "../../../hooks/useAuth";
+import UserService from "../../../../api/UserService";
+import { useAuth } from "../../../../hooks/useAuth";
 
 const UserInfo = () => {
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({
+    userId: 7,
+    firstName: "jim",
+    lastName: "halpert",
+    email: "jim.halpert@mail.com",
+    sectorId: 0,
+    companyId: null,
+    password: "user",
+    role: null,
+    workVisible: false,
+    superiorId: null,
+    arrangements: [],
+    accountNonExpired: true,
+    accountNonLocked: true,
+    credentialsNonExpired: true,
+    enabled: true,
+    authority: null,
+    username: "jhalpert",
+    authorities: [
+      {
+        authority: null,
+      },
+    ],
+  });
   const [isLoading, setIsLoading] = useState(true);
   const token = useAuth();
   const id = useState(1);
