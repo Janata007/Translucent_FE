@@ -10,7 +10,7 @@ import makeAnimated from "react-select/animated";
 
 const SectorForm = () => {
   const animatedComponents = makeAnimated();
-  const { login } = useAuth();
+  const { token } = useAuth();
   const [sectorData, setSectorData] = useState({
     name: "",
     code: "",
@@ -49,12 +49,11 @@ const SectorForm = () => {
   };
 
   const onCreate = async (e) => {
-    console.log(sectorData.offeredServices);
     e.preventDefault();
     checkErrors();
     if (noEmptyFields()) {
-      await SectorService.saveSector(sectorData).then((response) =>
-        console.log(response)
+      await SectorService.saveSector(token, sectorData).then((response) =>
+        console.log("RESPONSE" + response)
       );
       navigate(ROUTES.COMPANY);
     }

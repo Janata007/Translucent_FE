@@ -42,10 +42,20 @@ const Company = () => {
       setSectors(data.sectorList);
     });
   }
+  const removeSector = async (id) => {
+    console.log(id);
+    await CompanyService.deleteSectorFromCompany(token, company.id, id).then(
+      (data) => {
+        setCompany(data);
+        setSectors(data.sectorList);
+      }
+    );
+  };
 
   useEffect(() => {
     fetchCompanyData();
   }, []);
+  useEffect(() => {}, [company]);
 
   return (
     <div className="company info page">
@@ -53,12 +63,21 @@ const Company = () => {
       <Main>
         <Grid container spacing={4}>
           {sectors.map((sector) => (
-            <SectorPost
-              name={sector.name}
-              code={sector.code}
-              description={sector.description}
-              offeredServices={[sector.offeredServices]}
-            />
+            <>
+              <SectorPost
+                name={sector.name}
+                code={sector.code}
+                description={sector.description}
+                offeredServices={[sector.offeredServices]}
+              />
+              <button
+                type="button"
+                className="form-button2"
+                onClick={() => removeSector(sector.id)}
+              >
+                Delete from company
+              </button>
+            </>
           ))}
         </Grid>
         <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
