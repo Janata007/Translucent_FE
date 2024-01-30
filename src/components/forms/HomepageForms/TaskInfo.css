@@ -1,0 +1,12 @@
+.taskContainer {
+  text-align: center;
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+.card-header {
+  color: white;
+  font-weight: bold;
+}
