@@ -24,7 +24,7 @@ const UserService = {
       method: "GET",
       headers: {
         "Content-type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Beaerer ${token}`,
       },
     }).then(async (response) => {
       const responseTemplateVO = await response.json();

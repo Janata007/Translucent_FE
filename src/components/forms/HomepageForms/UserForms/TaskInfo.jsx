@@ -16,6 +16,7 @@ const TaskInfo = () => {
         setIsLoading(false);
       });
   };
+  //todo: fix this
   // useEffect(() => {
   //   fetchData();
   // }, []);

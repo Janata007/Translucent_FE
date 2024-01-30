@@ -11,10 +11,26 @@ import Calendar from "react-calendar";
 import { useState } from "react";
 import "./Calendar.css";
 import moment from "moment";
+import ArrangementService from "../../api/ArrangementService";
 
 const Home = () => {
   const [date, setDate] = useState(new Date());
+  const [arrangements, setArrangements] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  //todo: fetch dates with arrangements for user
   const mark = ["01-01-2024", "03-03-2024", "05-03-2024"];
+  const fetchData = async () => {
+    await ArrangementService.getAllArrangementsForUser(id)
+      .then((data) => {
+        setArrangements([...data]);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="home page">
       <Header />
