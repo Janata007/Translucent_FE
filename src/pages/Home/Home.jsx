@@ -8,15 +8,20 @@ import SearchBar from "../../components/forms/HomepageForms/SearchBar";
 import UserInfo from "../../components/forms/HomepageForms/UserForms/UserInfo";
 import TaskInfo from "../../components/forms/HomepageForms/UserForms/TaskInfo";
 import Calendar from "react-calendar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Calendar.css";
 import moment from "moment";
 import ArrangementService from "../../api/ArrangementService";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/ROUTES";
 
 const Home = () => {
   const [date, setDate] = useState(new Date());
+  const [id, setId] = useState(1);
   const [arrangements, setArrangements] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
+
   //todo: fetch dates with arrangements for user
   const mark = ["01-01-2024", "03-03-2024", "05-03-2024"];
   const fetchData = async () => {
@@ -31,6 +36,7 @@ const Home = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <div className="home page">
       <Header />
@@ -38,6 +44,13 @@ const Home = () => {
         <SearchBar></SearchBar>
         <UserInfo></UserInfo>
         <TaskInfo></TaskInfo>
+        <button
+          type="button"
+          className="form-button2"
+          onClick={() => navigate(ROUTES.CREATE_ARRANGEMENT)}
+        >
+          Create an Arrangement
+        </button>
         {/* <div>
           <h1 className="text-center">Calendar with Range</h1>
           <div className="calendar-container">

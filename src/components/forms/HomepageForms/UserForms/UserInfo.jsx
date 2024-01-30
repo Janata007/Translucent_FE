@@ -40,9 +40,9 @@ const UserInfo = () => {
         setIsLoading(false);
       });
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <div className="userContainer">

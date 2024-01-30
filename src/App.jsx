@@ -9,6 +9,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import Company from "./pages/Company/Company";
 import AddSector from "./pages/Sector/AddSectorToCompany";
 import CreateSector from "./pages/Sector/CreateSector";
+import CreateArrangement from "./pages/Arrangement/CreateArrangement";
 
 const App = () => {
   return (
@@ -29,6 +30,10 @@ const App = () => {
           <Route path={ROUTES.COMPANY} element={<Company />} />
           <Route path={ROUTES.ADD_SECTOR_TO_COMPANY} element={<AddSector />} />
           <Route path={ROUTES.CREATE_SECTOR} element={<CreateSector />} />
+          <Route
+            path={ROUTES.CREATE_ARRANGEMENT}
+            element={<CreateArrangement />}
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
