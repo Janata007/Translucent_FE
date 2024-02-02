@@ -6,7 +6,7 @@ const TaskInfo = () => {
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const token = useAuth();
-  const id = useState(1);
+  const id = useState(12);
   const fetchData = async () => {
     await WorkService.getTasksForUser(token, id)
       .then((data) => {
@@ -16,10 +16,9 @@ const TaskInfo = () => {
         setIsLoading(false);
       });
   };
-  //todo: fix this
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="taskContainer">

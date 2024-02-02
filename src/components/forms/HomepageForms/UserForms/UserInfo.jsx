@@ -4,35 +4,43 @@ import { useAuth } from "../../../../hooks/useAuth";
 
 const UserInfo = () => {
   const [userInfo, setUserInfo] = useState({
-    userId: 7,
-    firstName: "jim",
-    lastName: "halpert",
-    email: "jim.halpert@mail.com",
-    sectorId: 0,
-    companyId: null,
-    password: "user",
-    role: null,
-    workVisible: false,
-    superiorId: null,
-    arrangements: [],
-    accountNonExpired: true,
-    accountNonLocked: true,
-    credentialsNonExpired: true,
-    enabled: true,
-    authority: null,
-    username: "jhalpert",
-    authorities: [
-      {
-        authority: null,
-      },
-    ],
+    appUser: {
+      userId: 12,
+      firstName: "Dwight",
+      lastName: "Schrute",
+      email: "d.schrute@mail",
+      sectorId: 6,
+      companyId: null,
+      password: "user",
+      role: null,
+      workVisible: false,
+      superiorId: null,
+      arrangements: [],
+      accountNonExpired: true,
+      accountNonLocked: true,
+      credentialsNonExpired: true,
+      enabled: true,
+      authority: null,
+      username: "dschrute",
+      authorities: [
+        {
+          authority: null,
+        },
+      ],
+    },
+    sector: {
+      id: 6,
+      name: "Checking_Sector",
+      code: "CS01",
+    },
   });
+
   const [isLoading, setIsLoading] = useState(true);
-  const token = useAuth();
-  const id = useState(1);
+  const { token } = useAuth();
+  const id = useState(12);
 
   const fetchData = async () => {
-    await UserService.getUser(id, token)
+    await UserService.getUserWithSector(id, token)
       .then((data) => {
         setUserInfo([...data]);
       })
@@ -40,9 +48,9 @@ const UserInfo = () => {
         setIsLoading(false);
       });
   };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="userContainer">
@@ -51,11 +59,13 @@ const UserInfo = () => {
       </div>
       <div className="card">
         <div className="card-header">
-          {userInfo.firstName} {userInfo.lastName}
+          {userInfo.appUser.firstName} {userInfo.appUser.lastName}
         </div>
         <div className="card-body">
-          <h5 className="card-title">{userInfo.email}</h5>
-          <p className="card-text">Currently working as {userInfo.role}</p>
+          <h5 className="card-title">{userInfo.appUser.email}</h5>
+          <p className="card-text">
+            Currently working at {userInfo.sector.name}
+          </p>
           <a href="#" className="btn btn-primary">
             Go somewhere
           </a>

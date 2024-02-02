@@ -70,3 +70,6 @@
   flex-direction: column;
   gap: 1em;
 }
+.dateTimePicker {
+  width: 100%;
+}

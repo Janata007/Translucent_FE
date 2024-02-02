@@ -15,19 +15,22 @@ const UserService = {
         return jwtToken;
       }) //todo: change for actual impl
       .catch((err) => {
+        console.log("LOGIN ERROR");
         return SUCCESSFUL_LOGIN_RESPONSE;
       });
   },
 
   async getUserWithSector(userId, token) {
-    return await fetch(`${USER_ENDPOINTS.GET_USER_WITH_SECTOR}/${userId}`, {
+    return await fetch(USER_ENDPOINTS.GET_USER_WITH_SECTOR / `${userId}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
         Authorization: `Beaerer ${token}`,
+        "Access-Control-Allow-Origin": "*",
       },
     }).then(async (response) => {
       const responseTemplateVO = await response.json();
+      console.log(responseTemplateVO);
       return responseTemplateVO;
     });
   },
@@ -36,12 +39,13 @@ const UserService = {
     return await fetch(`${USER_ENDPOINTS.GET_USER}/${userId}`, {
       method: "GET",
       headers: {
-        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
-      const user = await response.json();
-      return user;
+      const userGot = await response.json();
+      console.log("user:" + userGot);
+      return userGot;
     });
   },
 
@@ -56,6 +60,7 @@ const UserService = {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
         },
       }
     ).then(async (response) => {
@@ -75,6 +80,7 @@ const UserService = {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
         },
       }
     ).then(async (response) => {
@@ -89,6 +95,7 @@ const UserService = {
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${token}`,
+        "Access-Control-Allow-Origin": "*",
       },
     }).then(async (response) => {
       const users = await response.json();
@@ -104,6 +111,7 @@ const UserService = {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
         },
       }
     ).then(async (response) => {
@@ -120,6 +128,7 @@ const UserService = {
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
         },
       }
     ).then(async (response) => {
@@ -134,6 +143,7 @@ const UserService = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(newUser),
     }).then(async (response) => {

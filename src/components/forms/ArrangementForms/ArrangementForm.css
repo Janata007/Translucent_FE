@@ -1,0 +1,8 @@
+.date-form {
+  position: relative;
+  width: 100%;
+}
+
+.react-datepicker__month-container {
+  color: var(--ml-light);
+}

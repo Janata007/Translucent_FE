@@ -14,18 +14,20 @@ import moment from "moment";
 import ArrangementService from "../../api/ArrangementService";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/ROUTES";
+import { useAuth } from "../../hooks/useAuth";
 
 const Home = () => {
+  const [id, setId] = useState(12);
   const [date, setDate] = useState(new Date());
-  const [id, setId] = useState(1);
   const [arrangements, setArrangements] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { token } = useAuth();
   const navigate = useNavigate();
 
   //todo: fetch dates with arrangements for user
-  const mark = ["01-01-2024", "03-03-2024", "05-03-2024"];
+  const [mark, setMark] = useState(["24-01-2024", "03-03-2024", "05-03-2024"]);
   const fetchData = async () => {
-    await ArrangementService.getAllArrangementsForUser(id)
+    await ArrangementService.getAllArrangementsForUser(token, id)
       .then((data) => {
         setArrangements([...data]);
       })
@@ -35,6 +37,15 @@ const Home = () => {
   };
   useEffect(() => {
     fetchData();
+    arrangements.map((arrangement) => {
+      setMark(
+        arrangement.startTime.substring(0, 4) +
+          "-" +
+          arrangement.startTime.substring(5, 8) +
+          arrangement.startTime.substring(8, 10)
+      );
+      console.log("MARK" + mark);
+    });
   }, []);
 
   return (

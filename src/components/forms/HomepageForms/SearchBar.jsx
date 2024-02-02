@@ -60,7 +60,7 @@ const SearchBar = () => {
           onBlur={handleBlur}
           type="search"
           className="textbox"
-          placeholder="Search data..."
+          placeholder="Search for a service..."
           value={value}
           onChange={handleSearchInputChange}
         />
