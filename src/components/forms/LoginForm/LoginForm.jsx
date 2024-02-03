@@ -34,9 +34,10 @@ const LoginForm = () => {
     e.preventDefault();
     checkErrors();
     if (noEmptyFields()) {
-      await UserService.authenticate(loginData).then((response) =>
-        login(response.jwtToken)
-      );
+      await UserService.authenticate(loginData).then((response) => {
+        console.log(response.jwtToken);
+        login(response.jwtToken);
+      });
     }
   };
 

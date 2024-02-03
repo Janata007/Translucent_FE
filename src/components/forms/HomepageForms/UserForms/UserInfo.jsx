@@ -6,7 +6,7 @@ const UserInfo = () => {
   const [userInfo, setUserInfo] = useState({
     appUser: {
       userId: 12,
-      firstName: "Dwight",
+      firstName: "False Dwight",
       lastName: "Schrute",
       email: "d.schrute@mail",
       sectorId: 6,
@@ -50,7 +50,7 @@ const UserInfo = () => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isLoading]);
 
   return (
     <div className="userContainer">

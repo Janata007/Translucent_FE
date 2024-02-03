@@ -47,6 +47,7 @@ const ArrangementForm = () => {
     e.preventDefault();
     checkErrors();
     if (noEmptyFields()) {
+      console.log(arrangement);
       await ArrangementService.saveNewArrangement(arrangement, userId).then(
         (response) => console.log("RESPONSE" + response)
       );
@@ -93,6 +94,7 @@ const ArrangementForm = () => {
               }
             />
           </div>
+
           <div className="date-form">
             <label htmlFor="date" className="form-label">
               Date

@@ -15,46 +15,60 @@ import ArrangementService from "../../api/ArrangementService";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/ROUTES";
 import { useAuth } from "../../hooks/useAuth";
+import { useDebounce } from "../../hooks/useDebounce";
 
 const Home = () => {
   const [id, setId] = useState(12);
   const [date, setDate] = useState(new Date());
   const [arrangements, setArrangements] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  //todo: fetch dates with arrangements for user
+  //todo: set dates from arrangements for user
   const [mark, setMark] = useState(["24-01-2024", "03-03-2024", "05-03-2024"]);
-  const fetchData = async () => {
-    await ArrangementService.getAllArrangementsForUser(token, id)
-      .then((data) => {
-        setArrangements([...data]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  const fetchData2 = async () => {
+    const arrangementList = await ArrangementService.getAllArrangementsForUser(
+      token,
+      id
+    );
+    return arrangementList;
   };
+
   useEffect(() => {
-    fetchData();
-    arrangements.map((arrangement) => {
-      setMark(
-        arrangement.startTime.substring(0, 4) +
-          "-" +
-          arrangement.startTime.substring(5, 8) +
-          arrangement.startTime.substring(8, 10)
-      );
-      console.log("MARK" + mark);
-    });
+    setIsLoading(true);
   }, []);
+
+  useDebounce(
+    async () => {
+      try {
+        const arrangs = await fetchData2(token, id);
+        setArrangements(arrangs);
+        arrangs.map((arrangement) => {
+          setMark(
+            arrangement.startTime.substring(0, 4) +
+              "-" +
+              arrangement.startTime.substring(5, 8) +
+              arrangement.startTime.substring(8, 10)
+          );
+        });
+        console.log("ARRANGEMENTS START TIME: " + arrangs[0].startTime);
+        console.log("MARK " + mark);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    1000,
+    [isLoading]
+  );
 
   return (
     <div className="home page">
       <Header />
       <Main>
         <SearchBar></SearchBar>
-        <UserInfo></UserInfo>
-        <TaskInfo></TaskInfo>
+        {/* <UserInfo></UserInfo> */}
+        {/* <TaskInfo></TaskInfo> */}
         <button
           type="button"
           className="form-button2"
@@ -62,24 +76,6 @@ const Home = () => {
         >
           Create an Arrangement
         </button>
-        {/* <div>
-          <h1 className="text-center">Calendar with Range</h1>
-          <div className="calendar-container">
-            <Calendar onChange={setDate} value={date} selectRange={true} />
-          </div>
-          {date.length > 0 ? (
-            <p className="text-center">
-              <span className="bold">Start:</span> {date[0].toDateString()}
-              &nbsp;|&nbsp;
-              <span className="bold">End:</span> {date[1].toDateString()}
-            </p>
-          ) : (
-            <p className="text-center">
-              <span className="bold">Default selected date:</span>{" "}
-              {date.toDateString()}
-            </p>
-          )}
-        </div> */}
         <div>
           <h1 className="text-center">Your Calendar</h1>
           <div className="calendar-container">

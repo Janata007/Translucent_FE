@@ -64,12 +64,7 @@ const SearchBar = () => {
           value={value}
           onChange={handleSearchInputChange}
         />
-        <div
-          // className={`${styles.suggestions} ${
-          //   hideSuggestions && styles.hidden
-          // }`}
-          className="suggestions"
-        >
+        <div className="suggestions">
           {suggestions &&
             suggestions.map &&
             suggestions.map((suggestion) => (
