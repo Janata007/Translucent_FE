@@ -27,7 +27,7 @@ const App = () => {
 
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.REGISTER} element={<Register />} />
-          <Route path={ROUTES.COMPANY} element={<Company />} />
+          <Route path={ROUTES.COMPANY + "/*"} element={<Company />} />
           <Route path={ROUTES.ADD_SECTOR_TO_COMPANY} element={<AddSector />} />
           <Route path={ROUTES.CREATE_SECTOR} element={<CreateSector />} />
           <Route

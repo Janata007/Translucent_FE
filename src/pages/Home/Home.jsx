@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/ROUTES";
 import { useAuth } from "../../hooks/useAuth";
 import { useDebounce } from "../../hooks/useDebounce";
+import DropdownMenu from "../../components/DropdownMenu";
 
 const Home = () => {
   const [id, setId] = useState(12);
@@ -26,13 +27,25 @@ const Home = () => {
   const navigate = useNavigate();
 
   //todo: set dates from arrangements for user
-  const [mark, setMark] = useState(["24-01-2024", "03-03-2024", "05-03-2024"]);
+  const [mark, setMark] = useState(["24-01-2024"]);
   const fetchData2 = async () => {
     const arrangementList = await ArrangementService.getAllArrangementsForUser(
       token,
       id
     );
     return arrangementList;
+  };
+
+  const updateDates = (arrangements) => {
+    arrangements.map((arrangement) => {
+      setMark((previous) => [
+        ...previous,
+        arrangement.startTime.substring(8, 10) +
+          "-" +
+          arrangement.startTime.substring(5, 8) +
+          arrangement.startTime.substring(0, 4),
+      ]);
+    });
   };
 
   useEffect(() => {
@@ -44,14 +57,7 @@ const Home = () => {
       try {
         const arrangs = await fetchData2(token, id);
         setArrangements(arrangs);
-        arrangs.map((arrangement) => {
-          setMark(
-            arrangement.startTime.substring(0, 4) +
-              "-" +
-              arrangement.startTime.substring(5, 8) +
-              arrangement.startTime.substring(8, 10)
-          );
-        });
+        updateDates(arrangs);
         console.log("ARRANGEMENTS START TIME: " + arrangs[0].startTime);
         console.log("MARK " + mark);
       } catch (error) {
@@ -92,6 +98,9 @@ const Home = () => {
           <p className="text-center">
             <span className="bold">Selected Date:</span> {date.toDateString()}
           </p>
+        </div>
+        <div>
+          <DropdownMenu></DropdownMenu>
         </div>
       </Main>
       <Footer />

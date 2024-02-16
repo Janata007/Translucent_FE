@@ -53,6 +53,7 @@ const Company = () => {
   };
 
   useEffect(() => {
+    console.log(window.location.pathname);
     fetchCompanyData();
   }, []);
   useEffect(() => {}, [company]);
