@@ -2,60 +2,42 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { ROUTES } from "../../../constants/ROUTES";
-import SectorService from "../../../api/SectorService";
+import CompanyService from "../../../api/CompanyService";
 import { isNonEmptyString } from "../../../util/helperFunctions";
 import "../Form.css";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
 
-const SectorForm = () => {
-  const animatedComponents = makeAnimated();
-  const { login } = useAuth();
-  const [sectorData, setSectorData] = useState({
+const CompanyForm = () => {
+  const { token } = useAuth();
+  const [companyData, setCompanyData] = useState({
     name: "",
     description: "",
-    sectorList: [],
   });
-
-  const options = [
-    { value: "MARKETING", label: "Marketing" },
-    { value: "SOFTWARE_DEVELOPMENT", label: "Software Development" },
-    { value: "MANAGEMENT", label: "Management" },
-    { value: "MARKETING", label: "Marketing" },
-    { value: "UI_DESIGN", label: "UI Design" },
-    { value: "DESIGN", label: "Design" },
-    { value: "HR", label: "Human Resourcing" },
-    { value: "EVENT", label: "Event management" },
-    { value: "ORGANIZATION", label: "Organization" },
-    { value: "TRANSCRIPTION", label: "Transcription" },
-  ];
   const nameRef = useRef();
   const descriptionRef = useRef();
-  const offeredServicesRef = useRef();
-  const codeRef = useRef();
   const navigate = useNavigate();
   const noEmptyFields = () => {
-    console.log(Object.values(sectorData).every((v) => isNonEmptyString(v)));
-    return Object.values(sectorData).every((v) => isNonEmptyString(v));
+    console.log(Object.values(companyData).every((v) => isNonEmptyString(v)));
+    return Object.values(companyData).every((v) => isNonEmptyString(v));
   };
 
   const checkErrors = () => {
-    if (sectorData.name.length === 0) nameRef.current.classList.add("error");
+    if (companyData.name.length === 0) nameRef.current.classList.add("error");
     else nameRef.current.classList.remove("error");
 
-    if (sectorData.code.length === 0) codeRef.current.classList.add("error");
-    else codeRef.current.classList.remove("error");
+    if (companyData.description.length === 0)
+      descriptionRef.current.classList.add("error");
+    else descriptionRef.current.classList.remove("error");
   };
 
   const onCreate = async (e) => {
-    console.log(sectorData.offeredServices);
     e.preventDefault();
     checkErrors();
     if (noEmptyFields()) {
-      await SectorService.saveSector(sectorData).then((response) =>
-        console.log(response)
+      await CompanyService.saveNewCompany(token, companyData).then((response) =>
+        console.log("RESPONSE" + response)
       );
-      navigate(ROUTES.COMPANY);
+      navigate(ROUTES.ALL_COMPANIES);
     }
   };
   return (
@@ -71,26 +53,8 @@ const SectorForm = () => {
             id="name"
             ref={nameRef}
             onChange={(e) =>
-              setSectorData({
-                ...sectorData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="code" className="form-label">
-            Code
-          </label>
-          <input
-            className="form-input"
-            type="text"
-            ref={codeRef}
-            id="code"
-            onChange={(e) =>
-              setSectorData({
-                ...sectorData,
+              setCompanyData({
+                ...companyData,
                 [`${e.currentTarget.id}`]: e.currentTarget.value,
               })
             }
@@ -107,38 +71,12 @@ const SectorForm = () => {
             ref={descriptionRef}
             id="description"
             onChange={(e) =>
-              setSectorData({
-                ...sectorData,
+              setCompanyData({
+                ...companyData,
                 [`${e.currentTarget.id}`]: e.currentTarget.value,
               })
             }
           />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="offeredServices" className="form-label">
-            Offered Services
-          </label>
-
-          <div className="form-group">
-            <Select
-              closeMenuOnSelect={false}
-              components={animatedComponents}
-              defaultValue={[]}
-              isMulti
-              options={options}
-              onChange={(e) => {
-                let services = [];
-                e.forEach((e) => {
-                  services = [...services, e.value];
-                });
-                setSectorData({
-                  ...sectorData,
-                  offeredServices: services,
-                });
-              }}
-            />
-          </div>
         </div>
 
         <div className="form-actions">
@@ -153,12 +91,12 @@ const SectorForm = () => {
 
         <div className="form-links">
           <div className="login-link">
-            <p>Back to Company {`->`}</p>
-            <span onClick={() => navigate(ROUTES.COMPANY)}></span>
+            <p>Back to List {`->`}</p>
+            <span onClick={() => navigate(ROUTES.ALL_COMPANIES)}></span>
           </div>
         </div>
       </form>
     </div>
   );
 };
-export default SectorForm;
+export default CompanyForm;

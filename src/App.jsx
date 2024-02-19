@@ -10,6 +10,8 @@ import Company from "./pages/Company/Company";
 import AddSector from "./pages/Sector/AddSectorToCompany";
 import CreateSector from "./pages/Sector/CreateSector";
 import CreateArrangement from "./pages/Arrangement/CreateArrangement";
+import AllCompanies from "./pages/Company/AllCompaniesPage/AllCompanies";
+import CreateCompany from "./pages/Company/CreateCompany";
 
 const App = () => {
   return (
@@ -27,9 +29,11 @@ const App = () => {
 
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.REGISTER} element={<Register />} />
-          <Route path={ROUTES.COMPANY + "/*"} element={<Company />} />
+          <Route path={ROUTES.COMPANY} element={<Company />} />
+          <Route path={ROUTES.ALL_COMPANIES} element={<AllCompanies />} />
           <Route path={ROUTES.ADD_SECTOR_TO_COMPANY} element={<AddSector />} />
           <Route path={ROUTES.CREATE_SECTOR} element={<CreateSector />} />
+          <Route path={ROUTES.CREATE_COMPANY} element={<CreateCompany />} />
           <Route
             path={ROUTES.CREATE_ARRANGEMENT}
             element={<CreateArrangement />}

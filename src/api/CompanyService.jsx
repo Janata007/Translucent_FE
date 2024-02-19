@@ -2,6 +2,7 @@ import { COMPANY_ENDPOINTS } from "../constants/ENDPOINTS";
 
 const CompanyService = {
   async saveNewCompany(token, company) {
+    console.log("COMPANY IS: " + company);
     return await fetch(COMPANY_ENDPOINTS.SAVE_NEW_COMPANY, {
       method: "POST",
       headers: {
@@ -82,6 +83,19 @@ const CompanyService = {
     ).then(async (response) => {
       const offeredServices = await response.json();
       return offeredServices;
+    });
+  },
+
+  async getAllCompanies(token) {
+    return await fetch(`${COMPANY_ENDPOINTS.GET_ALL_COMPANIES}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(async (response) => {
+      const companies = await response.json();
+      console.log("COMPANIES:" + companies);
+      return companies;
     });
   },
 
