@@ -28,17 +28,14 @@ const AllCompanies = () => {
             code: "AS01",
             offeredServices: ["ORGANIZATION"],
           },
-          {
-            id: 13,
-            name: "Food sector",
-            description: "sector meant for food services",
-            code: "FS01",
-            offeredServices: ["MANAGEMENT", "EVENT"],
-          },
         ],
       },
     ],
   ]);
+  async function deleteCompany(company) {
+    console.log("company deleting id: " + company.id);
+    await CompanyService.deleteCompanyById(token, company.id);
+  }
 
   const fetchData = async () => {
     await CompanyService.getAllCompanies(token)
@@ -70,6 +67,13 @@ const AllCompanies = () => {
                     description={company.description}
                     offeredServices={[company.sectorList]}
                   />
+                  <button
+                    type="button"
+                    className="form-button2"
+                    onClick={() => deleteCompany(company)}
+                  >
+                    Delete company
+                  </button>
                 </>
               ))}
             </Grid>

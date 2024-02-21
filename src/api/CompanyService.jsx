@@ -2,7 +2,6 @@ import { COMPANY_ENDPOINTS } from "../constants/ENDPOINTS";
 
 const CompanyService = {
   async saveNewCompany(token, company) {
-    console.log("COMPANY IS: " + company);
     return await fetch(COMPANY_ENDPOINTS.SAVE_NEW_COMPANY, {
       method: "POST",
       headers: {
@@ -32,6 +31,7 @@ const CompanyService = {
     return await fetch(`${COMPANY_ENDPOINTS.DELETE_COMPANY_BY_ID}/${id}`, {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${token}`,
       },
     }).then(async (response) => {
