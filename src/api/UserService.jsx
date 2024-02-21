@@ -68,6 +68,25 @@ const UserService = {
       return user;
     });
   },
+  async getUsersByUsername(username, token) {
+    const requestParams = new URLSearchParams({
+      username: username,
+    });
+    return await fetch(
+      `${USER_ENDPOINTS.GET_USERS_BY_USERNAME}?${requestParams}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    ).then(async (response) => {
+      const user = await response.json();
+      return user;
+    });
+  },
 
   async setWorkVisibleForUser(userId, visible, token) {
     const requestParams = new URLSearchParams({
