@@ -37,7 +37,7 @@ const UserInfo = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
-  const id = useState(12);
+  const id = useState(2);
 
   const fetchData = async () => {
     await UserService.getUserWithSector(id, token)
@@ -67,7 +67,7 @@ const UserInfo = () => {
             Currently working at {userInfo.sector.name}
           </p>
           <a href="#" className="btn btn-primary">
-            Go somewhere
+            My Profile
           </a>
         </div>
       </div>

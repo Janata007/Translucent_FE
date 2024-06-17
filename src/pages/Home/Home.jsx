@@ -22,6 +22,7 @@ import { Modal } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import WorkService from "../../api/WorkService";
 
 
 const localizer = momentLocalizer(moment);
@@ -29,12 +30,21 @@ const initialList=[
   {
     start:new Date('2024-10-10T11:59:11.332'),
     end: new Date("2024-10-10T11:59:11.332"),
-    title: "Some title"
+    title: "Arrangement X"
+  }
+]
+const initialTaskList=[
+  {
+    start:new Date('2024-08-10T11:59:11.332'),
+    end: new Date("2024-10-10T11:59:11.332"),
+    title: "Task X"
   }
 ]
 
 const Home = () => {
-  const [arrangementList, setArrangementList]=useState(initialList)
+  const [arrangementList, setArrangementList]=useState(initialList);
+  const [taskList, setTaskList]=useState(initialTaskList);
+  const [eventList, setEventList] = useState(initialList);
   const [calendarEventClicked, setCalendarEvent]=useState(false);
   const [id, setId] = useState(6);
   const [eventValue, setEventValue]=useState( {
@@ -47,7 +57,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const navigate = useNavigate();
-  const [mark, setMark] = useState(["24-01-2024"]);
   const fetchData2 = async () => {
     const arrangementList = await ArrangementService.getAllArrangementsForUser(
       token,
@@ -56,13 +65,18 @@ const Home = () => {
     console.log(arrangementList);
     return arrangementList;
   };
+  const fetchData = async () => {
+    const taskList = await WorkService.getTasksForUser(
+      token,
+      id
+    );
+    console.log(taskList);
+    return taskList;
+  };
   const onEventClick=(event)=>{
     console.log('event clicked!')
     setEventValue(event);
       setCalendarEvent(!calendarEventClicked);
-  }
-  const onCardClick=()=>{
-      setCalendarEvent(false);
   }
   var popup =  <Modal   portalClassName="modal"
   open={onEventClick}
@@ -89,25 +103,24 @@ const Home = () => {
         </div>
 </Modal>;
 
-  const updateDates = (arrangements) => {
+  const updateDates = (arrangements, tasks) => {
     for(var i=0; i<arrangements.length; i++){
-      arrangementList.push({
+      eventList.push({
         start: new Date(arrangements[i].startTime),
         end: new Date(arrangements[i].endTime),
         title: arrangements[i].name
       });
-      setArrangementList(arrangementList);
+      setEventList(eventList);
+    }
+    for(var i=0; i<tasks.length; i++){
+      eventList.push({
+        start: new Date(tasks[i].dateCreated),
+        end: new Date(tasks[i].dateDue),
+        title: tasks[i].name
+      });
+      setEventList(eventList);
     }
     console.log(arrangementList.length)
-    arrangements.map((arrangement) => {
-      setMark((previous) => [
-        ...previous,
-        arrangement.startTime.substring(8, 10) +
-          "-" +
-          arrangement.startTime.substring(5, 8) +
-          arrangement.startTime.substring(0, 4),
-      ]);
-    });
   };
 
   useEffect(() => {
@@ -118,10 +131,10 @@ const Home = () => {
     async () => {
       try {
         const arrangs = await fetchData2(token, id);
+        const tasks = await fetchData(token, id);
         setArrangements(arrangs);
-        updateDates(arrangs);
-        console.log("ARRANGEMENTS START TIME: " + arrangs[0].startTime);
-        console.log("MARK " + mark);
+        setTaskList(tasks);
+        updateDates(arrangs, tasks);
       } catch (error) {
         console.log(error);
       }
@@ -134,8 +147,7 @@ const Home = () => {
       <HeaderLoggedIn />
       <Main>
         <SearchBar></SearchBar>
-        {/* <UserInfo></UserInfo> */}
-        {/* <TaskInfo></TaskInfo> */}
+        <ul><UserInfo></UserInfo>
         <button
           type="button"
           className="form-button2"
@@ -143,6 +155,7 @@ const Home = () => {
         >
           Create an Arrangement
         </button>
+        </ul>
         {calendarEventClicked && popup}
         <div>
           <div className="calendar-container">
@@ -151,7 +164,7 @@ const Home = () => {
           localizer={localizer}
           defaultDate={new Date()}
           defaultView="month"
-          events={arrangementList}
+          events={eventList}
           style={{ height: "100vh" }}
           onSelectEvent={(event)=>{onEventClick(event)}}
         /></div>
@@ -161,7 +174,8 @@ const Home = () => {
         <p>
             <span className="bold">Current Date:</span> {date.toDateString()}
           </p>
-          <DropdownMenu></DropdownMenu>
+          {/* <DropdownMenu></DropdownMenu> */}
+          <TaskInfo></TaskInfo>
         </div>
       </Main>
       <Footer />

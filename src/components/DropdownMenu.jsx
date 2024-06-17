@@ -43,7 +43,7 @@ const DropdownMenu = () => {
   return (
     <div className="taskDropdown">
       <Dropdown>
-        <MenuButton>My account</MenuButton>
+        <MenuButton>My tasks</MenuButton>
         <Menu id="task-menu">
           {tasks.map((task) => (
             <MenuItem
