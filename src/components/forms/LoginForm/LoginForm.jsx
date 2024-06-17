@@ -16,11 +16,11 @@ const LoginForm = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const noEmptyFields = () => {
     return Object.values(loginData).every((v) => isNonEmptyString(v));
   };
-
   const checkErrors = () => {
     if (loginData.username.length === 0)
       usernameRef.current.classList.add("error");
@@ -35,8 +35,11 @@ const LoginForm = () => {
     checkErrors();
     if (noEmptyFields()) {
       await UserService.authenticate(loginData).then((response) => {
+        if(response==null){
+          //todo: add error modal
+        }else{
         console.log(response.jwtToken);
-        login(response.jwtToken);
+        login(response.jwtToken);}
       });
     }
   };
@@ -68,7 +71,7 @@ const LoginForm = () => {
           </label>
           <input
             className="form-input"
-            type="text"
+            type="password"
             ref={passwordRef}
             id="password"
             onChange={(e) =>

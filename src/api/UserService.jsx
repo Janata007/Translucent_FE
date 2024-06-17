@@ -1,4 +1,5 @@
 import { USER_ENDPOINTS } from "../constants/ENDPOINTS";
+import { setToken } from "../constants/TOKEN";
 import { SUCCESSFUL_LOGIN_RESPONSE } from "../constants/mocks/MOCK_RESPONSES";
 
 const UserService = {
@@ -12,11 +13,14 @@ const UserService = {
     })
       .then(async (response) => {
         const jwtToken = await response.json();
+        console.log(jwtToken);
+        setToken=jwtToken.jwtToken;
+        console.log(setToken);
         return jwtToken;
       }) //todo: change for actual impl
       .catch((err) => {
-        console.log("LOGIN ERROR");
-        return SUCCESSFUL_LOGIN_RESPONSE;
+        console.log("LOGIN ERROR" + err);
+        return null;
       });
   },
 

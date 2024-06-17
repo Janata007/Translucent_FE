@@ -6,3 +6,6 @@
 .react-datepicker__month-container {
   color: var(--ml-light);
 }
+.datePicker{
+  transform: scale(0.9);
+}

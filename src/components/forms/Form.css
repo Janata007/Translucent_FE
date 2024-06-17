@@ -48,9 +48,9 @@
   -webkit-text-stroke: 1px black;
 }
 .form-button2 {
-  width: 40%;
+  width: 20%;
   background-color: var(--main-light);
-  border: solid 5px var(--text-color);
+  border: solid 4px var(--text-color);
 
   color: var(--text-color);
   font-size: 2rem;

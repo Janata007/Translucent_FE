@@ -7,17 +7,18 @@ import "../../forms/Form.css";
 // import "./ArrangementForm.css";
 import "react-date-picker/dist/DatePicker.css";
 import ArrangementService from "../../../api/ArrangementService";
-import DateTimePicker from "react-datetime-picker";
 import DatePicker from "react-datepicker";
 import "react-time-picker/dist/TimePicker.css";
 import TimePicker from "react-time-picker";
+import "react-datepicker/dist/react-datepicker.css";
+import setToken from "../../../constants/TOKEN"
 
 const ArrangementForm = () => {
   const { token } = useAuth();
   const [date, setDate] = useState();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
-  const [userId, setUserId] = useState(1);
+  const [userId, setUserId] = useState(6);
   const [arrangement, setArrangement] = useState({
     name: "Meeting01",
     code: "M01",
@@ -48,7 +49,7 @@ const ArrangementForm = () => {
     checkErrors();
     if (noEmptyFields()) {
       console.log(arrangement);
-      await ArrangementService.saveNewArrangement(arrangement, userId).then(
+      await ArrangementService.saveNewArrangement(arrangement, userId, token).then(
         (response) => console.log("RESPONSE" + response)
       );
       navigate(ROUTES.HOME);
@@ -76,7 +77,6 @@ const ArrangementForm = () => {
               }
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="code" className="form-label">
               Code
@@ -94,11 +94,11 @@ const ArrangementForm = () => {
               }
             />
           </div>
-
           <div className="date-form">
             <label htmlFor="date" className="form-label">
               Date
             </label>
+            <div className="datePicker">
             <DatePicker
               selected={date}
               onChange={(newDate) => setDate(newDate)}
@@ -106,7 +106,7 @@ const ArrangementForm = () => {
               className="date-selection__input"
               autoFocus
               tabIndex={0}
-            />
+            /></div>
           </div>
           <div className="form-group">
             <label htmlFor="date" className="form-label">

@@ -12,7 +12,9 @@ const Register = () => {
       <Header />
       <Main />
       <Main>
-        <RegisterForm />
+        <div class="form-container">
+            <RegisterForm />
+      </div>
       </Main>
       <Footer />
     </div>

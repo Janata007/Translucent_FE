@@ -1,13 +1,16 @@
 import { ARRANGEMENT_ENDPOINTS } from "../constants/ENDPOINTS";
+import setToken from "../constants/TOKEN"
 
 const ArrangementService = {
-  async saveNewArrangement(newArrangement, userId) {
+  async saveNewArrangement(newArrangement, userId, token) {
     return await fetch(
       `${ARRANGEMENT_ENDPOINTS.SAVE_NEW_ARRANGEMENT}/${userId}`,
       {
         method: "POST",
         headers: {
           "Content-type": "applicaton/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(newArrangement),
       }

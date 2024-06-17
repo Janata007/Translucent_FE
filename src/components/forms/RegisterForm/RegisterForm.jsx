@@ -56,7 +56,7 @@ const RegisterForm = () => {
   };
   return (
     <div className="form-container">
-      <form action="POST" className="form register">
+      <form action="POST" className="form-register">
         <div className="form-group">
           <label htmlFor="userName" className="form-label">
             Username
@@ -135,7 +135,7 @@ const RegisterForm = () => {
           </label>
           <input
             className="form-input"
-            type="text"
+            type="password"
             ref={passwordRef}
             id="password"
             onChange={(e) =>
