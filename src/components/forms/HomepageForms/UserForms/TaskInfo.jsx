@@ -2,51 +2,64 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../../../hooks/useAuth";
 import WorkService from "../../../../api/WorkService";
 import { useDebounce } from "../../../../hooks/useDebounce";
+import TaskPost from "../../../../pages/Work/TaskPost";
 
 
 const TaskInfo = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([{
+    "id": 9,
+    "name": "Task01",
+    "priority": "MEDIUM",
+    "description": "task for jim",
+    "finished": false,
+    "arrangementId": null,
+    "createdByUserId": 2,
+    "createdForUserId": 6,
+    "dateDue": "2024-10-05T11:59:11.332",
+    "dateCreated": "2024-06-17T16:56:10.645824",
+    "accepted": false
+}]);
   const [isLoading, setIsLoading] = useState(true);
   const token = useAuth();
   const id = useState(6);
   const fetchData = async () => {
-    const list= await WorkService.getTasksForUser(token, id)
-    console.log("tasklist "+list)
-    setTasks(list);
-    return list;
-   };
-  useEffect(() => {
+    const taskList = await WorkService.getTasksForUser(
+      token,
+      id
+    );
+    return taskList;
+  };
+   useEffect(() => {
     setIsLoading(true);
   }, []);
   useDebounce(
     async () => {
       try {
         const tasks = await fetchData(token, id);
+        console.log("TASKS FETCHED " +tasks);
         setTasks(tasks);
-        console.log("TASKS ARE: " + tasks)
       } catch (error) {
         console.log(error);
       }
     },
-    800,
+    1000,
     [isLoading]
   );
-
   return (
     <div className="taskContainer">
       <div className="jumbotron">
         <h1 className="display-4">Tasks</h1>
       </div>
-      {console.log(tasks)}
       {tasks.map((task) => (
-        <div className="card" key={task.id}>
-          <div className="card-header">
-            #{task.id} {task.name}
-          </div>
-          <div className="card-body">
-            <p className="card-text">{task.priority}</p>
-          </div>
-        </div>
+        <TaskPost
+        id={task.id}
+        name={task.name}
+        priority={task.priority}
+        description={task.description}
+        finished={task.finished}
+         dateDue={task.dateDue}
+         dateCreated={task.dateCreated} accepted={task.accepted}
+        ></TaskPost>
       ))}
     </div>
   );

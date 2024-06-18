@@ -6,8 +6,7 @@ import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 
-function SectorPost({ name, code, description, offeredServices }) {
-  console.log(offeredServices);
+function TaskPost({ id, name, priority, description,finished, dateDue, dateCreated, accepted }) {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
@@ -20,9 +19,7 @@ function SectorPost({ name, code, description, offeredServices }) {
               {description}
             </Typography>
             <Typography variant="subtitle2" div>
-              {offeredServices.map((service) => (
-                <div key={service.id}>{service.name}</div>
-              ))}
+              {dateDue}
             </Typography>
           </CardContent>
         </Card>
@@ -31,4 +28,4 @@ function SectorPost({ name, code, description, offeredServices }) {
   );
 }
 
-export default SectorPost;
+export default TaskPost;

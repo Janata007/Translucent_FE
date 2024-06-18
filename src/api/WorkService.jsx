@@ -57,6 +57,7 @@ const WorkService = {
       },
     }).then(async (response) => {
       const tasks = await response.json();
+      console.log("TASKS FETCHED " + tasks.length)
       return tasks;
     });
   },
