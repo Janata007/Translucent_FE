@@ -1,0 +1,22 @@
+.sectorGrid {
+    transform: scale(0.8);
+        display: flex;
+        flex-direction: row;
+}
+.buttons{
+    flex-direction: row;
+    display: flex;
+}
+.sector-item{
+    padding: 1rem;
+}
+container{
+    columns: -2px;
+}
+.form-button3{
+    border: none;
+    padding: 1rem;
+}
+.return-button{
+  background-color: var(--main-accent);
+}

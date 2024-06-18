@@ -1,0 +1,10 @@
+.main{
+    size: 10%;
+    position: "relative";
+    background-color: var(--main-dark);
+    color: "#fff";
+    background-size: "cover";
+    background-repeat: "no-repeat";
+    background-position: "center";
+    background-image: url(../../assets/logo_pink.png);
+}

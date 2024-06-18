@@ -12,29 +12,19 @@ function CompanyMainPost(props) {
   const imageText = "";
 
   return (
-    <Paper
+    <Paper className="main"
       sx={{
         position: "relative",
-        backgroundColor: "grey.800",
+        backgroundColor: "var(--main-dark)",
         color: "#fff",
-        mb: 4,
-        backgroundSize: "cover",
+        mb: 2,
+        backgroundSize: "100",
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundImage: `url(../../assets/logo_pink.png)`,
       }}
     >
       {/* Increase the priority of the background image */}
-      {<img style={{ display: "none" }} src={image} alt={imageText} />}
+      {/* {<img style={{ display: "none" }} src={image} alt={imageText} />} */}
       <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          right: 0,
-          left: 0,
-          backgroundColor: "rgba(0,0,0,.3)",
-        }}
       />
       <Grid container>
         <Grid item md={6}>

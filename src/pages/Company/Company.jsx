@@ -61,6 +61,9 @@ const Company = () => {
   return (
     <div className="company info page">
       <Header />
+      <div className="main-post">
+        <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
+        </div>
       <Main>
         <div>
         <div className="top-container" spacing={4}>
@@ -79,12 +82,11 @@ const Company = () => {
               >
                 Delete from company
               </button>
+              <div className="between"></div>
             </>
           ))}
         </div>
-        <div className="main-post">
-        <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
-        </div>
+    
         </div>
         <div className="sector-options">
         <button
