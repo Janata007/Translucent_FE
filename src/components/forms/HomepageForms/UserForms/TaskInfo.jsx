@@ -5,7 +5,8 @@ import { useDebounce } from "../../../../hooks/useDebounce";
 import TaskPost from "../../../../pages/Work/TaskPost";
 
 
-const TaskInfo = () => {
+const TaskInfo = ({taskList}) => {
+  console.log(taskList)
   const [tasks, setTasks] = useState([{
     "id": 9,
     "name": "Task01",
@@ -19,48 +20,35 @@ const TaskInfo = () => {
     "dateCreated": "2024-06-17T16:56:10.645824",
     "accepted": false
 }]);
-  const [isLoading, setIsLoading] = useState(true);
-  const token = useAuth();
-  const id = useState(6);
-  const fetchData = async () => {
-    const taskList = await WorkService.getTasksForUser(
-      token,
-      id
-    );
-    return taskList;
-  };
-   useEffect(() => {
-    setIsLoading(true);
-  }, []);
-  useDebounce(
-    async () => {
-      try {
-        const tasks = await fetchData(token, id);
-        console.log("TASKS FETCHED " +tasks);
-        setTasks(tasks);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    1000,
-    [isLoading]
-  );
+const arrayChunk = (arr, n) => {
+  const array = arr.slice();
+  const chunks = [];
+  while (array.length) chunks.push(array.splice(0, n));
+  console.log(chunks)
+  return chunks;
+};
   return (
     <div className="taskContainer">
       <div className="jumbotron">
         <h1 className="display-4">Tasks</h1>
       </div>
-      {tasks.map((task) => (
-        <TaskPost
-        id={task.id}
-        name={task.name}
-        priority={task.priority}
-        description={task.description}
-        finished={task.finished}
-         dateDue={task.dateDue}
-         dateCreated={task.dateCreated} accepted={task.accepted}
-        ></TaskPost>
-      ))}
+      { arrayChunk(taskList, 3).map((items, index) => {
+        return (
+          <div className="taskGrid">
+            {items.map((task, sIndex) => {
+              if(sIndex<2)
+              return <div className="task-item"> {<TaskPost
+                id={task.id}
+                name={task.name}
+                priority={task.priority}
+                description={task.description}
+                finished={task.finished}
+                 dateDue={task.dateDue}
+                 dateCreated={task.dateCreated} accepted={task.accepted}
+                ></TaskPost>}
+           </div>;
+            })}</div>
+            );})}
     </div>
   );
 };

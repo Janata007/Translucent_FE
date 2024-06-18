@@ -44,6 +44,7 @@ const initialTaskList=[
 const Home = () => {
   const [arrangementList, setArrangementList]=useState(initialList);
   const [taskList, setTaskList]=useState(initialTaskList);
+  const [tasksToPass, setTasksToPass]= useState([{}]);
   const [eventList, setEventList] = useState(initialList);
   const [calendarEventClicked, setCalendarEvent]=useState(false);
   const [id, setId] = useState(6);
@@ -62,7 +63,6 @@ const Home = () => {
       token,
       id
     );
-    console.log(arrangementList);
     return arrangementList;
   };
   const fetchData = async () => {
@@ -70,11 +70,9 @@ const Home = () => {
       token,
       id
     );
-    console.log(taskList);
     return taskList;
   };
   const onEventClick=(event)=>{
-    console.log('event clicked!')
     setEventValue(event);
       setCalendarEvent(!calendarEventClicked);
   }
@@ -134,6 +132,7 @@ const Home = () => {
         const tasks = await fetchData(token, id);
         setArrangements(arrangs);
         setTaskList(tasks);
+        setTasksToPass(tasks);
         updateDates(arrangs, tasks);
       } catch (error) {
         console.log(error);
@@ -180,9 +179,16 @@ const Home = () => {
           </p>
           {/* <DropdownMenu></DropdownMenu> */}
           <div className ="task-info">
-          <TaskInfo ></TaskInfo>
+          <TaskInfo taskList={tasksToPass}></TaskInfo>
           </div>
         </div>
+        <button
+          type="button"
+          className="form-button-tasks"
+          onClick={() => navigate(ROUTES.USER_INFO)}
+        >
+          All tasks
+        </button>
       </Main>
       <Footer />
     </div>

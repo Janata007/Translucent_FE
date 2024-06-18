@@ -10,4 +10,5 @@ export const ROUTES = {
   CREATE_ARRANGEMENT: "/arrangement",
   TASK: "/task/:id",
   CREATE_TASK: "/task/create",
+  USER_INFO:"/user/:id"
 };

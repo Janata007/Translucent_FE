@@ -17,6 +17,19 @@
   letter-spacing: 2px;
   -webkit-text-stroke: 1px black;
 }
+.form-button-tasks{
+  font-size: 18px;
+  width: 5rem;
+  background-color: var(--main-light);
+  border: solid 4px var(--text-color-black);
+
+  color: var(--text-color-black);
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px black;
+  position: absolute;
+  top: 85%;
+  right: 2%;
+}
 .modal{
   position: absolute;
   width: 50%;

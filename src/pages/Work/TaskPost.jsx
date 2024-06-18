@@ -8,9 +8,9 @@ import CardContent from "@mui/material/CardContent";
 
 function TaskPost({ id, name, priority, description,finished, dateDue, dateCreated, accepted }) {
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={10} md={6}>
       <CardActionArea component="a" href="#">
-        <Card sx={{ display: "flex" }}>
+        <Card sx={{ display: "flex"}} style={{transform: "scale(0.9)"}}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
               {name}
@@ -19,7 +19,7 @@ function TaskPost({ id, name, priority, description,finished, dateDue, dateCreat
               {description}
             </Typography>
             <Typography variant="subtitle2" div>
-              {dateDue}
+              Due: {dateDue}
             </Typography>
           </CardContent>
         </Card>

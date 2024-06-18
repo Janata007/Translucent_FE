@@ -10,9 +10,6 @@
 .sector-item{
     padding: 1rem;
 }
-container{
-    columns: -2px;
-}
 .more-buttons{
     padding: 0.5rem;
   background-color: var(--main-accent);
