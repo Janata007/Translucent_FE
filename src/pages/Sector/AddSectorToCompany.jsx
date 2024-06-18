@@ -11,6 +11,8 @@ import { ROUTES } from "../../constants/ROUTES";
 import SectorPost from "./SectorPost";
 import "./AddSectorToCompany.css"
 import { FixedSizeGrid } from 'react-window';
+import Popup from 'reactjs-popup';
+
 
 
 const AddSector = () => {
@@ -40,11 +42,9 @@ const AddSector = () => {
     await CompanyService.addSectorToCompany(token, id, sector.id);
   }
   const deleteSector = async (id) => {
-    console.log(id);
-    setIsLoading(true)
     await CompanyService.deleteSector(token, id).then(
-     setIsLoading(false)
     );
+    window.location.reload();
   };
   const arrayChunk = (arr, n) => {
     const array = arr.slice();
@@ -63,7 +63,7 @@ const AddSector = () => {
             <p>check</p>
           ) : (
             <div className="sector-add">
-            <div> { <div>
+            { <div>
       { arrayChunk(sectors, 3).map((items, index) => {
         return (
           <div className="sectorGrid">
@@ -74,60 +74,44 @@ const AddSector = () => {
                 description={sector.description}
                 offeredServices={[sector.offeredServices]}
               />}<div className="buttons">
-              <button
+                 <button
                 type="button"
                 className="form-button2"
-                onClick={() => addSector(sector)}
-              >
+                onClick={() => addSector(sector)} >
                 Add to company
-              </button>
+                </button>
+              <Popup class= "popup" trigger={<></>} position="left">
+                 <div>Sector has been added</div>
+               </Popup>
               <button
             type="button"
             className="form-button2"
-            onClick={() => deleteSector(sector.id)}
-          > 
+            onClick={() => deleteSector(sector.id)}> 
             Remove
-          </button>
-          </div></div>;
+           </button>
+           </div>
+           </div>;
             })}
-          </div>
-        );
-      })}
-    </div>}</div>
-              {/* { sectors.map((sector) => (
-                <>
-                  <SectorPost
-                    name={sector.name}
-                    code={sector.code}
-                    description={sector.description}
-                    offeredServices={[sector.offeredServices]}
-                  />
-                  <div className="buttons">
-                  <button
-                    type="button"
-                    className="form-button2"
-                    onClick={() => addSector(sector)}
-                  >
-                    Add to company
-                  </button>
-                  <button
-                type="button"
-                className="form-button2"
-                onClick={() => deleteSector(sector.id)}
-              > 
-                Remove
-              </button>
-              </div>
-                </>
-              ))} */}
+           </div>
+            );
+            })}
+           </div>}
             </div>
           )}
         </div>
       </Main>
-      <div className="return-button">
+      <div className="more-buttons">
+      <button
+          type="button"
+          className="form-button sector-button"
+          onClick={() => navigate(ROUTES.CREATE_SECTOR)}
+        >
+          Create new sector
+        </button>
+        <div className="more-buttons"></div>
         <button
           type="button"
-          className="form-button3 form-button"
+          className="form-button sector-button"
           onClick={() => navigate(ROUTES.CREATE_SECTOR)}
         >
           Return to company

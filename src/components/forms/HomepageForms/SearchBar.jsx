@@ -15,7 +15,7 @@ const SearchBar = () => {
 
   const redirect = (company) => {
     console.log(company.id);
-    navigate(ROUTES.COMPANY + company.id, { replace: true });
+    navigate(ROUTES.COMPANY.replace(":id", company.id));
   };
 
   const fetchData = async (value) => {

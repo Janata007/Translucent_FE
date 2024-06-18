@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  color: white;
   gap: 0.5em;
 }
 
 .login-link p {
-  color: var(--text-color);
+  color: var(--text-color-white);
   font-size: 1rem;
   letter-spacing: 1px;
   -webkit-text-stroke: 1px black;
@@ -17,25 +17,33 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-color: var(--text-color);
+  background-color: var(--text-color-white);
   border: solid 5px var(--main-light);
 }
 
 .login-link span:hover {
   cursor: pointer;
   background-color: var(--main-light);
-  border-color: var(--text-color);
+  border-color: var(--text-color-white);
+  color: white;
+
 }
 
-.form-group label {
+.form-group label{
   font-size: 1.5rem;
+  color: white;
 }
 .form-input {
   width: 300px;
   height: 40px;
+  color: white;
+
 }
 .form-actions button {
   width: 300px;
   height: 40px;
   font-size: 1.5rem;
+}
+.form-register.form-input{
+  color: white;
 }

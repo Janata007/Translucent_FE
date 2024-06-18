@@ -34,7 +34,7 @@ const Company = () => {
   });
   const redirect = (company) => {
     console.log(company.id);
-    navigate(ROUTES.ADD_SECTOR_TO_COMPANY + company.id);
+    navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id));
   };
   async function fetchCompanyData() {
     await CompanyService.findCompanyById(token, id).then((data) => {
@@ -96,6 +96,7 @@ const Company = () => {
         >
           Create new sector
         </button>
+        <div  className="sector-options"></div>
         <button
           type="button"
           className="form-button"

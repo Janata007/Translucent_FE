@@ -17,7 +17,7 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-color: var(--text-color);
+  background-color: var(--text-color-black);
   border: solid 5px var(--main-light);
 }
 

@@ -5,7 +5,7 @@
 
   background-color: var(--main-dark);
   border-top: var(--light-border);
-  color: var(--text-color);
+  color: var(--text-color-white);
 
   display: flex;
   justify-content: center;
@@ -15,6 +15,7 @@
 .footer-icons {
   display: flex;
   align-items: center;
+  color: white;
   gap: 3em;
 }
 

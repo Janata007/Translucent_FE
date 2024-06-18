@@ -153,8 +153,8 @@ const SectorForm = () => {
 
         <div className="form-links">
           <div className="login-link">
-            <p>Back to Company {`->`}</p>
-            <span onClick={() => navigate(ROUTES.COMPANY)}></span>
+            <p>Back to Home {`->`}</p>
+            <span onClick={() => navigate(ROUTES.HOME)}></span>
           </div>
         </div>
       </form>
