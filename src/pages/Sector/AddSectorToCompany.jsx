@@ -22,7 +22,6 @@ const AddSector = () => {
   let navigate = useNavigate();
   const [sectorId, setSectorId] = useState(0);
   const [sectors, setSectors] = useState([]);
-  let counter=0;
 
   const fetchData = async () => {
     await SectorService.getAllSectors(token)

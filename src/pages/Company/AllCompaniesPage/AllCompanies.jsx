@@ -19,7 +19,6 @@ const AllCompanies = () => {
     console.log("company deleting id: " + companyId);
     await CompanyService.deleteCompanyById(token, companyId);
     window.location.reload();
-
   }
 
   const fetchData = async () => {

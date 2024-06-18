@@ -185,7 +185,8 @@ const Home = () => {
         <button
           type="button"
           className="form-button-tasks"
-          onClick={() => navigate(ROUTES.USER_INFO)}
+          //todo: fix id nav
+          onClick={() => navigate(ROUTES.USER_INFO.replace(":id", id))}
         >
           All tasks
         </button>

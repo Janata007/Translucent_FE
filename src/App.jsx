@@ -13,6 +13,7 @@ import CreateArrangement from "./pages/Arrangement/CreateArrangement";
 import AllCompanies from "./pages/Company/AllCompaniesPage/AllCompanies";
 import CreateCompany from "./pages/Company/CreateCompany";
 import CreateTask from "./pages/Task/CreateTask";
+import Profile from "./pages/User/Profile";
 
 const App = () => {
   return (
@@ -36,6 +37,8 @@ const App = () => {
           <Route path={ROUTES.CREATE_SECTOR} element={<CreateSector />} />
           <Route path={ROUTES.CREATE_COMPANY} element={<CreateCompany />} />
           <Route path={ROUTES.CREATE_TASK} element={<CreateTask />} />
+          <Route path={ROUTES.USER_INFO} element={<Profile />} />
+
           <Route
             path={ROUTES.CREATE_ARRANGEMENT}
             element={<CreateArrangement />}
