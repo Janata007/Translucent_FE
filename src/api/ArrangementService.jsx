@@ -1,5 +1,4 @@
 import { ARRANGEMENT_ENDPOINTS } from "../constants/ENDPOINTS";
-import setToken from "../constants/TOKEN"
 
 const ArrangementService = {
   async saveNewArrangement(newArrangement, userId, token) {

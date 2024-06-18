@@ -62,7 +62,8 @@ const Company = () => {
     <div className="company info page">
       <Header />
       <Main>
-        <Grid container spacing={4}>
+        <div>
+        <div className="top-container" spacing={4}>
           {sectors.map((sector) => (
             <>
               <SectorPost
@@ -80,8 +81,12 @@ const Company = () => {
               </button>
             </>
           ))}
-        </Grid>
+        </div>
+        <div className="main-post">
         <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
+        </div>
+        </div>
+        <div className="sector-options">
         <button
           type="button"
           className="form-button"
@@ -96,6 +101,7 @@ const Company = () => {
         >
           Add sector to company
         </button>
+         </div>
         <div className="sector-add"></div>
       </Main>
       <Footer />

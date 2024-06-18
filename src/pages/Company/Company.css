@@ -2,3 +2,15 @@
   width: 50rem;
   background-color: white;
 }
+.top-container{
+  display: flex;
+  flex-direction: row;
+  transform: scale(0.8);
+}
+.main-post{
+  transform: scale(0.92);
+}
+.sector-options{
+  width: 10rem;
+  padding: 1rem;
+}

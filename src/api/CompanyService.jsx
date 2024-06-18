@@ -1,4 +1,4 @@
-import { COMPANY_ENDPOINTS } from "../constants/ENDPOINTS";
+import { COMPANY_ENDPOINTS, SECTOR_ENDPOINTS } from "../constants/ENDPOINTS";
 
 const CompanyService = {
   async saveNewCompany(token, company) {
@@ -68,6 +68,20 @@ const CompanyService = {
     ).then(async (response) => {
       const company = await response.json();
       return company;
+    });
+  },
+  async deleteSector(token, sectorId){
+    return await fetch(
+      `${SECTOR_ENDPOINTS.DELETE_SECTOR}/${sectorId}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then(async (response) => {
+      const sector = await response.json();
+      return sector;
     });
   },
 

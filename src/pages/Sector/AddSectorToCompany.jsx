@@ -34,6 +34,13 @@ const AddSector = () => {
   async function addSector(sector) {
     await CompanyService.addSectorToCompany(token, id, sector.id);
   }
+  const deleteSector = async (id) => {
+    console.log(id);
+    setIsLoading(true)
+    await CompanyService.deleteSector(token, id).then(
+     setIsLoading(false)
+    );
+  };
 
   return (
     <div className="sector list page">
@@ -59,6 +66,13 @@ const AddSector = () => {
                   >
                     Add to company
                   </button>
+                  <button
+                type="button"
+                className="form-button2"
+                onClick={() => deleteSector(sector.id)}
+              > 
+                Remove
+              </button>
                 </>
               ))}
             </Grid>
