@@ -3,11 +3,32 @@
 }
 .home-calendar{
   margin-top: 10px;
+  width: 110%;
   transform: scale(0.75);
   background-color: var(--main-light);
+}
+.form-button-arrangement{
+  font-size: 30px;
+  width: 15rem;
+  background-color: var(--main-light);
+  border: solid 4px var(--text-color-black);
+
+  color: var(--text-color-black);
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px black;
 }
 .modal{
   position: absolute;
   width: 50%;
   background-color: aqua;
+}
+.first-section{
+  width: 20%;
+}
+.section-one-space{
+  padding: 2rem;
+}
+.third-section{
+  width: 15%;
+  transform: scale(0.8);
 }

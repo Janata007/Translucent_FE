@@ -146,16 +146,20 @@ const Home = () => {
     <div className="home page">
       <HeaderLoggedIn />
       <Main>
+        <div className="first-section">
+          <div className="section-one-space"> 
         <SearchBar></SearchBar>
+        </div>
         <ul><UserInfo></UserInfo>
         <button
           type="button"
-          className="form-button2"
+          className="form-button-arrangement"
           onClick={() => navigate(ROUTES.CREATE_ARRANGEMENT)}
         >
           Create an Arrangement
         </button>
         </ul>
+        </div>
         {calendarEventClicked && popup}
         <div>
           <div className="calendar-container">
@@ -170,12 +174,14 @@ const Home = () => {
         /></div>
           </div>
         </div>
-        <div>
+        <div className="third-section">
         <p>
             <span className="bold">Current Date:</span> {date.toDateString()}
           </p>
           {/* <DropdownMenu></DropdownMenu> */}
-          <TaskInfo></TaskInfo>
+          <div className ="task-info">
+          <TaskInfo ></TaskInfo>
+          </div>
         </div>
       </Main>
       <Footer />
