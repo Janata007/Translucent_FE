@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import Main from "../../../layout/Main/Main";
 import Header from "../../../layout/Header/Header";
 import { useNavigate } from "react-router-dom";
@@ -8,33 +7,19 @@ import { useAuth } from "../../../hooks/useAuth";
 import CompanyService from "../../../api/CompanyService";
 import { ROUTES } from "../../../constants/ROUTES";
 import SectorPost from "../../Sector/SectorPost";
+import "./AllCompanies.css";
 
 const AllCompanies = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
   let navigate = useNavigate();
   const [companies, setCompanies] = useState([
-    [
-      {
-        id: 5,
-        name: "Software development",
-        description: "Software development company",
-        sectorList: [
-          {
-            id: 5,
-            name: "Animation_sector",
-            description:
-              "this is a sector meant for organizing animation events",
-            code: "AS01",
-            offeredServices: ["ORGANIZATION"],
-          },
-        ],
-      },
-    ],
   ]);
-  async function deleteCompany(company) {
-    console.log("company deleting id: " + company.id);
-    await CompanyService.deleteCompanyById(token, company.id);
+  async function deleteCompany(companyId) {
+    console.log("company deleting id: " + companyId);
+    await CompanyService.deleteCompanyById(token, companyId);
+    window.location.reload();
+
   }
 
   const fetchData = async () => {
@@ -50,6 +35,13 @@ const AllCompanies = () => {
     fetchData();
   }, []);
 
+  const arrayChunk = (arr, n) => {
+    const array = arr.slice();
+    const chunks = [];
+    while (array.length) chunks.push(array.splice(0, n));
+    console.log(chunks)
+    return chunks;
+  };
   return (
     <div className="company list page">
       <Header />
@@ -58,36 +50,52 @@ const AllCompanies = () => {
           {isLoading ? (
             <p>check</p>
           ) : (
-            <Grid container spacing={4}>
-              {companies.map((company) => (
-                <>
-                  <SectorPost
-                    name={company.name}
-                    code={""}
-                    description={company.description}
-                    offeredServices={[company.sectorList]}
-                  />
-                  <button
-                    type="button"
-                    className="form-button2"
-                    onClick={() => deleteCompany(company)}
-                  >
-                    Delete company
-                  </button>
-                </>
-              ))}
-            </Grid>
+            <div className="company-add">
+            { <div>
+      { arrayChunk(companies, 3).map((items, index) => {
+        return (
+          <div className="companyGrid">
+            {items.map((company, sIndex) => {
+              return <div className="company-item"> {<SectorPost
+                name={company.name}
+                code={""}
+                description={company.description}
+                offeredServices={[company.sectorList]}
+              />}<div className="buttons">
+              <button
+            type="button"
+            className="form-button2"
+            onClick={() => deleteCompany(company.id)}> 
+            Remove
+           </button>
+           </div>
+           </div>;
+            })}
+           </div>
+            );
+            })}
+           </div>}
+            </div>
           )}
         </div>
-        <button
+      </Main>
+      <div className="more-buttons">
+      <button
           type="button"
-          className="form-button"
+          className="form-button sector-button"
           onClick={() => navigate(ROUTES.CREATE_COMPANY)}
         >
-          Create new company
+          Create new Company
         </button>
-        <div className="sector-add"></div>
-      </Main>
+        <div className="more-buttons"></div>
+        <button
+          type="button"
+          className="form-button company-button"
+          onClick={() => navigate(ROUTES.HOME)}
+        >
+          Return to Home
+        </button>
+        </div>
       <Footer />
     </div>
   );

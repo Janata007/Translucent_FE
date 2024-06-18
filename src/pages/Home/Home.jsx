@@ -189,6 +189,13 @@ const Home = () => {
         >
           All tasks
         </button>
+        <button
+          type="button"
+          className="form-button-companies"
+          onClick={() => navigate(ROUTES.ALL_COMPANIES)}
+        >
+          Companies
+        </button>
       </Main>
       <Footer />
     </div>

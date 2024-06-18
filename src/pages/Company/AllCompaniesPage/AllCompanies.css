@@ -1,0 +1,17 @@
+.companyGrid {
+    transform: scale(0.8);
+        display: flex;
+        flex-direction: row;
+}
+.buttons{
+    flex-direction: row;
+    display: flex;
+    width: 150%;
+}
+.company-item{
+    padding: 1rem;
+}
+.more-buttons{
+    padding: 0.5rem;
+  background-color: var(--main-accent);
+}

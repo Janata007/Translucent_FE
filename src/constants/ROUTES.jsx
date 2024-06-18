@@ -3,7 +3,7 @@ export const ROUTES = {
   LOGIN: "/login",
   REGISTER: "/register",
   COMPANY: "/company/:id",
-  ALL_COMPANIES: "company/all",
+  ALL_COMPANIES: "/all",
   CREATE_COMPANY: "/company",
   CREATE_SECTOR: "/sector",
   ADD_SECTOR_TO_COMPANY: "/company/:id/addSector",

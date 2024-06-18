@@ -28,7 +28,7 @@ const CompanyService = {
   },
 
   async deleteCompanyById(token, id) {
-    return await fetch(`${COMPANY_ENDPOINTS.DELETE_COMPANY_BY_ID}/${id}`, {
+    return await fetch(`${COMPANY_ENDPOINTS.DELETE_COMPANY_BY_ID}/${id}/delete`, {
       method: "POST",
       headers: {
         "Access-Control-Allow-Origin": "*",

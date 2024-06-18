@@ -34,7 +34,7 @@ const Company = () => {
   });
   const redirect = (company) => {
     console.log(company.id);
-    navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id));
+    navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id) + company.id);
   };
   async function fetchCompanyData() {
     await CompanyService.findCompanyById(token, id).then((data) => {
