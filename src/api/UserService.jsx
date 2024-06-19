@@ -19,10 +19,10 @@ const UserService = {
         console.log("LOGIN ERROR" + err);
         return null;
       });
-  },
+  }, 
 
   async getUserWithSector(userId, token) {
-    return await fetch(USER_ENDPOINTS.GET_USER_WITH_SECTOR / `${userId}`, {
+    return await fetch(USER_ENDPOINTS.GET_USER_WITH_SECTOR/`${userId}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -31,7 +31,7 @@ const UserService = {
       },
     }).then(async (response) => {
       const responseTemplateVO = await response.json();
-      console.log(responseTemplateVO);
+      console.log("user with sector " +responseTemplateVO);
       return responseTemplateVO;
     });
   },

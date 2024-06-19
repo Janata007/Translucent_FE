@@ -1,0 +1,30 @@
+.profile-info{
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: 90%;
+    font-size: 1rem;
+}
+.profile-post{
+    font-size: 1rem;
+}
+.form-button2{
+    width: 66%;
+    font-size: 1.2rem;
+}
+.tasks{
+    position: relative;
+    left: 20%;
+    top: -5%;
+}
+.task-section{
+    position: absolute;
+    right: 2%;
+    width: 90%;
+}
+.arrangements-button{
+    width: 30%;
+    position: absolute;
+    bottom: 10%;
+    left: 2%;
+}

@@ -2,6 +2,11 @@
   transform: scale(0.8);
   display: flex;
   flex-direction: row;
+  overflow-y: scroll;
+}
+.task-container{
+  overflow-y: scroll;
+
 }
 
 .card {

@@ -3,6 +3,7 @@ import { useAuth } from "../../../../hooks/useAuth";
 import WorkService from "../../../../api/WorkService";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import TaskPost from "../../../../pages/Work/TaskPost";
+import Scroll from "react-scroll-component"
 
 
 const TaskInfo = ({taskList}) => {
@@ -28,6 +29,9 @@ const arrayChunk = (arr, n) => {
   return chunks;
 };
   return (
+    <Scroll   direction="vertical"
+    height={`550px`}
+    scrollerClass={"scroller"}>
     <div className="taskContainer">
       <div className="jumbotron">
         <h1 className="display-4">Tasks</h1>
@@ -36,7 +40,6 @@ const arrayChunk = (arr, n) => {
         return (
           <div className="taskGrid">
             {items.map((task, sIndex) => {
-              if(sIndex<2)
               return <div className="task-item"> {<TaskPost
                 id={task.id}
                 name={task.name}
@@ -49,7 +52,7 @@ const arrayChunk = (arr, n) => {
            </div>;
             })}</div>
             );})}
-    </div>
+    </div></Scroll>
   );
 };
 export default TaskInfo;
