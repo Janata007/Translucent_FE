@@ -91,5 +91,19 @@ const WorkService = {
       return task;
     });
   },
+  async acceptTask(token, id) {
+    return await fetch(
+      `${WORK_ENDPOINTS.ACCEPT_TASK}/${id}/accept`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then(async (response) => {
+      const task = await response.json();
+      return task;
+    });
+  },
 };
 export default WorkService;

@@ -54,7 +54,6 @@ useEffect(() => {
     }
     return chunks;
   };
-  const finishTask = (id)=>{}
 
   return (
     <div className="company list page">
@@ -79,18 +78,19 @@ useEffect(() => {
           <div className="companyGrid taskGrid">
             {items.map((task, sIndex) => {
               return <div className="company-item"> {<TaskPost
+              id={task.id}
                 name={task.name}
                 priority={task.priority}
                 description={task.description}
                 finished= {task.finished} 
                 accepted={task.accepted} dateDue ={task.dateDue}
               />}<div className="buttons">
-              <button
+              {/* <button
             type="button"
             className="form-button2"
             onClick={() => finishTask(task.id)}> 
             Mark as finished
-           </button>
+           </button> */}
            </div>
            </div>;
             })}
