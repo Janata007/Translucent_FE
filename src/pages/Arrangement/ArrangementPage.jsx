@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import Main from "../../layout/Main/Main";
 import Header from "../../layout/Header/Header";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../layout/Footer/Footer";
 import { useAuth } from "../../hooks/useAuth";
-import CompanyService from "../../api/CompanyService";
-import SectorService from "../../api/SectorService";
 import { ROUTES } from "../../constants/ROUTES";
-import { FixedSizeGrid } from 'react-window';
-import Popup from 'reactjs-popup';
 import ArrangementService from "../../api/ArrangementService";
 import ArrangementPost from "./ArrangementPost";
-
+import ProfileMainPost from "../User/ProfileMainPost";
+import UserService from "../../api/UserService";
+import Scroll from "react-scroll-component"
+import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 
 
 const ArrangementPage = () => {
@@ -21,6 +19,17 @@ const ArrangementPage = () => {
   const { token } = useAuth();
   let navigate = useNavigate();
   const [arrangements, setArrangements] = useState([]);
+  const [userInfo, setUserInfo]=useState({});
+
+  const fetchData2= async () => {
+    await UserService.getUser(id, token)
+      .then((data) => {
+        setUserInfo({...data});
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   const fetchData = async () => {
     await ArrangementService.getAllArrangementsForUser(token, id)
@@ -33,6 +42,7 @@ const ArrangementPage = () => {
   };
   useEffect(() => {
     fetchData();
+    fetchData2();
   }, []);
 
   const arrayChunk = (arr, n) => {
@@ -43,11 +53,17 @@ const ArrangementPage = () => {
     return chunks;
   };
 
-
   return (
     <div className="sector list page">
-      <Header />
+      <HeaderLoggedIn />
       <Main>
+      <div className="profile-info">
+        <ProfileMainPost profile={userInfo}></ProfileMainPost>
+      </div>
+      <Scroll   direction="vertical"
+        height={`350px`}
+        width={'10px'}
+        scrollerClass={"scroller"}>
         <div className="sectorGrid">
           {isLoading ? (
             <p>check</p>
@@ -84,6 +100,14 @@ const ArrangementPage = () => {
             </div>
           )}
         </div>
+        </Scroll>
+        <button
+          type="button"
+          className="form-button arrangements-button"
+          onClick={() => navigate(ROUTES.USER_INFO.replace(":id", id))}
+        >
+          See Tasks
+        </button>
       </Main>
       <div className="more-buttons">
       <button
