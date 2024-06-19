@@ -6,7 +6,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import "./SearchBarUsers.css";
 import { ROUTES } from "../../../constants/ROUTES";
 
-const SearchBarUsers = () => {
+const SearchBarUsers = ({setUserForId}) => {
   const navigate = useNavigate();
   const [value, setValue] = useState(""); //search bar value
   const [suggestions, setSuggestions] = useState([]); //return from BE
@@ -14,7 +14,8 @@ const SearchBarUsers = () => {
   const { token } = useAuth();
 
   const handleSuggestionClick = (user) => {
-    console.log("USER SELECTED IS: " + user.username);
+    setUserForId(user.userId);
+    setSuggestions([])
   };
 
   const fetchData = async (value) => {
@@ -27,7 +28,6 @@ const SearchBarUsers = () => {
       try {
         const suggestions = await fetchData(value);
         setSuggestions(suggestions);
-        console.log(suggestions);
       } catch (error) {
         console.log(error);
       }

@@ -9,16 +9,22 @@ import WorkService from "../../../api/WorkService";
 import SearchBarUsers from "./SearchBarUsers";
 
 const TaskForm = () => {
-  const { login } = useAuth();
+  const { login, token } = useAuth();
+  const [id, setIt]= useState(6)
   const [taskData, setTaskData] = useState({
     name: "",
-    priority: "",
+    priority: "MEDIUM",
     description: "",
     arrangementId: 0,
     dateDue: "",
     finished: false,
     accepted: false,
   });
+  const [taskInfo, setTaskInfo]=useState({ userForId:0})
+  const setUserForId=(userId)=>{
+    console.log(userId)
+    setTaskInfo({userForId:userId})
+  }
   const nameRef = useRef();
   const priorityRef = useRef();
   const descriptionRef = useRef();
@@ -35,19 +41,26 @@ const TaskForm = () => {
   };
 
   const onCreate = async (e) => {
+    // setTaskData({...taskData, dateDue:taskData.dateDue.concat("T11:59:11.332")})
+    console.log("NEW TASK " + taskData.dateDue)
     e.preventDefault();
     checkErrors();
-    if (noEmptyFields()) {
-      await WorkService.saveTask(taskData).then((response) =>
+    // if (noEmptyFields()) {
+      await WorkService.saveTask(token, taskData, id, taskInfo.userForId).then((response) =>
         console.log(response)
       );
       navigate(ROUTES.HOME);
-    }
+    
   };
   return (
     <div className="form-container">
       <form action="POST" className="form register">
         <div className="form-group">
+        <div className="search-bar">
+        <label htmlFor="" className="form-label form-label2">
+            Assignee</label>
+      <SearchBarUsers setUserForId={setUserForId}></SearchBarUsers>
+      </div>
           <label htmlFor="name" className="form-label">
             Name
           </label>
@@ -82,7 +95,6 @@ const TaskForm = () => {
             }
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="dateDue" className="form-label">
             Date Due
@@ -95,13 +107,11 @@ const TaskForm = () => {
             onChange={(e) =>
               setTaskData({
                 ...taskData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
+                [`${e.currentTarget.id}`]: e.currentTarget.value.concat("T11:59:11.332"),
               })
             }
           />
         </div>
-        <SearchBarUsers></SearchBarUsers>
-
         <div className="form-actions">
           <button
             type="button"
