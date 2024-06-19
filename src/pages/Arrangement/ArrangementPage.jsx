@@ -49,7 +49,6 @@ const ArrangementPage = () => {
     const array = arr.slice();
     const chunks = [];
     while (array.length) chunks.push(array.splice(0, n));
-    console.log(chunks)
     return chunks;
   };
 
@@ -74,7 +73,7 @@ const ArrangementPage = () => {
         return (
           <div className="sectorGrid">
             {items.map((arrangement, sIndex) => {
-              return <div className="sector-item"> {<ArrangementPost
+              return <div className="sector-item" key={arrangement.arrangementId}> {<ArrangementPost
               id = {arrangement.arrangementId}
                 name={arrangement.name}
                 code={arrangement.code}
@@ -101,13 +100,22 @@ const ArrangementPage = () => {
           )}
         </div>
         </Scroll>
+        <div className="button-section">
         <button
           type="button"
-          className="form-button arrangements-button"
+          className="form-button2 arrangements-button"
           onClick={() => navigate(ROUTES.USER_INFO.replace(":id", id))}
         >
           See Tasks
         </button>
+        {/* <button
+          type="button"
+          className=" sector-button"
+          onClick={() => navigate(ROUTES.SECTOR_MEMBERS.replace(":id", id))}
+        >
+          Sector info
+        </button> */}
+        </div>
       </Main>
       <div className="more-buttons">
       <button

@@ -9,6 +9,8 @@ import SectorService from "../../api/SectorService"
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
 import "./Profile.css";
+import { ROUTES } from "../../constants/ROUTES";
+import { useNavigate } from "react-router-dom";
 
 
 function ProfileMainPost({profile}) {
@@ -17,10 +19,12 @@ function ProfileMainPost({profile}) {
   const {token} = useAuth();
   const imageText = "";
   const [sectorInfo, setSectorInfo]=useState({})
+  let navigate = useNavigate();
+  
   const fetchData = async () => {
     await SectorService.findById(token, profile.sectorId)
       .then((data) => {
-        setSectorInfo({...data});
+        setSectorInfo(data);
       })
       .finally(() => {
         setIsLoading(false);
@@ -40,10 +44,7 @@ useEffect(() => {
         mb: 2,
         backgroundSize: "100",
         backgroundRepeat: "no-repeat",
-      }}
-    >
-      {/* Increase the priority of the background image */}
-      {/* {<img style={{ display: "none" }} src={image} alt={imageText} />} */}
+      }}>
       <Box
       />
       <Grid container>
@@ -57,18 +58,25 @@ useEffect(() => {
           >
             <Typography
               component="h1"
-              variant="h4"
+              variant="h4wi"
               color="inherit"
               gutterBottom
             >
               {profile.firstName} {profile.lastName}
             </Typography>
-            <Typography variant="h4" color="inherit" paragraph>
+            <Typography variant="subtitle1" color="inherit" paragraph>
               {profile.email}
             </Typography>
-            <Typography variant="h4" color="inherit" paragraph>
-              {sectorInfo.name}
-            </Typography>
+            {isLoading ? (
+            <p></p>
+          ):(<div>
+            <button
+          type="button"
+          className="form-button arrangements-button"
+          onClick={() => navigate(ROUTES.SECTOR_MEMBERS.replace(":id", sectorInfo.id))}
+        >
+          {sectorInfo.name}
+        </button></div>)}
           </Box>
         </Grid>
       </Grid>
