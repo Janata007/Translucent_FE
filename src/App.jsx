@@ -14,6 +14,8 @@ import AllCompanies from "./pages/Company/AllCompaniesPage/AllCompanies";
 import CreateCompany from "./pages/Company/CreateCompany";
 import CreateTask from "./pages/Task/CreateTask";
 import Profile from "./pages/User/Profile";
+import ArrangementPage from "./pages/Arrangement/ArrangementPage";
+import ArrangementEditPage from "./pages/Arrangement/ArrangementEditPage";
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
           <Route path={ROUTES.CREATE_COMPANY} element={<CreateCompany />} />
           <Route path={ROUTES.CREATE_TASK} element={<CreateTask />} />
           <Route path={ROUTES.USER_INFO} element={<Profile />} />
+          <Route path={ROUTES.ARRANGEMENTS} element={<ArrangementPage />} />
+          <Route path={ROUTES.ARRANGEMENT_EDIT} element={<ArrangementEditPage />} />
 
           <Route
             path={ROUTES.CREATE_ARRANGEMENT}

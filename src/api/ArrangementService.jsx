@@ -35,12 +35,13 @@ const ArrangementService = {
     });
   },
 
-  async addParticipantToArrangement(userId, arrangementId) {
+  async addParticipantToArrangement(token, userId, arrangementId) {
     return await fetch(
       `${ARRANGEMENT_ENDPOINTS.ADD_PARTICIPANT_TO_ARRANGEMENT}/${userId}/${arrangementId}`,
       {
         method: "POST",
         headers: { "Access-Control-Allow-Origin": "*" },
+        Authorization: `Bearer ${token}`,
       }
     ).then(async (response) => {
       const arrangement = await response.json();
@@ -48,12 +49,13 @@ const ArrangementService = {
     });
   },
 
-  async removeParticipantFromArrangement(userId, arrangementId) {
+  async removeParticipantFromArrangement(token, arrangementId, userId,) {
     return await fetch(
       `${ARRANGEMENT_ENDPOINTS.REMOVE_PARTICIPANT_FROM_ARRANGEMENT}/${userId}/${arrangementId}`,
       {
         method: "POST",
         headers: { "Access-Control-Allow-Origin": "*" },
+        Authorization: `Bearer ${token}`,
       }
     ).then(async (response) => {
       const arrangement = await response.json();
