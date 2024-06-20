@@ -59,10 +59,10 @@ const FeedbackPage = () => {
       {isLoading ? (
             <p>check</p>
           ) : (arrangementFeedbacks.map((feedb)=>{
-            return <div className="company-item"><FeedbackPost 
+            return <div>{ (feedb.userFromId==id) && <div className="company-item"><FeedbackPost 
             grade={feedb.grade}
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
-            </div>
+            </div>}</div>
           }))}
       </div>
       <div className="companyGrid">
