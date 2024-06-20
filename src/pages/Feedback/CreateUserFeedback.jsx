@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Main from "../../layout/Main/Main";
 import "../page.css";
 import UserFeedbackForm from "./UserFeedbackForm";
+import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 
 const CreateUserFeedback = () => {
   return (
     <div className="arrangement creation page">
-      <Header />
+      <HeaderLoggedIn />
       <Main>
         <UserFeedbackForm />
       </Main>

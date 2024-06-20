@@ -10,6 +10,7 @@ import { ROUTES } from "../../constants/ROUTES";
 import SectorPost from "./SectorPost";
 import "./AddSectorToCompany.css"
 import Popup from 'reactjs-popup';
+import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 
 const AddSector = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
@@ -49,7 +50,7 @@ const AddSector = () => {
 
   return (
     <div className="sector list page">
-      <Header />
+      <HeaderLoggedIn />
       <Main>
         <div className="sectorGrid">
           {isLoading ? (<p>check</p>) : (

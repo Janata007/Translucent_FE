@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Main from "../../layout/Main/Main";
 import "../page.css";
 import CompanyForm from "../../components/forms/CompanyForm/CompanyForm";
+import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 
 const CreateCompany = () => {
   return (
     <div className="company creation page">
-      <Header />
+      <HeaderLoggedIn />
       <Main />
       <Main>
         <CompanyForm />

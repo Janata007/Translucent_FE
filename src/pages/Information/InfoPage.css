@@ -1,14 +1,36 @@
-.bg-icon{
-    transform: scale(0.7);
-    opacity: 0.3;
+.content-wrap{
+    overflow: hidden;
+    position: relative;
+    height: 400px;
+    width: 700px;
 }
-.main-section{
-    width: 500px;
+.bg-icon{
+opacity: 0.2;
+  position: absolute;
+  top: -7%;
+  left: 5%;
+  width: 90%;
+  height: auto;
+    /* transform: scale(0.8);
+    opacity: 0.3;
+    position: center; */
+}
+p{
+    position: relative;
+    width: 100%;
+    top: 10%;
+    padding: 2rem;
+    font-size: 1rem;
+}
+.main-section::before{
+    content:"";
+    position: relative;
+    /* width: 500px;
     height: 400px;
     padding: 20px;
     font-size: 20px;
-    background-size: 10rem;
+    background-size: 20rem;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url(../../assets/icon-white.png);
+    background-image: url(../../assets/icon-white.png); */
 }

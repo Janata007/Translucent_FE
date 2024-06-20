@@ -9,6 +9,7 @@ import CompanyService from "../../api/CompanyService";
 import { ROUTES } from "../../constants/ROUTES";
 import CompanyMainPost from "./CompanyMainPost";
 import SectorPost from "../Sector/SectorPost";
+import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 
 const Company = () => {
   const [loaded, setLoaded] = useState(false); //for rerender after promise is fulfilled
@@ -44,7 +45,7 @@ const Company = () => {
 
   return (
     <div className="company info page">
-      <Header />
+      <HeaderLoggedIn />
       <div className="main-post">
         <CompanyMainPost key={company.id} company={company}></CompanyMainPost>
         </div>

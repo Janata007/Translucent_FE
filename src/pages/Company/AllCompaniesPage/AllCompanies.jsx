@@ -10,6 +10,7 @@ import "./AllCompanies.css";
 import CompanyPost from "../CompanyPost";
 import Scroll from "react-scroll-component";
 import SectorPost from "../../Sector/SectorPost";
+import HeaderLoggedIn from "../../../layout/Header/HeaderLoggedIn";
 
 
 const AllCompanies = () => {
@@ -37,7 +38,7 @@ const AllCompanies = () => {
 
   return (
     <div className="company list page">
-      <Header />
+      <HeaderLoggedIn />
       <Main>
       <div className="companyGrid">
       <Scroll   direction="vertical" height={`550px`} scrollerClass={"scroller"}>

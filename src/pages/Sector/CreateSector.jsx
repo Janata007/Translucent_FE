@@ -1,14 +1,14 @@
 import React from "react";
-import Header from "../../layout/Header/Header";
 import Footer from "../../layout/Footer/Footer";
 import Main from "../../layout/Main/Main";
 import "../page.css";
 import SectorForm from "../../components/forms/SectorForm/SectorForm";
+import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 
 const CreateSector = () => {
   return (
     <div className="sector creation page">
-      <Header />
+      <HeaderLoggedIn />
       <Main />
       <Main>
         <SectorForm />
