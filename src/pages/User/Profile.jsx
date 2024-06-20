@@ -11,6 +11,7 @@ import WorkService from "../../api/WorkService";
 import ProfileMainPost from "./ProfileMainPost";
 import TaskPost from "../Task/TaskPost";
 import Scroll from "react-scroll-component"
+import "./Profile.css";
 
 const Profile = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -76,7 +77,7 @@ useEffect(() => {
             { <div className="tasks">
         {arrayChunk(userTasks, 3).map((items, index) => {
         return (
-          <div className=" taskGrid">
+          <div className="taskGrid">
             {items.map((task, sIndex) => {
               return <div className="company-item"> {<TaskPost
               id={task.id}

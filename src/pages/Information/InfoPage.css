@@ -1,0 +1,14 @@
+.bg-icon{
+    transform: scale(0.7);
+    opacity: 0.3;
+}
+.main-section{
+    width: 500px;
+    height: 400px;
+    padding: 20px;
+    font-size: 20px;
+    background-size: 10rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../assets/icon-white.png);
+}

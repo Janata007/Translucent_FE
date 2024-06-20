@@ -13,5 +13,6 @@ export const ROUTES = {
   CREATE_TASK: "/task/create",
   USER_INFO:"/profile/:id",
   ARRANGEMENTS: "/profile/:id/arrangements",
-  ARRANGEMENT_EDIT: "/arrangements/:id/edit"
+  ARRANGEMENT_EDIT: "/arrangements/:id/edit",
+  ABOUT:"/information"
 };

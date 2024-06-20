@@ -17,6 +17,7 @@ import Profile from "./pages/User/Profile";
 import ArrangementPage from "./pages/Arrangement/ArrangementPage";
 import ArrangementEditPage from "./pages/Arrangement/ArrangementEditPage";
 import SectorInfoPage from "./pages/Sector/SectorInfoPage";
+import InfoPage from "./pages/Information/InfoPage";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
           <Route path={ROUTES.ARRANGEMENTS} element={<ArrangementPage />} />
           <Route path={ROUTES.ARRANGEMENT_EDIT} element={<ArrangementEditPage />} />
           <Route path={ROUTES.SECTOR_MEMBERS} element={<SectorInfoPage />} />
+          <Route path={ROUTES.ABOUT} element={<InfoPage />} />
           <Route
             path={ROUTES.CREATE_ARRANGEMENT}
             element={<CreateArrangement />}

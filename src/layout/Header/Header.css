@@ -42,3 +42,15 @@
 .nav-menu-item {
   font-size: rem;
 }
+.nav-button{
+  margin: 0.2rem;
+  width: 100%;
+  background-color: var(--main-light);
+  border: solid 5px var(--text-color);
+  padding: 0.2rem;
+
+  color: black;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  -webkit-text-stroke: 0.6px black;
+}
