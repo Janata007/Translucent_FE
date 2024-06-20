@@ -12,7 +12,6 @@ const UserService = {
     })
       .then(async (response) => {
         const jwtToken = await response.json();
-        console.log(jwtToken);
         return jwtToken;
       }) //todo: change for actual impl
       .catch((err) => {

@@ -9,10 +9,13 @@ export const ROUTES = {
   CREATE_SECTOR: "/sector",
   ADD_SECTOR_TO_COMPANY: "/company/:id/addSector",
   CREATE_ARRANGEMENT: "/arrangement",
+  CREATE_USER_FEEDBACK: "/feedback/user",
+  CREATE_TASK_FEEDBACK: "/feedback/task/:id",
   TASK: "/task/:id",
   CREATE_TASK: "/task/create",
   USER_INFO:"/profile/:id",
   ARRANGEMENTS: "/profile/:id/arrangements",
   ARRANGEMENT_EDIT: "/arrangements/:id/edit",
-  ABOUT:"/information"
+  ABOUT:"/information",
+  FEEDBACK_PAGE: "/feedback"
 };

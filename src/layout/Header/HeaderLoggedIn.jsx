@@ -5,10 +5,12 @@ import "./Header.css";
 import 'reactjs-popup/dist/index.css';
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/ROUTES";
+import { useAuth } from "../../hooks/useAuth";
+
 
 const HeaderLoggedIn = () => {
-  const navigate = useNavigate();
-  const logoutClick = ()=>{}
+  let navigate = useNavigate();
+  const {logout} = useAuth();
   return (
     <header className="header">
       <nav className="header-nav">
@@ -17,7 +19,9 @@ const HeaderLoggedIn = () => {
         <ul className="nav-menu">
           <li className="nav-menu_item"><button className="nav-button" onClick={()=>{navigate(ROUTES.ABOUT)}}>About</button></li>
           <li className="nav-menu_item"><button className="nav-button" onClick={()=>{navigate(ROUTES.ABOUT)}}>Contact</button></li>
-          <li className="nav-menu_item"><button className="nav-button" onClick={logoutClick()}>Log Out</button></li>
+          <li className="nav-menu_item"><button className="nav-button" onClick={()=>{
+            logout();
+            navigate(ROUTES.LOGIN)}}>Log Out</button></li>
         </ul>
       </nav> 
     </header>

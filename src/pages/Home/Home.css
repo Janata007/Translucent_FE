@@ -9,7 +9,20 @@
   left: -20%;
   background-color: var(--main-light);
 }
+.form-button3{
+  margin-top: 15px;
+  font-size: 20px;
+  width: 10rem;
+  background-color: var(--main-light);
+  border: solid 4px var(--text-color-black);
+
+  color: var(--text-color-black);
+  letter-spacing: 2px;
+  -webkit-text-stroke: 1px black;
+}
+
 .form-button-arrangement{
+  margin: 5px;
   font-size: 30px;
   width: 15rem;
   background-color: var(--main-light);
@@ -19,31 +32,9 @@
   letter-spacing: 2px;
   -webkit-text-stroke: 1px black;
 }
-.form-button-tasks{
-  font-size: 18px;
-  width: 5rem;
-  background-color: var(--main-light);
-  border: solid 4px var(--text-color-black);
-
-  color: var(--text-color-black);
-  letter-spacing: 2px;
-  -webkit-text-stroke: 1px black;
-  position: absolute;
-  top: 85%;
-  right: 2%;
-}
-.form-button-companies{
-  font-size: 15px;
-  width: 6rem;
-  background-color: var(--main-light);
-  border: solid 4px var(--text-color-black);
-
-  color: var(--text-color-black);
-  letter-spacing: 1px;
-  -webkit-text-stroke: 1px black;
-  position: absolute;
-  top: 70%;
-  right: 2%;
+.home-buttons{
+  width: 10%;
+  transform: scale(0.8);
 }
 .modal{
   position: absolute;
@@ -61,6 +52,6 @@
   size: 20%;
 }
 .third-section{
-  width: 15%;
+  width: 12%;
   transform: scale(0.8);
 }

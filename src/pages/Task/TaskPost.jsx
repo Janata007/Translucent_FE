@@ -6,9 +6,12 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import WorkService from "../../api/WorkService";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants/ROUTES";
 
 function TaskPost({ id, name, priority, description, finished, accepted, dateDue }) {
   const {token} = useAuth();
+  const navigate = useNavigate();
   const finishTask = async (id)=>{
     await WorkService.setTaskToFinished(token, id)
     .then((data) => {
@@ -70,12 +73,20 @@ function TaskPost({ id, name, priority, description, finished, accepted, dateDue
            </button>
         }
       {finished &&
+      <ul>
       <button
             type="button"
             className="form-button2"
             onClick={() => removeTask(id)}> 
             Remove        
       </button>
+      <button
+            type="button"
+            className="form-button2"
+            onClick={() => {navigate(ROUTES.CREATE_TASK_FEEDBACK.replace(":id", id))}}> 
+            Leave Feedback        
+      </button>
+      </ul>
         }
     </Grid>
   );

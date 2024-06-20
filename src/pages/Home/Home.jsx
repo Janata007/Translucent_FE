@@ -156,6 +156,13 @@ const Home = () => {
         >
           Create an Arrangement
         </button>
+        <button
+          type="button"
+          className="form-button-arrangement"
+          onClick={() => navigate(ROUTES.CREATE_FEEDBACK)}
+        >
+          Create Feedback
+        </button>
         </ul>
         </div>
         {calendarEventClicked && popup}
@@ -180,9 +187,10 @@ const Home = () => {
           <TaskInfo taskList={tasksToPass}></TaskInfo>
           </div>
         </div>
+        <ul className="home-buttons">
         <button
           type="button"
-          className="form-button-tasks"
+          className="form-button3"
           //todo: fix id nav
           onClick={() => navigate(ROUTES.USER_INFO.replace(":id", id))}
         >
@@ -190,10 +198,19 @@ const Home = () => {
         </button>
         <button
           type="button"
-          className="form-button-companies"
+          className="form-button3"
+          //todo: fix id nav
+          onClick={() => navigate(ROUTES.FEEDBACK_PAGE.replace(":id", id))}
+        >
+          Feedbacks
+        </button>
+        <button
+          type="button"
+          className="form-button3"
           onClick={() => navigate(ROUTES.ALL_COMPANIES)}>
           Companies
         </button>
+        </ul>
       </Main>
       <Footer />
     </div>
