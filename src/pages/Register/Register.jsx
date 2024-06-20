@@ -12,8 +12,8 @@ const Register = () => {
       <Header />
       <Main />
       <Main>
-        <div class="form-container">
-            <RegisterForm />
+      <div class="form-container">
+        <RegisterForm />
       </div>
       </Main>
       <Footer />

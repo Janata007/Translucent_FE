@@ -51,7 +51,6 @@ const CompanyService = {
       }
     ).then(async (response) => {
       const company = await response.json();
-      console.log(company);
       return company;
     });
   },
@@ -108,7 +107,6 @@ const CompanyService = {
       },
     }).then(async (response) => {
       const companies = await response.json();
-      console.log("COMPANIES:" + companies);
       return companies;
     });
   },
@@ -127,7 +125,6 @@ const CompanyService = {
       }
     ).then(async (response) => {
       const companies = await response.json();
-      console.log(companies);
       return companies;
     });
   },

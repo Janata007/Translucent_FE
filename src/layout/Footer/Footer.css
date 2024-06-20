@@ -11,19 +11,16 @@
   justify-content: center;
   align-items: center;
 }
-
 .footer-icons {
   display: flex;
   align-items: center;
   color: white;
   gap: 3em;
 }
-
 .footer-icon svg {
   height: 30px;
   width: 40px;
 }
-
 .footer-icon:voer svg {
   cursor: pointer;
   fill: var(--main-light);

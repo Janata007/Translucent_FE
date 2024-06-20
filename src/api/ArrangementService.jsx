@@ -7,7 +7,7 @@ const ArrangementService = {
       {
         method: "POST",
         headers: {
-          "Content-type": "applicaton/json",
+          "Content-type": "application/json",
           "Access-Control-Allow-Origin": "*",
           Authorization: `Bearer ${token}`,
         },

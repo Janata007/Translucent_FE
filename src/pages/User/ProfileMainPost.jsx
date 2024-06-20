@@ -1,9 +1,7 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import SectorService from "../../api/SectorService"
 import { useAuth } from "../../hooks/useAuth";
@@ -12,12 +10,9 @@ import "./Profile.css";
 import { ROUTES } from "../../constants/ROUTES";
 import { useNavigate } from "react-router-dom";
 
-
 function ProfileMainPost({profile}) {
  const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
-  const image = [];
   const {token} = useAuth();
-  const imageText = "";
   const [sectorInfo, setSectorInfo]=useState({})
   let navigate = useNavigate();
   
@@ -30,7 +25,7 @@ function ProfileMainPost({profile}) {
         setIsLoading(false);
       });
   };
-useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -45,8 +40,7 @@ useEffect(() => {
         backgroundSize: "100",
         backgroundRepeat: "no-repeat",
       }}>
-      <Box
-      />
+      <Box/>
       <Grid container>
         <Grid item md={6}>
           <Box
@@ -54,35 +48,32 @@ useEffect(() => {
               position: "relative",
               p: { xs: 3, md: 6 },
               pr: { md: 0 },
-            }}
-          >
+            }}>
             <Typography
               component="h1"
               variant="h4wi"
               color="inherit"
-              gutterBottom
-            >
+              gutterBottom>
               {profile.firstName} {profile.lastName}
             </Typography>
             <Typography variant="subtitle1" color="inherit" paragraph>
               {profile.email}
             </Typography>
             {isLoading ? (
-            <p></p>
-          ):(<div>
-            <button
+            <p></p>):(
+        <div>
+          <button
           type="button"
           className="form-button arrangements-button"
-          onClick={() => navigate(ROUTES.SECTOR_MEMBERS.replace(":id", sectorInfo.id))}
-        >
+          onClick={() => navigate(ROUTES.SECTOR_MEMBERS.replace(":id", sectorInfo.id))}>
           {sectorInfo.name}
-        </button></div>)}
-          </Box>
-        </Grid>
+         </button>
+        </div>)}
+       </Box>
       </Grid>
-    </Paper>
-    </div>
+     </Grid>
+   </Paper>
+  </div>
   );
 }
-
 export default ProfileMainPost;

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Company.css";
-import Grid from "@mui/material/Grid";
-import CompanyPost from "./CompanyPost";
 import Main from "../../layout/Main/Main";
 import Header from "../../layout/Header/Header";
 import { useNavigate, useParams } from "react-router-dom";
@@ -19,19 +17,7 @@ const Company = () => {
   let navigate = useNavigate();
   const [hidden, setHidden] = useState(true); //for adding a sector to company
   const [sectors, setSectors] = useState([]);
-  const [company, setCompany] = useState({
-    id: 5,
-    name: "Companyy",
-    description: "company",
-    sectorList: [
-      {
-        id: 4,
-        name: "hurbur",
-        code: "MS01",
-        offeredServices: ["MARKETING"],
-      },
-    ],
-  });
+  const [company, setCompany] = useState({});
   const redirect = (company) => {
     console.log(company.id);
     navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id) + company.id);
@@ -51,7 +37,6 @@ const Company = () => {
       }
     );
   };
-
   useEffect(() => {
     console.log(window.location.pathname);
     fetchCompanyData();
@@ -86,22 +71,19 @@ const Company = () => {
             </>
           ))}
         </div>
-    
         </div>
         <div className="sector-options">
         <button
           type="button"
           className="form-button"
-          onClick={() => navigate(ROUTES.CREATE_SECTOR)}
-        >
+          onClick={() => navigate(ROUTES.CREATE_SECTOR)}>
           Create new sector
         </button>
         <div  className="sector-options"></div>
         <button
           type="button"
           className="form-button"
-          onClick={() => redirect(company)}
-        >
+          onClick={() => redirect(company)}>
           Add sector to company
         </button>
          </div>
@@ -111,5 +93,4 @@ const Company = () => {
     </div>
   );
 };
-
 export default Company;

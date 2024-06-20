@@ -11,11 +11,9 @@ const Footer = () => {
         <div className="footer-icon">
           <FiInstagram />
         </div>
-
         <div className="footer-icon">
           <CiFacebook />
         </div>
-
         <div className="footer-icon">
           <BiLogoGmail />
         </div>
@@ -23,5 +21,4 @@ const Footer = () => {
     </footer>
   );
 };
-
 export default Footer;

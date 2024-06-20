@@ -12,12 +12,10 @@ const SearchBar = () => {
   const [suggestions, setSuggestions] = useState([]); //return from BE
   const [hideSuggestions, setHideSuggestions] = useState(true);
   const { token } = useAuth();
-
   const redirect = (company) => {
     console.log(company.id);
     navigate(ROUTES.COMPANY.replace(":id", company.id));
   };
-
   const fetchData = async (value) => {
     value = value.toUpperCase();
     console.log(value);
@@ -27,7 +25,6 @@ const SearchBar = () => {
     );
     return companies;
   };
-
   useDebounce(
     async () => {
       try {
@@ -51,31 +48,22 @@ const SearchBar = () => {
   const handleSearchInputChange = (e) => {
     setValue(e.target.value);
   };
-
   return (
     <>
       <div className="container">
         <input
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          type="search"
-          className="textbox"
-          placeholder="Search for a service..."
-          value={value}
-          onChange={handleSearchInputChange}
-        />
+          onFocus={handleFocus} onBlur={handleBlur} type="search" className="textbox"
+          placeholder="Search for a service..." value={value}
+          onChange={handleSearchInputChange}/>
         <div className="suggestions">
-          {suggestions &&
-            suggestions.map &&
+          {suggestions && suggestions.map &&
             suggestions.map((suggestion) => (
               <div
                 className="suggestion"
                 id={suggestion.id}
-                onClick={() => redirect(suggestion)}
-              >
+                onClick={() => redirect(suggestion)}>
                 {suggestion["name"]}
-              </div>
-            ))}
+              </div>))}
         </div>
       </div>
     </>

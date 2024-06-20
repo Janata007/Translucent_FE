@@ -3,14 +3,12 @@ import PropTypes from "prop-types";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 
 function CompanyMainPost(props) {
   const { company } = props;
   const image = [];
   const imageText = "";
-
   return (
     <Paper className="main"
       sx={{
@@ -20,12 +18,10 @@ function CompanyMainPost(props) {
         mb: 2,
         backgroundSize: "100",
         backgroundRepeat: "no-repeat",
-      }}
-    >
+      }}>
       {/* Increase the priority of the background image */}
       {/* {<img style={{ display: "none" }} src={image} alt={imageText} />} */}
-      <Box
-      />
+      <Box/>
       <Grid container>
         <Grid item md={6}>
           <Box
@@ -33,14 +29,12 @@ function CompanyMainPost(props) {
               position: "relative",
               p: { xs: 3, md: 6 },
               pr: { md: 0 },
-            }}
-          >
+            }}>
             <Typography
               component="h1"
               variant="h3"
               color="inherit"
-              gutterBottom
-            >
+              gutterBottom>
               {company.name}
             </Typography>
             <Typography variant="h4" color="inherit" paragraph>
@@ -51,7 +45,7 @@ function CompanyMainPost(props) {
       </Grid>
     </Paper>
   );
-}
+} 
 
 CompanyMainPost.propTypes = {
   company: PropTypes.shape({

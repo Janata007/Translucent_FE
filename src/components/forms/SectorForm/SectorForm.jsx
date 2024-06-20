@@ -17,7 +17,6 @@ const SectorForm = () => {
     description: "",
     offeredServices: [],
   });
-
   const options = [
     { value: "MARKETING", label: "Marketing" },
     { value: "SOFTWARE_DEVELOPMENT", label: "Software Development" },
@@ -39,7 +38,6 @@ const SectorForm = () => {
     console.log(Object.values(sectorData).every((v) => isNonEmptyString(v)));
     return Object.values(sectorData).every((v) => isNonEmptyString(v));
   };
-
   const checkErrors = () => {
     if (sectorData.name.length === 0) nameRef.current.classList.add("error");
     else nameRef.current.classList.remove("error");
@@ -47,7 +45,6 @@ const SectorForm = () => {
     if (sectorData.code.length === 0) codeRef.current.classList.add("error");
     else codeRef.current.classList.remove("error");
   };
-
   const onCreate = async (e) => {
     e.preventDefault();
     checkErrors();
@@ -62,64 +59,34 @@ const SectorForm = () => {
     <div className="form-container">
       <form action="POST" className="form register">
         <div className="form-group">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
-            className="form-input"
-            type="text"
-            id="name"
-            ref={nameRef}
+            className="form-input" type="text" id="name" ref={nameRef}
             onChange={(e) =>
               setSectorData({
                 ...sectorData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="code" className="form-label">
-            Code
-          </label>
+          <label htmlFor="code" className="form-label">Code</label>
           <input
-            className="form-input"
-            type="text"
-            ref={codeRef}
-            id="code"
+            className="form-input" type="text" ref={codeRef} id="code"
             onChange={(e) =>
               setSectorData({
                 ...sectorData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
+          <label htmlFor="description" className="form-label">Description</label>
           <input
-            className="form-input"
-            type="text"
-            ref={descriptionRef}
-            id="description"
+            className="form-input" type="text" ref={descriptionRef} id="description"
             onChange={(e) =>
               setSectorData({
                 ...sectorData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="offeredServices" className="form-label">
-            Offered Services
-          </label>
-
+          <label htmlFor="offeredServices" className="form-label">Offered Services</label>
           <div className="form-group">
             <Select
               closeMenuOnSelect={false}
@@ -134,23 +101,17 @@ const SectorForm = () => {
                 });
                 setSectorData({
                   ...sectorData,
-                  offeredServices: services,
-                });
-              }}
-            />
+                  offeredServices: services,});}}/>
           </div>
         </div>
-
         <div className="form-actions">
           <button
             type="button"
             className="form-button"
-            onClick={(e) => onCreate(e)}
-          >
+            onClick={(e) => onCreate(e)}>
             Create
           </button>
         </div>
-
         <div className="form-links">
           <div className="login-link">
             <p>Back to Home {`->`}</p>

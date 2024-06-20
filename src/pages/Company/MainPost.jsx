@@ -10,7 +10,6 @@ function MainPost(props) {
   const { employee } = props;
   const image = [];
   const imageText = "";
-
   return (
     <Paper
       sx={{

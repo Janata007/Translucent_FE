@@ -10,7 +10,7 @@ import SearchBarUsers from "./SearchBarUsers";
 
 const TaskForm = () => {
   const { login, token } = useAuth();
-  const [id, setIt]= useState(6)
+  const [id, setId]= useState(6)
   const [taskData, setTaskData] = useState({
     name: "",
     priority: "MEDIUM",
@@ -34,14 +34,11 @@ const TaskForm = () => {
     console.log(Object.values(taskData).every((v) => isNonEmptyString(v)));
     return Object.values(taskData).every((v) => isNonEmptyString(v));
   };
-
   const checkErrors = () => {
     if (taskData.name.length === 0) nameRef.current.classList.add("error");
     else nameRef.current.classList.remove("error");
   };
-
   const onCreate = async (e) => {
-    // setTaskData({...taskData, dateDue:taskData.dateDue.concat("T11:59:11.332")})
     console.log("NEW TASK " + taskData.dateDue)
     e.preventDefault();
     checkErrors();
@@ -50,78 +47,49 @@ const TaskForm = () => {
         console.log(response)
       );
       navigate(ROUTES.HOME);
-    
   };
   return (
     <div className="form-container">
       <form action="POST" className="form register">
         <div className="form-group">
-        <div className="search-bar">
-        <label htmlFor="" className="form-label form-label2">
-            Assignee</label>
+      <div className="search-bar">
+        <label htmlFor="" className="form-label form-label2">Assignee</label>
       <SearchBarUsers setUserForId={setUserForId}></SearchBarUsers>
       </div>
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
-            className="form-input"
-            type="text"
-            id="name"
-            ref={nameRef}
+            className="form-input" type="text" id="name" ref={nameRef}
             onChange={(e) =>
               setTaskData({
                 ...taskData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
-          <input
-            className="form-input"
-            type="text"
-            ref={descriptionRef}
-            id="description"
-            onChange={(e) =>
-              setTaskData({
-                ...taskData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
         <div className="form-group">
-          <label htmlFor="dateDue" className="form-label">
-            Date Due
-          </label>
+          <label htmlFor="description" className="form-label">Description</label>
           <input
-            className="form-input"
-            type="date"
-            ref={dateDueRef}
-            id="dateDue"
+            className="form-input" type="text" ref={descriptionRef} id="description"
             onChange={(e) =>
               setTaskData({
                 ...taskData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value.concat("T11:59:11.332"),
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="dateDue" className="form-label">Date Due</label>
+          <input
+            className="form-input" type="date" ref={dateDueRef} id="dateDue"
+            onChange={(e) =>
+              setTaskData({
+                ...taskData,
+                [`${e.currentTarget.id}`]: e.currentTarget.value.concat("T11:59:11.332"),})}/>
         </div>
         <div className="form-actions">
           <button
             type="button"
             className="form-button"
-            onClick={(e) => onCreate(e)}
-          >
+            onClick={(e) => onCreate(e)}>
             Create
           </button>
         </div>
-
         <div className="form-links">
           <div className="login-link">
             <p>Back to Home {`->`}</p>

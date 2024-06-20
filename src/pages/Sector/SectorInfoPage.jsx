@@ -7,35 +7,35 @@ import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 import Footer from "../../layout/Footer/Footer";
 import Main from "../../layout/Main/Main";
 import { ROUTES } from "../../constants/ROUTES";
-import WorkService from "../../api/WorkService";
-import ProfileMainPost from "./ProfileMainPost";
-import TaskPost from "../Task/TaskPost";
 import Scroll from "react-scroll-component"
+import ProfileMainPost from "../User/ProfileMainPost";
+import UserPost from "../User/UserPost";
 
-const Profile = () => {
+const SectorInfoPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const { token } = useAuth();
     //todo: get id from params
   const [id, setId]= useState(6)
   let navigate = useNavigate();
-  const [userTasks, setUserTasks] = useState([]);
+  const [sectorMemebers, setSectorMembers] = useState([]);
   const [userInfo, setUserInfo]=useState({});
+  const [sectorId, setSectorId] = useState(14)
   const fetchData = async () => {
     await UserService.getUser(id, token)
       .then((data) => {
         setUserInfo(data);
       })
-      await WorkService.getTasksForUser(token, id)
+      await UserService.getAllUsersInSector(sectorId, token)
       .then((data) => {
-        setUserTasks([...data]);
+        setSectorMembers([...data]);
       })
       .finally(() => {
         setIsLoading(false);
-      });
-  };
-useEffect(() => {
-  fetchData();
-  }, []);
+      });};
+      
+  useEffect(() => {
+  fetchData();}, []);
+
   const arrayChunk = (arr, n) => {
     const chunks = [];
     if(arr.length!=0){
@@ -50,7 +50,7 @@ useEffect(() => {
       <HeaderLoggedIn />
       <Main>
       <div className="profile-info">
-      <div>Tasks</div>
+      <div>Members</div>
       {userInfo.sectorId &&
         <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>
@@ -65,50 +65,49 @@ useEffect(() => {
           ) : (
             <div className="company-add">
             { <div className="tasks">
-        {arrayChunk(userTasks, 3).map((items, index) => {
+      { arrayChunk(sectorMemebers, 3).map((items, index) => {
         return (
           <div className="companyGrid taskGrid">
-            {items.map((task, sIndex) => {
-              return <div className="company-item"> {<TaskPost
-              id={task.id}
-                name={task.name}
-                priority={task.priority}
-                description={task.description}
-                finished= {task.finished} 
-                accepted={task.accepted} dateDue ={task.dateDue}
+            {items.map((member, sIndex) => {
+              return <div className="company-item"> {<UserPost
+                id={member.userId} 
+                firstName={member.firstName}
+                 lastName={member.lastName} 
+                 userName= {member.username} email={member.email}
               />}<div className="buttons">
+           </div>
+           <div className="buttons">
+          <button
+            type="button"
+            className="form-button2"
+            onClick={() => navigate(ROUTES.USER_INFO.replace(":id", member.userId))}> 
+            Contact
+          </button>
            </div></div>;})}
-           </div>);})}
-           </div>}
-          </div>)}
+          </div>);
+            })}</div>}
+            </div>)}
         </div>
         </Scroll>
-      </div>
-        <button
-          type="button"
-          className="form-button arrangements-button"
-          onClick={() => navigate(ROUTES.ARRANGEMENTS.replace(":id", id))}>
-          See Arrangements
-        </button>
+     </div>
       </Main>
       <div className="more-buttons">
       <button
           type="button"
           className="form-button"
-          onClick={() => navigate(ROUTES.CREATE_TASK)}>
-          Create new Task
+          onClick={() => navigate(ROUTES.USER_INFO.replace(":id", id))}>
+          My Profile
       </button>
         <div className="more-buttons"></div>
         <button
           type="button"
           className="form-button"
           onClick={() => navigate(ROUTES.HOME)}>
-          Return to Home
-       </button>
-     </div>
+          Home
+        </button>
+      </div>
       <Footer />
     </div>
   );
 };
-
-export default Profile;
+export default SectorInfoPage;

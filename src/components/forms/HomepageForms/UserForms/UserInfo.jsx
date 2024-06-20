@@ -3,38 +3,7 @@ import UserService from "../../../../api/UserService";
 import { useAuth } from "../../../../hooks/useAuth";
 
 const UserInfo = () => {
-  const [userInfo, setUserInfo] = useState({
-    appUser: {
-      userId: 12,
-      firstName: "False Dwight",
-      lastName: "Schrute",
-      email: "d.schrute@mail",
-      sectorId: 6,
-      companyId: null,
-      password: "user",
-      role: null,
-      workVisible: false,
-      superiorId: null,
-      arrangements: [],
-      accountNonExpired: true,
-      accountNonLocked: true,
-      credentialsNonExpired: true,
-      enabled: true,
-      authority: null,
-      username: "dschrute",
-      authorities: [
-        {
-          authority: null,
-        },
-      ],
-    },
-    sector: {
-      id: 6,
-      name: "Checking_Sector",
-      code: "CS01",
-    },
-  });
-
+  const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
   const id = useState(2);

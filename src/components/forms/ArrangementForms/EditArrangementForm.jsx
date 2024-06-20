@@ -2,14 +2,12 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { ROUTES } from "../../../constants/ROUTES";
-import { isNonEmptyString } from "../../../util/helperFunctions";
 import "../Form.css";
-import WorkService from "../../../api/WorkService";
 import SearchBarUsers from "../TaskForm/SearchBarUsers";
 import ArrangementService from "../../../api/ArrangementService";
 
 const EditArrangementForm = ({currentArrangement}) => {
-    const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
+  const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
   const [id, setId]= useState(6)
   const [arrangementId, setArrangementId]= useState(8)
@@ -19,7 +17,6 @@ const EditArrangementForm = ({currentArrangement}) => {
   const [arrangement, setArrangement] = useState(currentArrangement)
  
   const onCreate = async () => {
-    
   };
   //todo: fix cross origin problem here
   const addParticipantToArrangement = async () =>{
@@ -51,33 +48,26 @@ const EditArrangementForm = ({currentArrangement}) => {
       </div>
       <div className="form-actions">
           <button
-            type="button"
-            className="form-button"
-            onClick={() => addParticipantToArrangement()}
-          >
+            type="button" className="form-button"
+            onClick={() => addParticipantToArrangement()}>
             Add as Participant
           </button>
-        </div>
+      </div>
         <div className="form-actions">
           <button
-            type="button"
-            className="form-button"
-            onClick={(e) => removeParticipantFromArrangement(e)}
-          >
+            type="button" className="form-button"
+            onClick={(e) => removeParticipantFromArrangement(e)}>
             Remove as Participant
           </button>
         </div>
         </div>
         <div className="form-actions">
           <button
-            type="button"
-            className="form-button"
-            onClick={(e) => onCreate(e)}
-          >
+            type="button" className="form-button"
+            onClick={(e) => onCreate(e)}>
             Edit
           </button>
         </div>
-
         <div className="form-links">
           <div className="login-link">
             <p>Back to Arrangements {`->`}</p>

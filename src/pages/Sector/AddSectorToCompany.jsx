@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import Main from "../../layout/Main/Main";
 import Header from "../../layout/Header/Header";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,17 +9,13 @@ import SectorService from "../../api/SectorService";
 import { ROUTES } from "../../constants/ROUTES";
 import SectorPost from "./SectorPost";
 import "./AddSectorToCompany.css"
-import { FixedSizeGrid } from 'react-window';
 import Popup from 'reactjs-popup';
-
-
 
 const AddSector = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   let { id } = useParams();
   const { token } = useAuth();
   let navigate = useNavigate();
-  const [sectorId, setSectorId] = useState(0);
   const [sectors, setSectors] = useState([]);
 
   const fetchData = async () => {
@@ -36,7 +31,6 @@ const AddSector = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
   async function addSector(sector) {
     await CompanyService.addSectorToCompany(token, id, sector.id);
   }
@@ -58,11 +52,9 @@ const AddSector = () => {
       <Header />
       <Main>
         <div className="sectorGrid">
-          {isLoading ? (
-            <p>check</p>
-          ) : (
-            <div className="sector-add">
-            { <div>
+          {isLoading ? (<p>check</p>) : (
+        <div className="sector-add">
+          {<div>
       { arrayChunk(sectors, 3).map((items, index) => {
         return (
           <div className="sectorGrid">
@@ -87,38 +79,30 @@ const AddSector = () => {
             className="form-button2"
             onClick={() => deleteSector(sector.id)}> 
             Remove
-           </button>
-           </div>
-           </div>;
-            })}
-           </div>
-            );
-            })}
-           </div>}
-            </div>
-          )}
+           </button></div>
+           </div>;})}
+          </div>);})}
+          </div>}
+        </div>)}
         </div>
       </Main>
       <div className="more-buttons">
       <button
           type="button"
           className="form-button sector-button"
-          onClick={() => navigate(ROUTES.CREATE_SECTOR)}
-        >
+          onClick={() => navigate(ROUTES.CREATE_SECTOR)}>
           Create new sector
-        </button>
-        <div className="more-buttons"></div>
+      </button>
+     <div className="more-buttons"></div>
         <button
           type="button"
           className="form-button sector-button"
-          onClick={() => navigate(ROUTES.CREATE_SECTOR)}
-        >
+          onClick={() => navigate(ROUTES.CREATE_SECTOR)}>
           Return to company
         </button>
-        </div>
+      </div>
       <Footer />
     </div>
   );
 };
-
 export default AddSector;

@@ -32,7 +32,6 @@ const RegisterForm = () => {
     console.log(Object.values(registerData).every((v) => isNonEmptyString(v)));
     return Object.values(registerData).every((v) => isNonEmptyString(v));
   };
-
   const checkErrors = () => {
     if (registerData.userName.length === 0)
       usernameRef.current.classList.add("error");
@@ -42,7 +41,6 @@ const RegisterForm = () => {
       passwordRef.current.classList.add("error");
     else passwordRef.current.classList.remove("error");
   };
-
   const onRegister = async (e) => {
     e.preventDefault();
     checkErrors();
@@ -58,105 +56,59 @@ const RegisterForm = () => {
     <div className="form-container">
       <form action="POST" className="form-register">
         <div className="form-group">
-          <label htmlFor="userName" className="form-label">
-            Username
-          </label>
+          <label htmlFor="userName" className="form-label">Username</label>
           <input
-            className="form-input"
-            type="text"
-            id="userName"
-            ref={usernameRef}
+            className="form-input" type="text" id="userName" ref={usernameRef}
             onChange={(e) =>
               setRegisterData({
                 ...registerData,
                 [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+              })}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="firstName" className="form-label">
-            First Name
-          </label>
+          <label htmlFor="firstName" className="form-label">First Name</label>
           <input
-            className="form-input"
-            type="text"
-            ref={firstNameRef}
-            id="firstName"
+            className="form-input" type="text" ref={firstNameRef} id="firstName"
             onChange={(e) =>
               setRegisterData({
                 ...registerData,
                 [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+              })}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="lastName" className="form-label">
-            Last Name
-          </label>
+          <label htmlFor="lastName" className="form-label">Last Name</label>
           <input
-            className="form-input"
-            type="text"
-            ref={lastNameRef}
-            id="lastName"
+            className="form-input" type="text"ref={lastNameRef} id="lastName"
             onChange={(e) =>
               setRegisterData({
                 ...registerData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input
-            className="form-input"
-            type="text"
-            ref={emailRef}
-            id="email"
+            className="form-input" type="text" ref={emailRef} id="email"
             onChange={(e) =>
               setRegisterData({
                 ...registerData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
-
         <div className="form-group">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
+          <label htmlFor="password" className="form-label">Password</label>
           <input
-            className="form-input"
-            type="password"
-            ref={passwordRef}
-            id="password"
+            className="form-input" type="password" ref={passwordRef} id="password"
             onChange={(e) =>
               setRegisterData({
                 ...registerData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,}) }/>
         </div>
-
         <div className="form-actions">
           <button
-            type="button"
-            className="form-button"
-            onClick={(e) => onRegister(e)}
-          >
+            type="button" className="form-button"
+            onClick={(e) => onRegister(e)}>
             Register
           </button>
         </div>
-
         <div className="form-links">
           <div className="login-link">
             <p>Log In {`->`}</p>

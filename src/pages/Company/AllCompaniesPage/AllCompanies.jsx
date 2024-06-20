@@ -20,7 +20,6 @@ const AllCompanies = () => {
     await CompanyService.deleteCompanyById(token, companyId);
     window.location.reload();
   }
-
   const fetchData = async () => {
     await CompanyService.getAllCompanies(token)
       .then((data) => {
@@ -33,7 +32,6 @@ const AllCompanies = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
   const arrayChunk = (arr, n) => {
     const array = arr.slice();
     const chunks = [];
@@ -45,7 +43,7 @@ const AllCompanies = () => {
     <div className="company list page">
       <Header />
       <Main>
-        <div className="companyGrid">
+    <div className="companyGrid">
           {isLoading ? (
             <p>check</p>
           ) : (
@@ -66,38 +64,32 @@ const AllCompanies = () => {
             className="form-button2"
             onClick={() => deleteCompany(company.id)}> 
             Remove
-           </button>
-           </div>
-           </div>;
+              </button>
+          </div></div>;
             })}
-           </div>
-            );
-            })}
-           </div>}
+         </div>);
+            })}</div>}
             </div>
           )}
-        </div>
+      </div>
       </Main>
       <div className="more-buttons">
       <button
           type="button"
           className="form-button sector-button"
-          onClick={() => navigate(ROUTES.CREATE_COMPANY)}
-        >
+          onClick={() => navigate(ROUTES.CREATE_COMPANY)}>
           Create new Company
-        </button>
+      </button>
         <div className="more-buttons"></div>
         <button
           type="button"
           className="form-button company-button"
-          onClick={() => navigate(ROUTES.HOME)}
-        >
+          onClick={() => navigate(ROUTES.HOME)}>
           Return to Home
         </button>
-        </div>
+      </div>
       <Footer />
     </div>
   );
 };
-
 export default AllCompanies;

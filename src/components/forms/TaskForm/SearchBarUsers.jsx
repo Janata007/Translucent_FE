@@ -17,12 +17,10 @@ const SearchBarUsers = ({setUserForId}) => {
     setUserForId(user.userId);
     setSuggestions([])
   };
-
   const fetchData = async (value) => {
     const userNeeded = await UserService.getUsersByUsername(value, token);
     return userNeeded;
   };
-
   useDebounce(
     async () => {
       try {
@@ -46,7 +44,6 @@ const SearchBarUsers = ({setUserForId}) => {
   const handleSearchInputChange = (e) => {
     setValue(e.target.value);
   };
-
   return (
     <>
       <div className="container">
@@ -57,8 +54,7 @@ const SearchBarUsers = ({setUserForId}) => {
           className="textbox"
           placeholder="Search for a user..."
           value={value}
-          onChange={handleSearchInputChange}
-        />
+          onChange={handleSearchInputChange}/>
         <div className="suggestions">
           {suggestions &&
             suggestions.map &&
@@ -66,11 +62,9 @@ const SearchBarUsers = ({setUserForId}) => {
               <div
                 className="suggestion"
                 id={suggestion.userId}
-                onClick={() => handleSuggestionClick(suggestion)}
-              >
+                onClick={() => handleSuggestionClick(suggestion)}>
                 {suggestion["username"] + ": " + suggestion["email"]}
-              </div>
-            ))}
+              </div>))}
         </div>
       </div>
     </>

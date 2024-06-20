@@ -31,7 +31,6 @@ const UserService = {
       },
     }).then(async (response) => {
       const responseTemplateVO = await response.json();
-      console.log("user with sector " +responseTemplateVO);
       return responseTemplateVO;
     });
   },
@@ -45,7 +44,6 @@ const UserService = {
       },
     }).then(async (response) => {
       const userGot = await response.json();
-      console.log("user:" + userGot);
       return userGot;
     });
   },

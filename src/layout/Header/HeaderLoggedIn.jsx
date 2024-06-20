@@ -5,7 +5,6 @@ import "./Header.css";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
-
 const HeaderLoggedIn = () => {
   return (
     <header className="header">
@@ -18,11 +17,10 @@ const HeaderLoggedIn = () => {
           <li className="nav-menu_item"><button>Log Out</button></li>
           <Popup class= "popup" trigger={<button> Trigger</button>} position="left">
     <div>Popup content here !!</div>
-  </Popup>
+          </Popup>
         </ul>
       </nav> 
     </header>
   );
 };
-
 export default HeaderLoggedIn;

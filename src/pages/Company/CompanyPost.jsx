@@ -8,7 +8,6 @@ import CardContent from "@mui/material/CardContent";
 
 function CompanyPost(props) {
   const { company } = props;
-
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
@@ -31,7 +30,6 @@ function CompanyPost(props) {
     </Grid>
   );
 }
-
 CompanyPost.propTypes = {
   company: PropTypes.shape({
     name: PropTypes.string.isRequired,

@@ -15,7 +15,6 @@ const SectorService = {
   },
 
   async saveSector(token, sector) {
-    console.log(sector);
     return await fetch(SECTOR_ENDPOINTS.SAVE_SECTOR, {
       method: "POST",
       headers: {

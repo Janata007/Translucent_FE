@@ -16,15 +16,12 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/ROUTES";
 import { useAuth } from "../../hooks/useAuth";
 import { useDebounce } from "../../hooks/useDebounce";
-import DropdownMenu from "../../components/DropdownMenu";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { Modal } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import WorkService from "../../api/WorkService";
-
-
 const localizer = momentLocalizer(moment);
 const initialList=[
   {
@@ -177,7 +174,6 @@ const Home = () => {
         <p>
             <span className="bold">Current Date:</span> {date.toDateString()}
           </p>
-          {/* <DropdownMenu></DropdownMenu> */}
           <div className ="task-info">
           <TaskInfo taskList={tasksToPass}></TaskInfo>
           </div>
@@ -193,8 +189,7 @@ const Home = () => {
         <button
           type="button"
           className="form-button-companies"
-          onClick={() => navigate(ROUTES.ALL_COMPANIES)}
-        >
+          onClick={() => navigate(ROUTES.ALL_COMPANIES)}>
           Companies
         </button>
       </Main>

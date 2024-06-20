@@ -14,7 +14,6 @@ export const useSessionStorage = (keyName, defaultValue) => {
       return defaultValue;
     }
   });
-
   const setValue = (newValue) => {
     try {
       window.sessionStorage.setItem(keyName, JSON.stringify(newValue));

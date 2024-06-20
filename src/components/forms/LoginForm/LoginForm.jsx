@@ -17,7 +17,6 @@ const LoginForm = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
   const noEmptyFields = () => {
     return Object.values(loginData).every((v) => isNonEmptyString(v));
   };
@@ -29,7 +28,6 @@ const LoginForm = () => {
       passwordRef.current.classList.add("error");
     else passwordRef.current.classList.remove("error");
   };
-
   const onLogin = async (e) => {
     e.preventDefault();
     checkErrors();
@@ -43,7 +41,6 @@ const LoginForm = () => {
       });
     }
   };
-
   return (
     <div className="form-container">
       <form action="POST" className="form login">
@@ -64,7 +61,6 @@ const LoginForm = () => {
             }
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="password" className="form-label">
             Password
@@ -82,13 +78,11 @@ const LoginForm = () => {
             }
           />
         </div>
-
         <div className="form-actions">
           <button className="form-button" onClick={(e) => onLogin(e)}>
             Log In
           </button>
         </div>
-
         <div className="form-links">
           <div className="register-link">
             <p>Register {`->`}</p>
@@ -99,5 +93,4 @@ const LoginForm = () => {
     </div>
   );
 };
-
 export default LoginForm;

@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -32,5 +31,4 @@ function ArrangementPost({ id, name, code, duration,startTime, endTime, priority
     </Grid>
   );
 }
-
 export default ArrangementPost;

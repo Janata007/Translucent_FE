@@ -16,22 +16,18 @@ const DropdownMenu = () => {
   const { token } = useAuth();
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
-
   const fetchData2 = async () => {
     const taskList = await WorkService.getTasksForUser(token, id);
     return taskList;
   };
-
   useEffect(() => {
     setIsLoading(true);
   }, []);
-
   useDebounce(
     async () => {
       try {
         const tasks = await fetchData2(token, id);
         setTasks(tasks);
-        console.log("TASKS " + tasks[0].name);
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +35,6 @@ const DropdownMenu = () => {
     1000,
     [isLoading]
   );
-
   return (
     <div className="taskDropdown">
       <Dropdown>
@@ -50,8 +45,7 @@ const DropdownMenu = () => {
               key={task.id}
               onClick={() => {
                 navigate(ROUTES.TASK + task.id);
-              }}
-            >
+              }}>
               {task.name}
             </MenuItem>
           ))}

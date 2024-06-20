@@ -5,7 +5,6 @@ import { ROUTES } from "../../../constants/ROUTES";
 import CompanyService from "../../../api/CompanyService";
 import { isNonEmptyString } from "../../../util/helperFunctions";
 import "../Form.css";
-import Select from "react-select";
 
 const CompanyForm = () => {
   const { token } = useAuth();
@@ -20,7 +19,6 @@ const CompanyForm = () => {
     console.log(Object.values(companyData).every((v) => isNonEmptyString(v)));
     return Object.values(companyData).every((v) => isNonEmptyString(v));
   };
-
   const checkErrors = () => {
     if (companyData.name.length === 0) nameRef.current.classList.add("error");
     else nameRef.current.classList.remove("error");
@@ -29,7 +27,6 @@ const CompanyForm = () => {
       descriptionRef.current.classList.add("error");
     else descriptionRef.current.classList.remove("error");
   };
-
   const onCreate = async (e) => {
     e.preventDefault();
     checkErrors();
@@ -44,51 +41,30 @@ const CompanyForm = () => {
     <div className="form-container">
       <form action="POST" className="form register">
         <div className="form-group">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
-            className="form-input"
-            type="text"
-            id="name"
-            ref={nameRef}
+            className="form-input" type="text" id="name" ref={nameRef}
             onChange={(e) =>
               setCompanyData({
                 ...companyData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
-        </div>
-
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
+         </div>
         <div className="form-group">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
+          <label htmlFor="description" className="form-label">Description</label>
           <input
-            className="form-input"
-            type="text"
-            ref={descriptionRef}
-            id="description"
+            className="form-input" type="text" ref={descriptionRef} id="description"
             onChange={(e) =>
               setCompanyData({
                 ...companyData,
-                [`${e.currentTarget.id}`]: e.currentTarget.value,
-              })
-            }
-          />
+                [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
-
         <div className="form-actions">
           <button
-            type="button"
-            className="form-button"
-            onClick={(e) => onCreate(e)}
-          >
+            type="button" className="form-button"
+            onClick={(e) => onCreate(e)}>
             Create
           </button>
         </div>
-
         <div className="form-links">
           <div className="login-link">
             <p>Back to List {`->`}</p>

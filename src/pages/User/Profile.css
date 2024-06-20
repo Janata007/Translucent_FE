@@ -28,3 +28,6 @@
     bottom: 10%;
     left: 2%;
 }
+.more-buttons{
+    flex-direction: row;
+}
