@@ -22,6 +22,7 @@ import CreateFeedback from "./pages/Feedback/CreateUserFeedback";
 import CreateUserFeedback from "./pages/Feedback/CreateUserFeedback";
 import FeedbackPage from "./pages/Feedback/FeedbackPage";
 import TaskFeedbackPage from "./pages/Feedback/TaskFeedback/TaskFeedbackPage";
+import ArrangementFeedback from "./pages/Feedback/ArrangementFeedback/ArrangementFeedback";
 
 const App = () => {
   return (
@@ -46,9 +47,11 @@ const App = () => {
           <Route path={ROUTES.USER_INFO} element={<Profile />} />
           <Route path={ROUTES.ARRANGEMENTS} element={<ArrangementPage />} />
           <Route path={ROUTES.ARRANGEMENT_EDIT} element={<ArrangementEditPage />} />
+          <Route path={ROUTES.CREATE_ARRANGEMENT} element={<CreateArrangement />} />
           <Route path={ROUTES.SECTOR_MEMBERS} element={<SectorInfoPage />} />
           <Route path={ROUTES.CREATE_USER_FEEDBACK} element={<CreateUserFeedback />} />
           <Route path={ROUTES.CREATE_TASK_FEEDBACK} element={<TaskFeedbackPage />} />
+          <Route path={ROUTES.CREATE_ARRANGEMENT_FEEDBACK} element={<ArrangementFeedback />} />
           <Route path={ROUTES.FEEDBACK_PAGE} element={<FeedbackPage />} />
           <Route path={ROUTES.ABOUT} element={<InfoPage />} />
            <Route

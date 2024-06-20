@@ -17,6 +17,7 @@ const FeedbackPage = () => {
   let navigate = useNavigate();
   const [userFeedbacks, setUserFeedbacks] = useState([]);
   const [taskFeedbacks, setTaskFeedbacks] = useState([]);
+  const [arrangementFeedbacks, setArrangementFeedbacks]= useState([]);
 
 
   const fetchData = async () => {
@@ -27,6 +28,10 @@ const FeedbackPage = () => {
       await FeedbackService.getAllTaskFeedbacks(token)
       .then((data) => {
         setTaskFeedbacks(data);
+      })
+      await FeedbackService.getAllArrangementFeedbacks(token)
+      .then((data) => {
+        setArrangementFeedbacks(data);
       })
       .finally(() => {
         setIsLoading(false);
@@ -44,6 +49,16 @@ const FeedbackPage = () => {
       {isLoading ? (
             <p>check</p>
           ) : (userFeedbacks.map((feedb)=>{
+            return <div className="company-item"><FeedbackPost 
+            grade={feedb.grade}
+            percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
+            </div>
+          }))}
+      </div>
+      <div className="companyGrid">
+      {isLoading ? (
+            <p>check</p>
+          ) : (arrangementFeedbacks.map((feedb)=>{
             return <div className="company-item"><FeedbackPost 
             grade={feedb.grade}
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>

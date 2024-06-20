@@ -11,6 +11,7 @@ export const ROUTES = {
   CREATE_ARRANGEMENT: "/arrangement",
   CREATE_USER_FEEDBACK: "/feedback/user",
   CREATE_TASK_FEEDBACK: "/feedback/task/:id",
+  CREATE_ARRANGEMENT_FEEDBACK: "/feedback/arrangement/:id",
   TASK: "/task/:id",
   CREATE_TASK: "/task/create",
   USER_INFO:"/profile/:id",
