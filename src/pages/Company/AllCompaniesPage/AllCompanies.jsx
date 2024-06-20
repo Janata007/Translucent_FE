@@ -40,6 +40,7 @@ const AllCompanies = () => {
       <Header />
       <Main>
       <div className="companyGrid">
+      <Scroll   direction="vertical" height={`550px`} scrollerClass={"scroller"}>
       {isLoading ? (
             <p>check</p>
           ) : (companies.map((c)=>{
@@ -57,7 +58,7 @@ const AllCompanies = () => {
             Details
               </button>
             </div>
-          }))}
+          }))}</Scroll>
       </div>
       </Main>
       <div className="more-buttons">

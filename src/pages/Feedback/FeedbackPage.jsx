@@ -7,6 +7,8 @@ import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 import Footer from "../../layout/Footer/Footer";
 import FeedbackService from "../../api/FeedbackService";
 import FeedbackPost from "./FeedbackPost";
+import Scroll from "react-scroll-component"
+
 
 
 const FeedbackPage = () => {
@@ -46,6 +48,7 @@ const FeedbackPage = () => {
       <Main>
       <div className="companyGrid">
       <label className="feedback-title">Feedbacks for me</label>
+      <Scroll   direction="vertical" height={`480px`} scrollerClass={"scroller"}>
       {isLoading ? (
             <p>check</p>
           ) : (userFeedbacks.map((feedb)=>{
@@ -53,10 +56,11 @@ const FeedbackPage = () => {
             grade={feedb.grade}
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
             </div>
-          }))}
+          }))}</Scroll>
       </div>
       <div className="companyGrid">
       <label className="feedback-title">My Arrangement Feedbacks</label>
+      <Scroll   direction="vertical" height={`480px`} scrollerClass={"scroller"}>
       {isLoading ? (
             <p>check</p>
           ) : (arrangementFeedbacks.map((feedb)=>{
@@ -64,10 +68,11 @@ const FeedbackPage = () => {
             grade={feedb.grade}
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
             </div>}</div>
-          }))}
+          }))}</Scroll>
       </div>
       <div className="companyGrid">
       <label className="feedback-title">Task feedbacks</label>
+      <Scroll   direction="vertical" height={`480px`} scrollerClass={"scroller"}>
       {isLoading ? (
             <p>check</p>
           ) : (taskFeedbacks.map((feedb)=>{
@@ -76,6 +81,7 @@ const FeedbackPage = () => {
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
             </div>
           }))}
+          </Scroll>
       </div>
       </Main>
       <div className="more-buttons">

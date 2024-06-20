@@ -55,30 +55,31 @@ const ArrangementPage = () => {
       <div className="profile-info">
         {userInfo.sectorId && <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>
-      <div className="sector-section">
-      <Scroll direction="vertical"
+      <div className="task-section">
+      <Scroll   direction="vertical"
         height={`350px`}
         width={'10px'}
         scrollerClass={"scroller"}>
-        <div className="sectorGrid">
-          {isLoading ? (<p>check</p>) : (
-        <div className="sector-add">
-        {<div>
-      { arrayChunk(arrangements, 3).map((items, index) => {
+        <div className="taskGrid">
+          {isLoading ? (
+            <p>check</p>
+          ) : (
+            <div className="company-add">
+            { <div className="tasks">
+        {arrayChunk(arrangements, 3).map((items, index) => {
         return (
-          <div className="sectorGrid">
+          <div className="taskGrid">
             {items.map((arrangement, sIndex) => {
-              return <div className="sector-item" key={arrangement.arrangementId}> {<ArrangementPost
-              id = {arrangement.arrangementId}
-                name={arrangement.name}
-                code={arrangement.code}
-                duration={arrangement.duration}
-                startTime={arrangement.startTime}
-                endTime={arrangement.endTime}
-                priority={arrangement.priority}
-                participants={arrangement.participants}/>}
-              <div className="buttons">
-                <ul>
+              return <div className="company-item"> {<ArrangementPost
+                id = {arrangement.arrangementId}
+                  name={arrangement.name}
+                  code={arrangement.code}
+                  duration={arrangement.duration}
+                  startTime={arrangement.startTime}
+                  endTime={arrangement.endTime}
+                  priority={arrangement.priority}
+                  participants={arrangement.participants}/>}<div className="buttons">
+                    <ul>
             <button type="button" className="form-button2"
             onClick={() => navigate(ROUTES.ARRANGEMENT_EDIT.replace(":id",arrangement.arrangementId))}> 
             Edit
@@ -86,16 +87,14 @@ const ArrangementPage = () => {
            <button type="button" className="form-button2"
             onClick={() => navigate(ROUTES.CREATE_ARRANGEMENT_FEEDBACK.replace(":id",arrangement.arrangementId))}> 
             Leave Feedback
-           </button></ul></div>
-           </div>;
-            })}
-           </div>);
-            })}
+           </button></ul>
+           </div></div>;})}
+           </div>);})}
            </div>}
+          </div>)}
         </div>
-          )}
-        </div>
-        </Scroll></div>
+        </Scroll>
+      </div>
       <div className="button-section">
         <button
           type="button"

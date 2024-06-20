@@ -1,7 +1,6 @@
 .companyGrid {
     transform: scale(0.8);
     display: inline-grid;
-    overflow: scroll;
     grid-auto-columns: 3;
     width: 80%;
     height: 110%;

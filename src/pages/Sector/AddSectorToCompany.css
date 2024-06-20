@@ -1,7 +1,8 @@
 .sectorGrid {
-    transform: scale(0.8);
-        display: flex;
-        flex-direction: row;
+    transform: scale(0.7);
+        display: inline-grid;
+        position: relative;
+        width: 270px;
 }
 .buttons{
     flex-direction: row;
