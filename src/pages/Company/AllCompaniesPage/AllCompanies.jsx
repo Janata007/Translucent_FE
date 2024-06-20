@@ -6,95 +6,74 @@ import Footer from "../../../layout/Footer/Footer";
 import { useAuth } from "../../../hooks/useAuth";
 import CompanyService from "../../../api/CompanyService";
 import { ROUTES } from "../../../constants/ROUTES";
-import SectorPost from "../../Sector/SectorPost";
 import "./AllCompanies.css";
+import CompanyPost from "../CompanyPost";
+import Scroll from "react-scroll-component";
+import SectorPost from "../../Sector/SectorPost";
+
 
 const AllCompanies = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
   let navigate = useNavigate();
-  const [companies, setCompanies] = useState([
-  ]);
+  const [companies, setCompanies] = useState([]);
+
   async function deleteCompany(companyId) {
-    console.log("company deleting id: " + companyId);
     await CompanyService.deleteCompanyById(token, companyId);
     window.location.reload();
   }
   const fetchData = async () => {
     await CompanyService.getAllCompanies(token)
       .then((data) => {
-        setCompanies([...data]);
+        setCompanies(data);
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, []);
-  const arrayChunk = (arr, n) => {
-    const array = arr.slice();
-    const chunks = [];
-    while (array.length) chunks.push(array.splice(0, n));
-    console.log(chunks)
-    return chunks;
-  };
+
   return (
     <div className="company list page">
       <Header />
       <Main>
-    <div className="companyGrid">
-          {isLoading ? (
+      <div className="companyGrid">
+      {isLoading ? (
             <p>check</p>
-          ) : (
-            <div className="company-add">
-            { <div>
-      { arrayChunk(companies, 3).map((items, index) => {
-        return (
-          <div className="companyGrid">
-            {items.map((company, sIndex) => {
-              return <div className="company-item"> {<SectorPost
-                name={company.name}
-                code={""}
-                description={company.description}
-                offeredServices={[company.sectorList]}
-              />}<div className="buttons">
-                <ul>
-              <button
+          ) : (companies.map((c)=>{
+            return <div className="company-item"><CompanyPost company={c}></CompanyPost>
+            <button
             type="button"
             className="form-button"
-            onClick={() => deleteCompany(company.id)}> 
+            onClick={() => deleteCompany(c.id)}> 
             Remove
               </button>
               <button
             type="button"
             className="form-button"
-            onClick={() =>navigate(ROUTES.COMPANY.replace(":id", company.id)) }> 
+            onClick={() =>navigate(ROUTES.COMPANY.replace(":id", c.id)) }> 
             Details
-              </button></ul> 
-          </div></div>;
-            })}
-         </div>);
-            })}</div>}
+              </button>
             </div>
-          )}
+          }))}
       </div>
       </Main>
       <div className="more-buttons">
       <button
           type="button"
-          className="form-button sector-button"
+          className="form-button"
           onClick={() => navigate(ROUTES.CREATE_COMPANY)}>
           Create new Company
       </button>
-        <div className="more-buttons"></div>
         <button
           type="button"
-          className="form-button company-button"
+          className="form-button"
           onClick={() => navigate(ROUTES.HOME)}>
           Return to Home
-        </button>
-      </div>
+       </button>
+     </div>
       <Footer />
     </div>
   );

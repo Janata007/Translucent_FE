@@ -20,6 +20,7 @@ const Profile = () => {
   let navigate = useNavigate();
   const [userTasks, setUserTasks] = useState([]);
   const [userInfo, setUserInfo]=useState({});
+
   const fetchData = async () => {
     await UserService.getUser(id, token)
       .then((data) => {
@@ -33,9 +34,8 @@ const Profile = () => {
         setIsLoading(false);
       });
   };
-
+  
   const toggleWorkStatus = async ()=>{
-    console.log(userInfo.workVisible)
     await UserService.setWorkVisibleForUser(id, !userInfo.workVisible, token)
       .then((data) => {
         setUserInfo(data);
@@ -68,7 +68,7 @@ useEffect(() => {
         height={`350px`}
         width={'10px'}
         scrollerClass={"scroller"}>
-        <div className="companyGrid">
+        <div className="taskGrid">
           {isLoading ? (
             <p>check</p>
           ) : (
@@ -76,7 +76,7 @@ useEffect(() => {
             { <div className="tasks">
         {arrayChunk(userTasks, 3).map((items, index) => {
         return (
-          <div className="companyGrid taskGrid">
+          <div className=" taskGrid">
             {items.map((task, sIndex) => {
               return <div className="company-item"> {<TaskPost
               id={task.id}
@@ -115,7 +115,6 @@ useEffect(() => {
           onClick={() => navigate(ROUTES.CREATE_TASK)}>
           Create new Task
       </button>
-        <div className="more-buttons"></div>
         <button
           type="button"
           className="form-button"

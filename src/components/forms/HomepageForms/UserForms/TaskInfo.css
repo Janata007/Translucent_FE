@@ -5,7 +5,7 @@
   overflow-y: scroll;
 }
 .task-container{
-  overflow-y: scroll;
+  overflow: scroll;
 
 }
 .card {

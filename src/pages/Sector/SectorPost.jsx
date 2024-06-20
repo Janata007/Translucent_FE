@@ -9,7 +9,7 @@ function SectorPost({ name, code, description, offeredServices }) {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Card sx={{ display: "flex" }} key={code}>
+        <Card sx={{ display: "flex" }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
               {name}

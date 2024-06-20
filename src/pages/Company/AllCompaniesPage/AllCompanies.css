@@ -1,7 +1,10 @@
 .companyGrid {
     transform: scale(0.8);
-        display: flex;
-        flex-direction: row;
+    display: inline-grid;
+    overflow: scroll;
+    grid-auto-columns: 3;
+    width: 80%;
+    height: 110%;
 }
 .buttons{
     flex-direction: row;
