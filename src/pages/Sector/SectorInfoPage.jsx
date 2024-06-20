@@ -54,7 +54,7 @@ const SectorInfoPage = () => {
       {userInfo.sectorId &&
         <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>
-      <div className="task-section">
+      <div className="sector-section">
       <Scroll   direction="vertical"
         height={`350px`}
         width={'10px'}

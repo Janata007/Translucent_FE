@@ -1,31 +1,44 @@
 import { useState, useEffect } from "react";
 import UserService from "../../../../api/UserService";
 import { useAuth } from "../../../../hooks/useAuth";
+import { useDebounce } from "../../../../hooks/useDebounce";
 
 const UserInfo = () => {
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
-  const id = useState(2);
-
-  const fetchData = async () => {
-    await UserService.getUserWithSector(id, token)
-      .then((data) => {
-        setUserInfo([...data]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  const [id,setId] = useState(6);
+  const fetchData2 = async () => {
+    const userStuff = await UserService.getUserWithSector(
+      id,
+      token
+    );
+    return userStuff;
   };
+
   useEffect(() => {
-    fetchData();
-  }, [isLoading]);
+    setIsLoading(true);
+  }, []);
+
+  useDebounce(
+    async () => {
+      try {
+        const userStuff = await fetchData2();
+        setUserInfo(userStuff)
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    1000,
+    [isLoading]
+  );
 
   return (
     <div className="userContainer">
       <div className="jumbotron">
         <h1 className="display-4">User information</h1>
       </div>
+      {isLoading? (<p></p>):(
       <div className="card">
         <div className="card-header">
           {userInfo.appUser.firstName} {userInfo.appUser.lastName}
@@ -39,7 +52,7 @@ const UserInfo = () => {
             My Profile
           </a>
         </div>
-      </div>
+      </div>)}
     </div>
   );
 };

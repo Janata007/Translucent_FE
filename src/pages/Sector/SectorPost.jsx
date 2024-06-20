@@ -6,11 +6,10 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 
 function SectorPost({ name, code, description, offeredServices }) {
-  console.log(offeredServices);
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Card sx={{ display: "flex" }}>
+        <Card sx={{ display: "flex" }} key={code}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
               {name}
@@ -20,7 +19,7 @@ function SectorPost({ name, code, description, offeredServices }) {
             </Typography>
             <Typography variant="subtitle2" div>
               {offeredServices.map((service) => (
-                <div key={service.id}>{service.name}</div>
+                <div>{service}</div>
               ))}
             </Typography>
           </CardContent>

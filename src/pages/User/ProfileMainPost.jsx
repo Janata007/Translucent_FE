@@ -15,7 +15,6 @@ function ProfileMainPost({profile}) {
   const {token} = useAuth();
   const [sectorInfo, setSectorInfo]=useState({})
   let navigate = useNavigate();
-  
   const fetchData = async () => {
     await SectorService.findById(token, profile.sectorId)
       .then((data) => {
@@ -64,9 +63,15 @@ function ProfileMainPost({profile}) {
         <div>
           <button
           type="button"
-          className="form-button arrangements-button"
+          className="form-button sector-button"
           onClick={() => navigate(ROUTES.SECTOR_MEMBERS.replace(":id", sectorInfo.id))}>
           {sectorInfo.name}
+         </button>
+         <button
+          type="button"
+          className="form-button company-button"
+          onClick={() => {navigate(ROUTES.COMPANY.replace(":id", profile.companyId))}}>
+          Check organization
          </button>
         </div>)}
        </Box>

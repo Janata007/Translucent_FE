@@ -1,10 +1,10 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
-  SECTOR_MEMBERS:"sector/:id/members",
+  SECTOR_MEMBERS:"/sector/:id/members",
   REGISTER: "/register",
   COMPANY: "/company/:id",
-  ALL_COMPANIES: "/all",
+  ALL_COMPANIES: "company/all",
   CREATE_COMPANY: "/company",
   CREATE_SECTOR: "/sector",
   ADD_SECTOR_TO_COMPANY: "/company/:id/addSector",

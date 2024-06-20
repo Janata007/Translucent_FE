@@ -55,6 +55,7 @@ const ArrangementPage = () => {
       <div className="profile-info">
         {userInfo.sectorId && <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>
+      <div className="sector-section">
       <Scroll direction="vertical"
         height={`350px`}
         width={'10px'}
@@ -89,7 +90,7 @@ const ArrangementPage = () => {
         </div>
           )}
         </div>
-        </Scroll>
+        </Scroll></div>
       <div className="button-section">
         <button
           type="button"
@@ -102,14 +103,14 @@ const ArrangementPage = () => {
       <div className="more-buttons">
       <button
           type="button"
-          className="form-button sector-button"
+          className="form-button"
           onClick={() => navigate(ROUTES.CREATE_ARRANGEMENT)}>
           Create new Arrangement
       </button>
         <div className="more-buttons"></div>
         <button
           type="button"
-          className="form-button sector-button"
+          className="form-button"
           onClick={() => navigate(ROUTES.HOME)}>
           Return to Home
         </button>

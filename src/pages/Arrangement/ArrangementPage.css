@@ -1,0 +1,5 @@
+.arrangementGrid{
+    transform: scale(0.8);
+    display: flex;
+    flex-direction: row;
+}

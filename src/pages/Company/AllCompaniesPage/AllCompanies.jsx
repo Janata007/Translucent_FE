@@ -59,12 +59,19 @@ const AllCompanies = () => {
                 description={company.description}
                 offeredServices={[company.sectorList]}
               />}<div className="buttons">
+                <ul>
               <button
             type="button"
-            className="form-button2"
+            className="form-button"
             onClick={() => deleteCompany(company.id)}> 
             Remove
               </button>
+              <button
+            type="button"
+            className="form-button"
+            onClick={() =>navigate(ROUTES.COMPANY.replace(":id", company.id)) }> 
+            Details
+              </button></ul> 
           </div></div>;
             })}
          </div>);

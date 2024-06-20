@@ -27,7 +27,38 @@
     position: absolute;
     bottom: 10%;
     left: 2%;
+    transform: scale(0.7);
+}
+.sector-button{
+    color: black;
+    width: 90%;
+    font-size: 2rem;
+    position: absolute;
+    left: -13%;
+    bottom: 6%;
+    transform: scale(0.6);
+}
+.company-button{
+    color: black;
+    width: 90%;
+    font-size: 2rem;
+    position: absolute;
+    left: -13%;
+    bottom: 70%;
+    transform: scale(0.6);
 }
 .more-buttons{
     flex-direction: row;
+}
+/* .button-section1{
+    position: absolute;
+    width: 20rem;
+    left: 5%;
+    bottom:15%;
+    transform: scale(0.9);
+} */
+.form-button-work{
+    position: absolute;
+    transform: scale(0.7);
+    bottom: -3%;
 }

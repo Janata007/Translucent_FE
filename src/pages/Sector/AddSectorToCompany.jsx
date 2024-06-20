@@ -13,7 +13,7 @@ import Popup from 'reactjs-popup';
 
 const AddSector = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
-  let { id } = useParams();
+  let id  = (window.location.href.split("/"))[5];
   const { token } = useAuth();
   let navigate = useNavigate();
   const [sectors, setSectors] = useState([]);
@@ -32,6 +32,7 @@ const AddSector = () => {
     fetchData();
   }, []);
   async function addSector(sector) {
+    console.log(sector.id)
     await CompanyService.addSectorToCompany(token, id, sector.id);
   }
   const deleteSector = async (id) => {
@@ -43,7 +44,6 @@ const AddSector = () => {
     const array = arr.slice();
     const chunks = [];
     while (array.length) chunks.push(array.splice(0, n));
-    console.log(chunks)
     return chunks;
   };
 

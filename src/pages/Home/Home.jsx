@@ -146,7 +146,8 @@ const Home = () => {
           <div className="section-one-space"> 
         <SearchBar></SearchBar>
         </div>
-        <ul><UserInfo></UserInfo>
+        <ul>
+          <UserInfo></UserInfo>
         <button
           type="button"
           className="form-button-arrangement"

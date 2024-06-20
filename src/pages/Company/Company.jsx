@@ -38,7 +38,6 @@ const Company = () => {
     );
   };
   useEffect(() => {
-    console.log(window.location.pathname);
     fetchCompanyData();
   }, []);
   useEffect(() => {}, [company]);
@@ -89,6 +88,14 @@ const Company = () => {
          </div>
         <div className="sector-add"></div>
       </Main>
+      <div className="more-buttons">
+        <button
+          type="button"
+          className="form-button"
+          onClick={() => navigate(ROUTES.HOME)}>
+          Return to Home
+       </button>
+     </div>
       <Footer />
     </div>
   );

@@ -33,6 +33,15 @@ const Profile = () => {
         setIsLoading(false);
       });
   };
+
+  const toggleWorkStatus = async ()=>{
+    console.log(userInfo.workVisible)
+    await UserService.setWorkVisibleForUser(id, !userInfo.workVisible, token)
+      .then((data) => {
+        setUserInfo(data);
+      })
+      window.location.reload();
+  }
 useEffect(() => {
   fetchData();
   }, []);
@@ -50,7 +59,7 @@ useEffect(() => {
       <HeaderLoggedIn />
       <Main>
       <div className="profile-info">
-      <div>Tasks</div>
+      {userInfo.workVisible && <div>Your work is visible to others !</div>}
       {userInfo.sectorId &&
         <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>
@@ -84,12 +93,20 @@ useEffect(() => {
         </div>
         </Scroll>
       </div>
+      <div className="button-section1">
         <button
           type="button"
           className="form-button arrangements-button"
           onClick={() => navigate(ROUTES.ARRANGEMENTS.replace(":id", id))}>
           See Arrangements
         </button>
+        <button
+          type="button"
+          className="form-button-work form-button arrangements-button"
+          onClick={toggleWorkStatus}>
+          Toggle work visibility
+        </button>
+        </div>
       </Main>
       <div className="more-buttons">
       <button
