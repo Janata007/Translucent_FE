@@ -6,7 +6,6 @@ import Main from "../../layout/Main/Main";
 import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 import Footer from "../../layout/Footer/Footer";
 import FeedbackService from "../../api/FeedbackService";
-import SectorPost from "../Sector/SectorPost";
 import FeedbackPost from "./FeedbackPost";
 
 
@@ -46,6 +45,7 @@ const FeedbackPage = () => {
       <HeaderLoggedIn />
       <Main>
       <div className="companyGrid">
+      <label className="feedback-title">Feedbacks for me</label>
       {isLoading ? (
             <p>check</p>
           ) : (userFeedbacks.map((feedb)=>{
@@ -56,6 +56,7 @@ const FeedbackPage = () => {
           }))}
       </div>
       <div className="companyGrid">
+      <label className="feedback-title">My Arrangement Feedbacks</label>
       {isLoading ? (
             <p>check</p>
           ) : (arrangementFeedbacks.map((feedb)=>{
@@ -66,6 +67,7 @@ const FeedbackPage = () => {
           }))}
       </div>
       <div className="companyGrid">
+      <label className="feedback-title">Task feedbacks</label>
       {isLoading ? (
             <p>check</p>
           ) : (taskFeedbacks.map((feedb)=>{
