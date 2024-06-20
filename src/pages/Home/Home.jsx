@@ -22,6 +22,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import WorkService from "../../api/WorkService";
+import SearchBarUsers from "../../components/forms/TaskForm/SearchBarUsers"
+
 const localizer = momentLocalizer(moment);
 const initialList=[
   {
@@ -73,13 +75,15 @@ const Home = () => {
     setEventValue(event);
       setCalendarEvent(!calendarEventClicked);
   }
+  const setUserForId = (userId) =>{
+    navigate(ROUTES.USER_INFO.replace(":id", userId))
+  }
   var popup =  <Modal   portalClassName="modal"
   open={onEventClick}
   onClose={()=>{}}
   aria-labelledby="modal-modal-title"
   aria-describedby="modal-modal-description"
 ><div onClick={()=>setCalendarEvent(false)}>
-  
 <Card>
           <CardContent>
             <Typography component="h2" variant="h5">
@@ -98,7 +102,6 @@ const Home = () => {
         </Card>
         </div>
 </Modal>;
-
   const updateDates = (arrangements, tasks) => {
     for(var i=0; i<arrangements.length; i++){
       eventList.push({
@@ -163,6 +166,9 @@ const Home = () => {
         >
           Create Feedback
         </button>
+        
+        <div className="section-zero-space"> 
+        <SearchBarUsers setUserForId={setUserForId}></SearchBarUsers></div>
         </ul>
         </div>
         {calendarEventClicked && popup}

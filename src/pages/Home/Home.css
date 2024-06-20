@@ -51,6 +51,11 @@
   top: -20%;
   size: 20%;
 }
+.section-zero-space{
+  position: absolute;
+  top: -39%;
+  size: 20%;
+}
 .third-section{
   width: 12%;
   transform: scale(0.8);
