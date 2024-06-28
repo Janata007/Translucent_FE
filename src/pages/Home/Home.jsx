@@ -162,9 +162,9 @@ const Home = () => {
         <button
           type="button"
           className="form-button-arrangement"
-          onClick={() => navigate(ROUTES.CREATE_FEEDBACK)}
+          onClick={() => navigate(ROUTES.CREATE_USER_FEEDBACK)}
         >
-          Create Feedback
+          Feedback for User
         </button>
         
         <div className="section-zero-space"> 

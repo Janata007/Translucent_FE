@@ -23,7 +23,7 @@
 
 .form-button-arrangement{
   margin: 5px;
-  font-size: 30px;
+  font-size: 23px;
   width: 15rem;
   background-color: var(--main-light);
   border: solid 4px var(--text-color-black);
@@ -45,6 +45,7 @@
   position: relative; 
   left: -5%;
   width: 20%;
+  top: 10%;
 }
 .section-one-space{
   position: absolute;
@@ -53,10 +54,10 @@
 }
 .section-zero-space{
   position: absolute;
-  top: -39%;
+  top: -40%;
   size: 20%;
 }
 .third-section{
-  width: 12%;
+  width: 13%;
   transform: scale(0.8);
 }

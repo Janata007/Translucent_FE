@@ -5,15 +5,17 @@ import Footer from "../../layout/Footer/Footer";
 import { useAuth } from "../../hooks/useAuth";
 import logo from "../../assets/icon-white.png";
 import "./InfoPage.css";
+import { ROUTES } from "../../constants/ROUTES";
 
 
 const InfoPage = () => {
   const { token } = useAuth();
   let navigate = useNavigate();
   return (
-    <div>
+    <div className="info-div">
       <HeaderLoggedIn />
       <Main>
+        <ul>
       <div className="content-wrap">
      <img src={logo} className="bg-icon" alt="logo"></img>
     <p>Hello <br/>
@@ -25,6 +27,13 @@ const InfoPage = () => {
     Mentor: Sasho Gramatikov
     </p>
      </div>
+     <button
+          type="button"
+          className="form-button"
+          onClick={() => navigate(ROUTES.HOME)}>
+          Return to Home
+       </button>
+       </ul>
       </Main>
       <Footer />
     </div>
