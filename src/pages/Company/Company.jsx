@@ -14,6 +14,7 @@ import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 const Company = () => {
   const [loaded, setLoaded] = useState(false); //for rerender after promise is fulfilled
   let { id } = useParams();
+  const {loggedInUserInfo} = useAuth();
   const { token } = useAuth();
   let navigate = useNavigate();
   const [hidden, setHidden] = useState(true); //for adding a sector to company
@@ -21,7 +22,7 @@ const Company = () => {
   const [company, setCompany] = useState({});
   const redirect = (company) => {
     console.log(company.id);
-    navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id) + company.id);
+    navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id));
   };
   async function fetchCompanyData() {
     await CompanyService.findCompanyById(token, id).then((data) => {
@@ -52,7 +53,7 @@ const Company = () => {
       <Main>
         <div>
         <div className="top-container" spacing={4}>
-          {sectors.map((sector) => (
+          { sectors && sectors.map((sector) => (
             <>
               <SectorPost
                 name={sector.name}
@@ -60,18 +61,20 @@ const Company = () => {
                 description={sector.description}
                 offeredServices={[sector.offeredServices]}
               />
+              {loggedInUserInfo.role.includes("ADMINISTRATOR") &&
               <button
                 type="button"
                 className="form-button2"
                 onClick={() => removeSector(sector.id)}
               >
                 Delete from company
-              </button>
+              </button>}
               <div className="between"></div>
             </>
           ))}
         </div>
         </div>
+        { loggedInUserInfo.role.includes("ADMINISTRATOR") &&
         <div className="sector-options">
         <button
           type="button"
@@ -86,7 +89,7 @@ const Company = () => {
           onClick={() => redirect(company)}>
           Add sector to company
         </button>
-         </div>
+         </div>}
         <div className="sector-add"></div>
       </Main>
       <div className="more-buttons">

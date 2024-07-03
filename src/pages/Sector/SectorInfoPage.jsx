@@ -14,8 +14,8 @@ import UserPost from "../User/UserPost";
 const SectorInfoPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const { token } = useAuth();
-    //todo: get id from params
-  const [id, setId]= useState(6)
+    const {loggedInUserInfo} = useAuth();
+  const [id, setId]= useState(loggedInUserInfo.userId)
   let navigate = useNavigate();
   const [sectorMemebers, setSectorMembers] = useState([]);
   const [userInfo, setUserInfo]=useState({});

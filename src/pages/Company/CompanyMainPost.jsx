@@ -61,7 +61,7 @@ function CompanyMainPost(props) {
             </Typography>
             <Typography variant="subtitle2" div>
               Services offered:
-              {services.map((service) => (
+              {services && services.map((service) => (
                 <div>{service}</div>
               ))}
             </Typography>

@@ -66,7 +66,7 @@ const ArrangementPage = () => {
           ) : (
             <div className="company-add">
             { <div className="tasks">
-        {arrayChunk(arrangements, 3).map((items, index) => {
+        { arrangements && arrayChunk(arrangements, 3).map((items, index) => {
         return (
           <div className="taskGrid">
             {items.map((arrangement, sIndex) => {

@@ -18,7 +18,7 @@ function SectorPost({ name, code, description, offeredServices }) {
               {description}
             </Typography>
             <Typography variant="subtitle2" div>
-              {offeredServices.map((service) => (
+              { offeredServices && offeredServices.map((service) => (
                 <div>{service}</div>
               ))}
             </Typography>
