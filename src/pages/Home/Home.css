@@ -38,8 +38,13 @@
 }
 .modal{
   position: absolute;
-  width: 50%;
-  background-color: aqua;
+  margin-top: 200px;
+  margin-left: 30%;
+  width: 40%;
+}
+.popup-card{
+  background-color: var(--main-dark);
+  color: white;
 }
 .first-section{
   position: relative; 

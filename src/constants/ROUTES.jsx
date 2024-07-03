@@ -1,7 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
-  SECTOR_MEMBERS:"/sector/:id/members",
+  SECTOR_MEMBERS:"/sector/members/:id",
   REGISTER: "/register",
   COMPANY: "/company/:id",
   ALL_COMPANIES: "company/all",
@@ -15,8 +15,8 @@ export const ROUTES = {
   TASK: "/task/:id",
   CREATE_TASK: "/task/create",
   USER_INFO:"/profile/:id",
-  ARRANGEMENTS: "/profile/:id/arrangements",
-  ARRANGEMENT_EDIT: "/arrangements/:id/edit",
+  ARRANGEMENTS: "/profile/arrangements/:id",
+  ARRANGEMENT_EDIT: "/arrangements/edit/:id",
   ABOUT:"/information",
   FEEDBACK_PAGE: "/feedback"
 };

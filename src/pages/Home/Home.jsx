@@ -23,6 +23,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import WorkService from "../../api/WorkService";
 import SearchBarUsers from "../../components/forms/TaskForm/SearchBarUsers"
+import UserService from "../../api/UserService";
 
 const localizer = momentLocalizer(moment);
 const initialList=[
@@ -41,6 +42,8 @@ const initialTaskList=[
 ]
 
 const Home = () => {
+  const {assignUserInfo} = useAuth();
+  const [userInfo, setUserInfo]=useState({});
   const [arrangementList, setArrangementList]=useState(initialList);
   const [taskList, setTaskList]=useState(initialTaskList);
   const [tasksToPass, setTasksToPass]= useState([{}]);
@@ -57,6 +60,13 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const navigate = useNavigate();
+  
+  const fetchUserData = async () => {
+    const userInfo = await UserService.getUserByUsername("jhalpert",token);
+    assignUserInfo(userInfo);
+    setUserInfo(userInfo);
+  };
+
   const fetchData2 = async () => {
     const arrangementList = await ArrangementService.getAllArrangementsForUser(
       token,
@@ -78,25 +88,23 @@ const Home = () => {
   const setUserForId = (userId) =>{
     navigate(ROUTES.USER_INFO.replace(":id", userId))
   }
-  var popup =  <Modal   portalClassName="modal"
+  var popup =  <Modal  className="modal"
   open={onEventClick}
   onClose={()=>{}}
   aria-labelledby="modal-modal-title"
   aria-describedby="modal-modal-description"
 ><div onClick={()=>setCalendarEvent(false)}>
 <Card>
-          <CardContent>
+          <CardContent className="popup-card">
             <Typography component="h2" variant="h5">
               {eventValue.title}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              start: {eventValue.start.toDateString()}
+              start: {eventValue.start.toDateString()} <br/>
+              end: {eventValue.end.toDateString()}
             </Typography>
             <Typography variant="subtitle2" div>
-             end: {eventValue.end.toDateString()}
-            </Typography>
-            <Typography variant="subtitle2" div>
-             click on card to close
+             click on me to close
             </Typography>
           </CardContent>
         </Card>
@@ -119,7 +127,6 @@ const Home = () => {
       });
       setEventList(eventList);
     }
-    console.log(arrangementList.length)
   };
 
   useEffect(() => {
@@ -131,6 +138,7 @@ const Home = () => {
       try {
         const arrangs = await fetchData2(token, id);
         const tasks = await fetchData(token, id);
+        await fetchUserData();
         setArrangements(arrangs);
         setTaskList(tasks);
         setTasksToPass(tasks);

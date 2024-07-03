@@ -4,6 +4,7 @@ import { useAuth } from "../../../../hooks/useAuth";
 import { useDebounce } from "../../../../hooks/useDebounce";
 
 const UserInfo = () => {
+  const {loggedInUserInfo} = useAuth();
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
@@ -15,7 +16,6 @@ const UserInfo = () => {
     );
     return userStuff;
   };
-
   useEffect(() => {
     setIsLoading(true);
   }, []);
@@ -38,21 +38,14 @@ const UserInfo = () => {
       <div className="jumbotron">
         <h1 className="display-4">User information</h1>
       </div>
-      {isLoading? (<p></p>):(
       <div className="card">
         <div className="card-header">
-          {userInfo.appUser.firstName} {userInfo.appUser.lastName}
+          {loggedInUserInfo.firstName} {loggedInUserInfo.lastName}
         </div>
         <div className="card-body">
-          <h5 className="card-title">{userInfo.appUser.email}</h5>
-          <p className="card-text">
-            Currently working at {userInfo.sector.name}
-          </p>
-          <a href="#" className="btn btn-primary">
-            My Profile
-          </a>
+          <h5 className="card-title">{loggedInUserInfo.email}</h5>
         </div>
-      </div>)}
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ import "../User/Profile.css"
 
 const ArrangementPage = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
-  const [id, setId]= useState(6)
+  const [id, setId]= useState(window.location.href.substring(58))
   const { token } = useAuth();
   let navigate = useNavigate();
   const [arrangements, setArrangements] = useState([]);

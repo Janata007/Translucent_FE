@@ -8,10 +8,13 @@ import WorkService from "../../api/WorkService";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants/ROUTES";
+import UserInfo from "../../components/forms/HomepageForms/UserForms/UserInfo";
 
-function TaskPost({ id, name, priority, description, finished, accepted, dateDue }) {
+function TaskPost({ userId, id, name, priority, description, finished, accepted, dateDue }) {
+  const {loggedInUserInfo}= useAuth();
   const {token} = useAuth();
   const navigate = useNavigate();
+
   const finishTask = async (id)=>{
     await WorkService.setTaskToFinished(token, id)
     .then((data) => {
@@ -57,6 +60,8 @@ function TaskPost({ id, name, priority, description, finished, accepted, dateDue
           </CardContent>
         </Card>
       </CardActionArea>
+      {userId==loggedInUserInfo.userId &&
+      <div className="task-card-buttons">
       { accepted && !finished &&  
       <button
             type="button"
@@ -88,6 +93,7 @@ function TaskPost({ id, name, priority, description, finished, accepted, dateDue
       </button>
       </ul>
         }
+        </div>}
     </Grid>
   );
 }

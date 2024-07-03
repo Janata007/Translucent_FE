@@ -9,7 +9,7 @@ import ArrangementService from "../../../api/ArrangementService";
 const EditArrangementForm = ({currentArrangement}) => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
-  const [id, setId]= useState(6)
+  const [id, setId]= useState(window.location.href.substring(55))
   const [arrangementId, setArrangementId]= useState(8)
   const [participantId, setParticipantId]=useState(6)
   const dateDueRef = useRef();
@@ -20,7 +20,7 @@ const EditArrangementForm = ({currentArrangement}) => {
   };
   //todo: fix cross origin problem here
   const addParticipantToArrangement = async () =>{
-        await ArrangementService.addParticipantToArrangement(token,participantId,  arrangementId)
+        await ArrangementService.addParticipantToArrangement(token ,participantId,  arrangementId)
         .then((data) => {
           setArrangement(data);
         })

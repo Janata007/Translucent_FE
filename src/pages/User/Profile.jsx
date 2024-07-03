@@ -14,10 +14,11 @@ import Scroll from "react-scroll-component"
 import "./Profile.css";
 
 const Profile = () => {
+  const {loggedInUserInfo} = useAuth();
     const [isLoading, setIsLoading] = useState(true);
     const { token } = useAuth();
-    //todo: get id from params
-  const [id, setId]= useState(6)
+    //todo: diff way to get id
+  const [id, setId]= useState(window.location.href.substring(45))
   let navigate = useNavigate();
   const [userTasks, setUserTasks] = useState([]);
   const [userInfo, setUserInfo]=useState({});
@@ -80,6 +81,7 @@ useEffect(() => {
           <div className="taskGrid">
             {items.map((task, sIndex) => {
               return <div className="company-item"> {<TaskPost
+              userId={id}
               id={task.id}
                 name={task.name}
                 priority={task.priority}
@@ -101,12 +103,13 @@ useEffect(() => {
           onClick={() => navigate(ROUTES.ARRANGEMENTS.replace(":id", id))}>
           See Arrangements
         </button>
+        {id==loggedInUserInfo.userId &&
         <button
           type="button"
           className="form-button-work form-button arrangements-button"
           onClick={toggleWorkStatus}>
           Toggle work visibility
-        </button>
+        </button>}
         </div>
       </Main>
       <div className="more-buttons">
