@@ -11,7 +11,7 @@ const EditArrangementForm = ({currentArrangement}) => {
   const { token } = useAuth();
   const [id, setId]= useState(window.location.href.substring(55))
   const [arrangementId, setArrangementId]= useState(8)
-  const [participantId, setParticipantId]=useState(6)
+  const [participantId, setParticipantId]=useState(0)
   const dateDueRef = useRef();
   const navigate = useNavigate();
   const [arrangement, setArrangement] = useState(currentArrangement)
@@ -20,7 +20,7 @@ const EditArrangementForm = ({currentArrangement}) => {
   };
   //todo: fix cross origin problem here
   const addParticipantToArrangement = async () =>{
-        await ArrangementService.addParticipantToArrangement(token ,participantId,  arrangementId)
+        await ArrangementService.addParticipantToArrangement(token ,participantId,  id)
         .then((data) => {
           setArrangement(data);
         })
@@ -48,25 +48,25 @@ const EditArrangementForm = ({currentArrangement}) => {
       </div>
       <div className="form-actions">
           <button
-            type="button" className="form-button"
+            type="button" className="form-button-login"
             onClick={() => addParticipantToArrangement()}>
             Add as Participant
           </button>
       </div>
         <div className="form-actions">
           <button
-            type="button" className="form-button"
+            type="button" className="form-button-login"
             onClick={(e) => removeParticipantFromArrangement(e)}>
-            Remove as Participant
+            Remove Participant
           </button>
         </div>
         </div>
         <div className="form-actions">
-          <button
-            type="button" className="form-button"
+          {/* <button
+            type="button" className="form-button-login"
             onClick={(e) => onCreate(e)}>
             Edit
-          </button>
+          </button> */}
         </div>
         <div className="form-links">
           <div className="login-link">

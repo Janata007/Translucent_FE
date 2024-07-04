@@ -12,7 +12,7 @@ function CompanyMainPost(props) {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { company } = props;
   const {token} = useAuth();
-  const [services, setServices]=useState([])
+  const [services, setServices]=useState([])  
   const image = [];
   const imageText = "";
   const fetchData = async () => {
@@ -61,7 +61,7 @@ function CompanyMainPost(props) {
             </Typography>
             <Typography variant="subtitle2" div>
               Services offered:
-              {services && services.map((service) => (
+              {services && services.length>0 && services.map((service) => (
                 <div>{service}</div>
               ))}
             </Typography>

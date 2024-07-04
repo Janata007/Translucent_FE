@@ -1,18 +1,23 @@
 .taskDropdown {
   margin: 60px;
 }
+.calendar-container{
+  position: relative;
+  top: -120px;
+  height: 80%;
+}
 .home-calendar{
   margin-top: 10px;
   width: 130%;
   transform: scale(0.75);
   position: relative;
-  left: -20%;
+  left: -18%;
   background-color: var(--main-light);
 }
 .form-button3{
   margin-top: 15px;
   font-size: 20px;
-  width: 10rem;
+  width: 150px;
   background-color: var(--main-light);
   border: solid 4px var(--text-color-black);
 
@@ -33,7 +38,7 @@
   -webkit-text-stroke: 1px black;
 }
 .home-buttons{
-  width: 10%;
+  width: 7%;
   transform: scale(0.8);
 }
 .modal{
@@ -47,22 +52,32 @@
   color: white;
 }
 .first-section{
+  border-color: black;
+  border-width: 3px;
+  padding: 3px;
+  border-style: dashed;
   position: relative; 
-  left: -5%;
-  width: 20%;
+  left: -3%;
+  width: 23%;
   top: 10%;
 }
 .section-one-space{
   position: absolute;
-  top: -20%;
+  top: -30%;
   size: 20%;
 }
 .section-zero-space{
   position: absolute;
-  top: -40%;
+  top: -60%;
   size: 20%;
 }
 .third-section{
-  width: 13%;
+  border-color: black;
+  border-width: 3px;
+  padding-bottom: 10px;
+  border-style: dashed;
+
+  position: relative;
+  width: 17%;
   transform: scale(0.8);
 }

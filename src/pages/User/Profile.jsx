@@ -67,7 +67,7 @@ useEffect(() => {
       </div>
       <div className="task-section">
       <Scroll   direction="vertical"
-        height={`350px`}
+        height={`320px`}
         width={'10px'}
         scrollerClass={"scroller"}>
         <div className="taskGrid">
@@ -92,7 +92,8 @@ useEffect(() => {
            </div></div>;})}
            </div>);})}
            </div>}
-          </div>)}
+           </div>
+        )}
         </div>
         </Scroll>
       </div>

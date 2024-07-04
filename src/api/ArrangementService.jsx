@@ -36,6 +36,7 @@ const ArrangementService = {
   },
 
   async addParticipantToArrangement(token, userId, arrangementId) {
+    console.log(token)
     return await fetch(
       `${ARRANGEMENT_ENDPOINTS.ADD_PARTICIPANT_TO_ARRANGEMENT}/${userId}/${arrangementId}`,
       {

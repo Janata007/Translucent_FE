@@ -79,7 +79,7 @@ const LoginForm = () => {
           />
         </div>
         <div className="form-actions">
-          <button className="form-button" onClick={(e) => onLogin(e)}>
+          <button className="form-button-login" onClick={(e) => onLogin(e)}>
             Log In
           </button>
         </div>

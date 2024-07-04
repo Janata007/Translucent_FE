@@ -1,12 +1,17 @@
 .sectorGrid {
-    transform: scale(0.7);
+    transform: scale(0.8);
         display: inline-grid;
         position: relative;
-        width: 270px;
+        top: -10%;
+        width: 60%;
+}
+.sectorGrid-container{
+    position: absolute;
+    width: 60%;
 }
 .buttons{
-    flex-direction: row;
-    display: flex;
+    flex-direction: column;
+    display: table-column;
 }
 .sector-item{
     padding: 1rem;

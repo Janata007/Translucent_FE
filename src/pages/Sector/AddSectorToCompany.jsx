@@ -9,8 +9,11 @@ import SectorService from "../../api/SectorService";
 import { ROUTES } from "../../constants/ROUTES";
 import SectorPost from "./SectorPost";
 import "./AddSectorToCompany.css"
+import "../Home/Home.css";
 import Popup from 'reactjs-popup';
 import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
+import Scroll from "react-scroll-component"
+
 
 const AddSector = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
@@ -52,13 +55,61 @@ const AddSector = () => {
     <div className="sector list page">
       <HeaderLoggedIn />
       <Main>
-        <div className="sectorGrid">
+      <div className="sector-section">
+      <Scroll   direction="vertical"
+        height={`320px`}
+        width={'10px'}
+        scrollerClass={"scroller"}>
+        <div className="taskGrid">
+          {isLoading ? (
+            <p>check</p>
+          ) : (
+            <div className="company-add">
+            { <div className="tasks">
+        {arrayChunk(sectors, 2).map((items, index) => {
+        return (
+          <div className="taskGrid">
+            {items.map((sector, sIndex) => {
+              return <div className="company-item"> {<SectorPost
+                name={sector.name}
+                code={sector.code}
+                description={sector.description}
+                offeredServices={[sector.offeredServices]}
+              />}<div className="sector-buttons">
+                <button
+                type="button"
+                className="form-button2"
+                onClick={() => addSector(sector)} >
+                Add to company
+                </button>
+              <Popup class= "popup" trigger={<></>} position="left">
+                 <div>Sector has been added</div>
+               </Popup>
+              <button
+            type="button"
+            className="form-button2"
+            onClick={() => deleteSector(sector.id)}> 
+            Remove
+           </button>
+           </div></div>;})}
+           </div>);})}
+           </div>}
+           </div>
+        )}
+        </div>
+        </Scroll>
+      </div>
+        {/* <div className="sectorGrid-container">
           {isLoading ? (<p>check</p>) : (
         <div className="sector-add">
           {<div>
       { arrayChunk(sectors, 3).map((items, index) => {
         return (
           <div className="sectorGrid">
+             <Scroll   direction="vertical"
+        height={`520px`}
+        width={'10px'}
+        scrollerClass={"scroller"}>
             {items.map((sector, sIndex) => {
               return <div className="sector-item"> {<SectorPost
                 name={sector.name}
@@ -82,26 +133,25 @@ const AddSector = () => {
             Remove
            </button></div>
            </div>;})}
-          </div>);})}
+          </Scroll></div>);})}
           </div>}
         </div>)}
-        </div>
+        </div> */}
       </Main>
       <div className="more-buttons">
       <button
           type="button"
-          className="form-button sector-button"
+          className="form-button"
           onClick={() => navigate(ROUTES.CREATE_SECTOR)}>
-          Create new sector
+          Create new Sector
       </button>
-     <div className="more-buttons"></div>
         <button
           type="button"
-          className="form-button sector-button"
-          onClick={() => navigate(ROUTES.CREATE_SECTOR)}>
-          Return to company
-        </button>
-      </div>
+          className="form-button"
+          onClick={() => navigate(ROUTES.COMPANY.replace(":id",id))}>
+          Return to Company
+       </button>
+     </div>
       <Footer />
     </div>
   );

@@ -1,5 +1,6 @@
 import UserService from "../../api/UserService";
 import { useAuth } from "../../hooks/useAuth";
+import "../User/Profile.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
@@ -10,6 +11,7 @@ import { ROUTES } from "../../constants/ROUTES";
 import Scroll from "react-scroll-component"
 import ProfileMainPost from "../User/ProfileMainPost";
 import UserPost from "../User/UserPost";
+
 
 const SectorInfoPage = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -54,12 +56,12 @@ const SectorInfoPage = () => {
       {userInfo.sectorId &&
         <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>
-      <div className="sector-section">
+      <div className="task-section">
       <Scroll   direction="vertical"
         height={`350px`}
         width={'10px'}
         scrollerClass={"scroller"}>
-        <div className="companyGrid">
+        <div className="taskGrid">
           {isLoading ? (
             <p>check</p>
           ) : (
@@ -67,7 +69,7 @@ const SectorInfoPage = () => {
             { <div className="tasks">
       { arrayChunk(sectorMemebers, 3).map((items, index) => {
         return (
-          <div className="companyGrid taskGrid">
+          <div className="taskGrid">
             {items.map((member, sIndex) => {
               return <div className="company-item"> {<UserPost
                 id={member.userId} 

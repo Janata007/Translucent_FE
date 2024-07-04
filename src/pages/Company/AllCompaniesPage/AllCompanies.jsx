@@ -41,7 +41,7 @@ const AllCompanies = () => {
       <HeaderLoggedIn />
       <Main>
       <div className="companyGrid">
-      <Scroll   direction="vertical" height={`550px`} scrollerClass={"scroller"}>
+      <Scroll   direction="vertical" height={`510px`} scrollerClass={"scroller"}>
       {isLoading ? (
             <p>check</p>
           ) : (companies.map((c)=>{

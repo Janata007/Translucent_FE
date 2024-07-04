@@ -180,8 +180,7 @@ const Home = () => {
         </ul>
         </div>
         {calendarEventClicked && popup}
-        <div>
-          <div className="calendar-container">
+        <div className="calendar-container">
           <div className="home-calendar">
              <Calendar
           localizer={localizer}
@@ -191,7 +190,6 @@ const Home = () => {
           style={{ height: "100vh" }}
           onSelectEvent={(event)=>{onEventClick(event)}}
         /></div>
-          </div>
         </div>
         <div className="third-section">
         <p>

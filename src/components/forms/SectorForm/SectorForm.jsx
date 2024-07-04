@@ -107,7 +107,7 @@ const SectorForm = () => {
         <div className="form-actions">
           <button
             type="button"
-            className="form-button"
+            className="form-button-login"
             onClick={(e) => onCreate(e)}>
             Create
           </button>
