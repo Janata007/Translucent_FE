@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { ROUTES } from "../../../constants/ROUTES";
 import "../Form.css";
+import "../../../pages/Home/Home.css";
 import SearchBarUsers from "../TaskForm/SearchBarUsers";
 import ArrangementService from "../../../api/ArrangementService";
 
@@ -18,7 +19,7 @@ const EditArrangementForm = ({currentArrangement}) => {
  
   const onCreate = async () => {
   };
-  //todo: fix cross origin problem here
+  //todo: fix 403 problem here
   const addParticipantToArrangement = async () =>{
         await ArrangementService.addParticipantToArrangement(token ,participantId,  id)
         .then((data) => {
@@ -38,17 +39,13 @@ const EditArrangementForm = ({currentArrangement}) => {
         });
       }
   return (
-    <div className="form-container">
-      <form action="POST" className="form register">
-        <div className="form-group">
-        <div className="search-bar">
-        <label htmlFor="" className="form-label form-label2">
-            Participant</label>
-      <SearchBarUsers setUserForId={setParticipantId}></SearchBarUsers>
-      </div>
+      <div className="form-container">
+          <ul>
+          <form action="POST" className="form register">
+          <div className="form-group">
       <div className="form-actions">
           <button
-            type="button" className="form-button-login"
+            type="button" className="form-button-login button-edit"
             onClick={() => addParticipantToArrangement()}>
             Add as Participant
           </button>
@@ -62,11 +59,6 @@ const EditArrangementForm = ({currentArrangement}) => {
         </div>
         </div>
         <div className="form-actions">
-          {/* <button
-            type="button" className="form-button-login"
-            onClick={(e) => onCreate(e)}>
-            Edit
-          </button> */}
         </div>
         <div className="form-links">
           <div className="login-link">
@@ -75,7 +67,13 @@ const EditArrangementForm = ({currentArrangement}) => {
           </div>
         </div>
       </form>
-    </div>
+      <div className="search-bar">
+      <label htmlFor="" className="form-label form-label2">
+        Participant</label>
+          <SearchBarUsers setUserForId={setParticipantId}></SearchBarUsers>
+          </div>
+          </ul>
+      </div>
   );
 };
 export default EditArrangementForm;

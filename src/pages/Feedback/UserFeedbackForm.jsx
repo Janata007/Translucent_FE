@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../components/forms/Form.css";
+import "./UserFeedbackForm.css";
 import FeedbackService from "../../api/FeedbackService";
 import { useAuth } from "../../hooks/useAuth";
 import { ROUTES } from "../../constants/ROUTES";
@@ -43,7 +44,7 @@ const [feedback, setFeedback] = useState();
   
   return (
     <>
-      <div className="form-container">
+      <div className="form-container-user">
         <form action="POST" className="form register">
           <div className="form-group">
           <div className="search-bar">
@@ -78,7 +79,7 @@ const [feedback, setFeedback] = useState();
           </div>
           <div className="form-actions">
             <button
-              type="button" className="form-button"
+              type="button" className="form-button-login"
               onClick={(e) => onCreate(e)}>
               Create
             </button>

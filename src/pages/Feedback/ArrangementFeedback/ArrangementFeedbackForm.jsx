@@ -72,7 +72,7 @@ const [feedback, setFeedback] = useState();
           </div>
           <div className="form-actions">
             <button
-              type="button" className="form-button"
+              type="button" className="form-button-login"
               onClick={(e) => onCreate(e)}>
               Create
             </button>

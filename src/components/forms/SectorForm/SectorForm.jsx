@@ -52,7 +52,7 @@ const SectorForm = () => {
       await SectorService.saveSector(token, sectorData).then((response) =>
         console.log("RESPONSE" + response)
       );
-      navigate(ROUTES.COMPANY);
+      navigate(ROUTES.HOME);
     }
   };
   return (

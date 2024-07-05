@@ -8,7 +8,30 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [token, setToken] = useSessionStorage("token", null);
-  const [loggedInUserInfo, setLoggedInUserInfo] = useSessionStorage("loggedInUserInfo", null);
+  const [loggedInUserInfo, setLoggedInUserInfo] = useSessionStorage("loggedInUserInfo", {
+    "userId": 0,
+    "firstName": "test",
+    "lastName": "user",
+    "email": "test@mail.com",
+    "sectorId": 14,
+    "companyId": 0,
+    "password": "]",
+    "role": "ADMINISTRATOR",
+    "workVisible": false,
+    "superiorId": 65,
+    "arrangements": [],
+    "accountNonExpired": true,
+    "accountNonLocked": true,
+    "credentialsNonExpired": true,
+    "enabled": true,
+    "authority": null,
+    "username": "test",
+    "authorities": [
+        {
+            "authority": null
+        }
+    ]
+});
 
   const login = async (data) => {
     setToken(data);
@@ -20,6 +43,7 @@ export const AuthProvider = ({ children }) => {
  }
   const logout = () => {
     setToken(null);
+    setLoggedInUserInfo({});
     navigate(ROUTES.LOGIN, { replace: true });
   };
   const value = useMemo(

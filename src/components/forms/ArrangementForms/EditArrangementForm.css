@@ -1,6 +1,19 @@
-.space-div{
+/* .space-div{
     padding: 10rem;
     size: 10rem;
+} */
+.search-bar{
+    position: relative;
+    padding: 100px;
+    top: -20%;
+    z-index: -1;
 }
-
-
+.section-zero-space{
+    position: absolute;
+    padding: 100px;
+    top: -60%;
+    size: 20%;
+}
+.button-edit{
+    padding: 100px;
+}

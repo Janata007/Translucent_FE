@@ -8,6 +8,7 @@ import Footer from "../../layout/Footer/Footer";
 import FeedbackService from "../../api/FeedbackService";
 import FeedbackPost from "./FeedbackPost";
 import Scroll from "react-scroll-component"
+import "./FeedbackPage.css";
 
 
 

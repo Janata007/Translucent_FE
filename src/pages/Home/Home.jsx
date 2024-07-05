@@ -206,7 +206,7 @@ const Home = () => {
           //todo: fix id nav
           onClick={() => navigate(ROUTES.USER_INFO.replace(":id", id))}
         >
-          All tasks
+          My Profile
         </button>
         <button
           type="button"

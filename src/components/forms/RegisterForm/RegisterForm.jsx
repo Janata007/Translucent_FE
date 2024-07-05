@@ -85,6 +85,7 @@ const RegisterForm = () => {
                 [`${e.currentTarget.id}`]: e.currentTarget.value,})}/>
         </div>
         <div className="form-group">
+          {/* todo: make sure email is valid */}
           <label htmlFor="email" className="form-label">Email</label>
           <input
             className="form-input" type="text" ref={emailRef} id="email"
@@ -104,7 +105,7 @@ const RegisterForm = () => {
         </div>
         <div className="form-actions">
           <button
-            type="button" className="form-button"
+            type="button" className="form-button-login"
             onClick={(e) => onRegister(e)}>
             Register
           </button>

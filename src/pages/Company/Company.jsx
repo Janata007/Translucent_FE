@@ -61,7 +61,7 @@ const Company = () => {
                 description={sector.description}
                 offeredServices={[sector.offeredServices]}
               />
-              {loggedInUserInfo.role.includes("ADMINISTRATOR") &&
+              {loggedInUserInfo.role ==="ADMINISTRATOR" &&
               <button
                 type="button"
                 className="form-button2"
@@ -74,7 +74,7 @@ const Company = () => {
           ))}
         </div>
         </div>
-        { loggedInUserInfo.role.includes("ADMINISTRATOR") &&
+        {loggedInUserInfo.role ==="ADMINISTRATOR" &&
         <div className="sector-options">
         <button
           type="button"
