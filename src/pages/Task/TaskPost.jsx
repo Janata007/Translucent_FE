@@ -11,7 +11,7 @@ import { ROUTES } from "../../constants/ROUTES";
 import UserInfo from "../../components/forms/HomepageForms/UserForms/UserInfo";
 
 function TaskPost({ userId, id, name, priority, description, finished, accepted, dateDue }) {
-  const {loggedInUserInfo}= useAuth();
+  const {userInformation}= useAuth();
   const {token} = useAuth();
   const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ function TaskPost({ userId, id, name, priority, description, finished, accepted,
           </CardContent>
         </Card>
       </CardActionArea>
-      {userId==loggedInUserInfo.userId &&
+      {userId==userInformation.id &&
       <div className="task-card-buttons">
       { accepted && !finished &&  
       <button

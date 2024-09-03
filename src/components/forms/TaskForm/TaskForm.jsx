@@ -10,7 +10,7 @@ import SearchBarUsers from "./SearchBarUsers";
 
 const TaskForm = () => {
   const { login, token } = useAuth();
-  const {loggedInUserInfo} = useAuth();
+  const {userInformation} = useAuth();
   const [taskData, setTaskData] = useState({
     name: "",
     priority: "MEDIUM",
@@ -43,7 +43,7 @@ const TaskForm = () => {
     e.preventDefault();
     checkErrors();
     // if (noEmptyFields()) {
-      await WorkService.saveTask(token, taskData, loggedInUserInfo.userId, taskInfo.userForId).then((response) =>
+      await WorkService.saveTask(token, taskData, userInformation.id, taskInfo.userForId).then((response) =>
         console.log(response)
       );
       navigate(ROUTES.HOME);
