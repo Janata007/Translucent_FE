@@ -129,7 +129,7 @@ useEffect(() => {
           onClick={() => navigate(ROUTES.ARRANGEMENTS.replace(":id", id))}>
           See Arrangements
         </button>
-        {id==loggedInUserInfo.userId &&
+        {id==userInformation.id &&
         <button
           type="button"
           className="form-button-work form-button arrangements-button"
