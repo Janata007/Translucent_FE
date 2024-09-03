@@ -11,8 +11,8 @@ const UserService = {
       body: JSON.stringify(jwtRequest),
     })
       .then(async (response) => {
-        const jwtToken = await response.json();
-        return jwtToken;
+        const jwtTokenVO = await response.json();
+        return jwtTokenVO;
       }) //todo: change for actual impl
       .catch((err) => {
         console.log("LOGIN ERROR" + err);

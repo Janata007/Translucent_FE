@@ -1,6 +1,7 @@
 import UserService from "../../api/UserService";
 import { useAuth } from "../../hooks/useAuth";
 import { useState, useEffect } from "react";
+import { useDebounce } from "../../hooks/useDebounce";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
@@ -15,10 +16,12 @@ import "./Profile.css";
 
 const Profile = () => {
   const {loggedInUserInfo} = useAuth();
-    const [isLoading, setIsLoading] = useState(true);
+  const {userInformation} = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
     const { token } = useAuth();
     //todo: diff way to get id
   const [id, setId]= useState(window.location.href.substring(45))
+  // const [id, setId]= useState(loggedInUserInfo.userId)
   let navigate = useNavigate();
   const [userTasks, setUserTasks] = useState([]);
   const [userInfo, setUserInfo]=useState({});
@@ -30,23 +33,45 @@ const Profile = () => {
       })
       await WorkService.getTasksForUser(token, id)
       .then((data) => {
+        if(data.length>0)
         setUserTasks([...data]);
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
+  const fetchUserInfo = async () =>{
+    const userInfo = await UserService.getUser(id, token);
+    return userInfo;
+  }
   
   const toggleWorkStatus = async ()=>{
     await UserService.setWorkVisibleForUser(id, !userInfo.workVisible, token)
       .then((data) => {
+        console.log("user info" + data)
         setUserInfo(data);
       })
       window.location.reload();
   }
 useEffect(() => {
-  fetchData();
+  setIsLoading(true);
+  // fetchData();
   }, []);
+
+  useDebounce(
+    async () => {
+      try {
+        await fetchData();
+        const userInfo = await fetchUserInfo(token, id);
+        setUserInfo(userInfo);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    1000,
+    [isLoading]
+  );
+
   const arrayChunk = (arr, n) => {
     const chunks = [];
     if(arr.length!=0){

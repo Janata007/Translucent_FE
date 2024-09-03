@@ -9,16 +9,21 @@ import "./LoginForm.css";
 
 const LoginForm = () => {
   const { login } = useAuth();
+  const { assignUserInfo } = useAuth();
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
+    id:0,
   });
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const noEmptyFields = () => {
-    return Object.values(loginData).every((v) => isNonEmptyString(v));
+    // return Object.values(loginData).every((v) => isNonEmptyString(v));
+    if(loginData.username== "" || loginData.password==""){
+      return false;}
+    return true;
   };
   const checkErrors = () => {
     if (loginData.username.length === 0)
@@ -36,7 +41,10 @@ const LoginForm = () => {
         if(response==null){
           //todo: add error modal
         }else{
-        console.log(response.jwtToken);
+          let newLoginData={username: loginData.username,
+            password: loginData.password,
+            id:response.id,};
+        assignUserInfo(newLoginData); 
         login(response.jwtToken);}
       });
     }

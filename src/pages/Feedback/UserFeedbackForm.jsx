@@ -10,9 +10,11 @@ import SearchBarUsers from "../../components/forms/TaskForm/SearchBarUsers"
 
 const UserFeedbackForm = () => {
   const { token } = useAuth();
+  const {userInformation} = useAuth();
   const [description, setDescription] = useState();
   const [percent, setPercent] = useState();
-  const [userId, setUserId] = useState(6);
+  const [userId, setUserId] = useState(userInformation.id);
+
   const[userForId, setUserForId] = useState();
   const [grade, setGrade] = useState();
 const [feedback, setFeedback] = useState();

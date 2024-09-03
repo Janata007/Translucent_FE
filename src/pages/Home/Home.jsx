@@ -42,14 +42,14 @@ const initialTaskList=[
 ]
 
 const Home = () => {
-  const {assignUserInfo} = useAuth();
+  const {userInformation} = useAuth();
   const [userInfo, setUserInfo]=useState({});
   const [arrangementList, setArrangementList]=useState(initialList);
   const [taskList, setTaskList]=useState(initialTaskList);
   const [tasksToPass, setTasksToPass]= useState([{}]);
   const [eventList, setEventList] = useState(initialList);
   const [calendarEventClicked, setCalendarEvent]=useState(false);
-  const [id, setId] = useState(6);
+  const [id, setId] = useState(userInformation.id);
   const [eventValue, setEventValue]=useState( {
     start:new Date('2024-10-10T11:59:11.332'),
     end: new Date("2024-10-10T11:59:11.332"),
@@ -62,9 +62,9 @@ const Home = () => {
   const navigate = useNavigate();
   
   const fetchUserData = async () => {
-    const userInfo = await UserService.getUserByUsername("jhalpert",token);
-    assignUserInfo(userInfo);
+    const userInfo = await UserService.getUserByUsername(userInformation.username,token);
     setUserInfo(userInfo);
+    setId(userInfo.userId);
   };
 
   const fetchData2 = async () => {
@@ -117,7 +117,6 @@ const Home = () => {
         end: new Date(arrangements[i].endTime),
         title: arrangements[i].name
       });
-      setEventList(eventList);
     }
     for(var i=0; i<tasks.length; i++){
       eventList.push({
@@ -136,10 +135,11 @@ const Home = () => {
   useDebounce(
     async () => {
       try {
+        await fetchUserData();
         const arrangs = await fetchData2(token, id);
         const tasks = await fetchData(token, id);
-        await fetchUserData();
         setArrangements(arrangs);
+        console.log("user arrangements: " + arrangs[0].name);
         setTaskList(tasks);
         setTasksToPass(tasks);
         updateDates(arrangs, tasks);

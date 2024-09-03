@@ -13,10 +13,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const ArrangementForm = () => {
   const { token } = useAuth();
+  const {userInformation} = useAuth();
   const [date, setDate] = useState();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
-  const [userId, setUserId] = useState(6);
+  const [userId, setUserId] = useState(userInformation.id);
   const [arrangement, setArrangement] = useState({});
 
   const nameRef = useRef();

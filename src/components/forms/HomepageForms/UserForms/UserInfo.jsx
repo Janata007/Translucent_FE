@@ -5,10 +5,11 @@ import { useDebounce } from "../../../../hooks/useDebounce";
 
 const UserInfo = () => {
   const {loggedInUserInfo} = useAuth();
+  const {userInformation} = useAuth();
   const [userInfo, setUserInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { token } = useAuth();
-  const [id,setId] = useState(6);
+  const [id, setId] = useState(userInformation.id);
   const fetchData2 = async () => {
     const userStuff = await UserService.getUserWithSector(
       id,

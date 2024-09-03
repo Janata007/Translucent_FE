@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../constants/ROUTES";
 import { useSessionStorage } from "./useSessionStorage.jsx";
@@ -6,8 +6,10 @@ import { useSessionStorage } from "./useSessionStorage.jsx";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  
   const navigate = useNavigate();
   const [token, setToken] = useSessionStorage("token", null);
+  const [userInformation, setUserInformation] = useState({})
   const [loggedInUserInfo, setLoggedInUserInfo] = useSessionStorage("loggedInUserInfo", {
     "userId": 0,
     "firstName": "test",
@@ -39,7 +41,9 @@ export const AuthProvider = ({ children }) => {
   };
 
  const assignUserInfo = (data) =>{
-  setLoggedInUserInfo(data);
+  console.log("assignUserInfo in useAuth: " + data.id);
+  setUserInformation(data);
+  // setLoggedInUserInfo(data);
  }
   const logout = () => {
     setToken(null);
@@ -48,6 +52,7 @@ export const AuthProvider = ({ children }) => {
   };
   const value = useMemo(
     () => ({
+      userInformation,
       loggedInUserInfo,
       token,
       login,

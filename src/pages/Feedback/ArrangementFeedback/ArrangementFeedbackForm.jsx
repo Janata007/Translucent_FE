@@ -10,7 +10,8 @@ const ArrangementFeedbackForm = () => {
   let arrangementId  = (window.location.href.split("/"))[6];
   const [description, setDescription] = useState();
   const [percent, setPercent] = useState();
-  const [userId, setUserId] = useState(6);
+  const {userInformation} = useAuth();
+  const [userId, setUserId] = useState(userInformation.id);
   const [grade, setGrade] = useState();
 const [feedback, setFeedback] = useState();
 

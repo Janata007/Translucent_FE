@@ -53,7 +53,7 @@ function ProfileMainPost({profile}) {
               variant="h4wi"
               color="inherit"
               gutterBottom>
-              {profile.firstName} {profile.lastName}
+              {profile.firstName && console.log(profile.firstName)} {profile.lastName}
             </Typography>
             <Typography variant="subtitle1" color="inherit" paragraph>
               {profile.email}

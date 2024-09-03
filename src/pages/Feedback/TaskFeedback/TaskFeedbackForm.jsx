@@ -7,10 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 const TaskFeedbackForm = () => {
   const { token } = useAuth();
+  const {userInformation} = useAuth();
   let taskId  = (window.location.href.split("/"))[6];
   const [description, setDescription] = useState();
   const [percent, setPercent] = useState();
-  const [userId, setUserId] = useState(6);
+  const [userId, setUserId] = useState(userInformation.id);
   const [grade, setGrade] = useState();
 const [feedback, setFeedback] = useState();
 

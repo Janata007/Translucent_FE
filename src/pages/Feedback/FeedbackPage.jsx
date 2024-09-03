@@ -15,7 +15,8 @@ import "./FeedbackPage.css";
 const FeedbackPage = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
-  const [id, setId]=useState(6)
+  const {userInformation} = useAuth();
+  const [id, setId] = useState(userInformation.id);
   let navigate = useNavigate();
   const [userFeedbacks, setUserFeedbacks] = useState([]);
   const [taskFeedbacks, setTaskFeedbacks] = useState([]);
