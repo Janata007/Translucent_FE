@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   
   const navigate = useNavigate();
   const [token, setToken] = useSessionStorage("token", null);
-  const [userInformation, setUserInformation] = useState({})
+  const [userInformation, setUserInformation] = useSessionStorage({})
   const [loggedInUserInfo, setLoggedInUserInfo] = useSessionStorage("loggedInUserInfo", {
     "userId": 0,
     "firstName": "test",
