@@ -50,6 +50,17 @@ const SectorService = {
       return sectors;
     });
   },
+  async deleteSector(token, sectorId) {
+    return await fetch(`${SECTOR_ENDPOINTS.DELETE_SECTOR}/${sectorId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(async (response) => {
+      const sectorDeleted = await response.json();
+      return sectorDeleted;
+    });
+  },
 
   async getOfferedServicesForSector(token, id) {
     return await (`${SECTOR_ENDPOINTS.GET_OFFERED_SERVICES_FOR_SECTOR}/${id}`,

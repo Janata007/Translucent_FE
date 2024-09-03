@@ -26,28 +26,14 @@ import SearchBarUsers from "../../components/forms/TaskForm/SearchBarUsers"
 import UserService from "../../api/UserService";
 
 const localizer = momentLocalizer(moment);
-const initialList=[
-  {
-    start:new Date('2024-10-10T11:59:11.332'),
-    end: new Date("2024-10-10T11:59:11.332"),
-    title: "Arrangement X"
-  }
-]
-const initialTaskList=[
-  {
-    start:new Date('2024-08-10T11:59:11.332'),
-    end: new Date("2024-10-10T11:59:11.332"),
-    title: "Task X"
-  }
-]
 
 const Home = () => {
   const {userInformation} = useAuth();
   const [userInfo, setUserInfo]=useState({});
-  const [arrangementList, setArrangementList]=useState(initialList);
-  const [taskList, setTaskList]=useState(initialTaskList);
+  const [arrangementList, setArrangementList]=useState([]);
+  const [taskList, setTaskList]=useState([]);
   const [tasksToPass, setTasksToPass]= useState([{}]);
-  const [eventList, setEventList] = useState(initialList);
+  const [eventList, setEventList] = useState([]);
   const [calendarEventClicked, setCalendarEvent]=useState(false);
   const [id, setId] = useState(userInformation.id);
   const [eventValue, setEventValue]=useState( {
@@ -111,6 +97,7 @@ const Home = () => {
         </div>
 </Modal>;
   const updateDates = (arrangements, tasks) => {
+    setEventList([]);
     for(var i=0; i<arrangements.length; i++){
       eventList.push({
         start: new Date(arrangements[i].startTime),
@@ -124,8 +111,8 @@ const Home = () => {
         end: new Date(tasks[i].dateDue),
         title: tasks[i].name
       });
-      setEventList(eventList);
     }
+    setEventList(eventList);
   };
 
   useEffect(() => {

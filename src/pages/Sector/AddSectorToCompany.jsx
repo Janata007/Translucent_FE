@@ -8,8 +8,12 @@ import CompanyService from "../../api/CompanyService";
 import SectorService from "../../api/SectorService";
 import { ROUTES } from "../../constants/ROUTES";
 import SectorPost from "./SectorPost";
+import { Modal } from "@mui/material";
 import "./AddSectorToCompany.css"
 import "../Home/Home.css";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 import Popup from 'reactjs-popup';
 import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 import Scroll from "react-scroll-component"
@@ -21,6 +25,7 @@ const AddSector = () => {
   const { token } = useAuth();
   let navigate = useNavigate();
   const [sectors, setSectors] = useState([]);
+  const [sectorAdded, setSectorAdded]=useState(false);
 
   const fetchData = async () => {
     await SectorService.getAllSectors(token)
@@ -36,6 +41,7 @@ const AddSector = () => {
     fetchData();
   }, []);
   async function addSector(sector) {
+    setSectorAdded(true);
     console.log(sector.id)
     await CompanyService.addSectorToCompany(token, id, sector.id);
   }
@@ -50,12 +56,31 @@ const AddSector = () => {
     while (array.length) chunks.push(array.splice(0, n));
     return chunks;
   };
-
+  
+  var popup =  <Modal  className="modal"
+  open={addSector}
+  onClose={()=>{}}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+><div onClick={()=>setSectorAdded(false)}>
+<Card>
+          <CardContent className="popup-card">
+            <Typography component="h2" variant="h5">
+              Sector has been added to company
+            </Typography>
+            <Typography variant="subtitle2" div>
+             click on me to close
+            </Typography>
+          </CardContent>
+        </Card>
+        </div>
+</Modal>;
   return (
     <div className="sector list page">
       <HeaderLoggedIn />
       <Main>
       <div className="sector-section">
+      {sectorAdded && popup}
       <Scroll   direction="vertical"
         height={`320px`}
         width={'10px'}
