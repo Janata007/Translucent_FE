@@ -1,4 +1,6 @@
 import { FEEDBACK_ENDPOINTS } from "../constants/ENDPOINTS";
+import { ARRANGEMENT_ENDPOINTS } from "../constants/ENDPOINTS";
+
 
 const FeedbackService = {
   async createUserFeedback(token, userForId, userFromId, feedback) {
@@ -140,6 +142,34 @@ const FeedbackService = {
       const feedbackList = await response.json();
       return feedbackList;
     });
+  },
+  
+  async getArrangementFeedbacksForParticipant(userId, token) {
+    let arrangements= [];
+    let feedbacks=[];
+    await fetch(
+      `${ARRANGEMENT_ENDPOINTS.GET_ALL_ARRANGEMENTS_FOR_USER}/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then(async (response) => {
+      arrangements = await response.json();
+    });
+    let allFeeds = await this.getAllArrangementFeedbacks(token);
+    allFeeds.array.forEach(feedback => {
+      arrangements.array.forEach(arr => {
+        if (arr.id==feedback.arrangementId){
+          feedbacks.push(feedback)
+        }
+      });
+    });
+    console.log("feedbacks for arrangement with participant " + feedbacks[0].percent);
+    return feedbacks;
+   
   },
 };
 export default FeedbackService;

@@ -139,7 +139,6 @@ const Home = () => {
         const arrangs = await fetchData2(token, id);
         const tasks = await fetchData(token, id);
         setArrangements(arrangs);
-        console.log("user arrangements: " + arrangs[0].name);
         setTaskList(tasks);
         setTasksToPass(tasks);
         updateDates(arrangs, tasks);

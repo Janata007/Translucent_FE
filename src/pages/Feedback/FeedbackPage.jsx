@@ -6,6 +6,7 @@ import Main from "../../layout/Main/Main";
 import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
 import Footer from "../../layout/Footer/Footer";
 import FeedbackService from "../../api/FeedbackService";
+import ArrangementService from "../../api/ArrangementService";
 import FeedbackPost from "./FeedbackPost";
 import Scroll from "react-scroll-component"
 import "./FeedbackPage.css";
@@ -21,10 +22,16 @@ const FeedbackPage = () => {
   const [userFeedbacks, setUserFeedbacks] = useState([]);
   const [taskFeedbacks, setTaskFeedbacks] = useState([]);
   const [arrangementFeedbacks, setArrangementFeedbacks]= useState([]);
+  const [myArrangementFeedbacks, setMyArrangementFeedbacks]= useState([]);
   const [myFeedbacks, setMyFeedbacks] = useState([]);
+  const [userArrangements, setUserArrangements]= useState([]);
 
 
   const fetchData = async () => {
+    await ArrangementService.getAllArrangementsForUser(token, id)
+      .then((data) => {
+        setUserArrangements(data);
+      })
     await FeedbackService.getUserFeedback(token, id)
       .then((data) => {
         setUserFeedbacks(data);
@@ -46,8 +53,18 @@ const FeedbackPage = () => {
       });
   };
   useEffect(() => {
-    fetchData()
-  }, []);
+    fetchData();
+    // let selected = [];
+    // console.log(userArrangements.length)
+    // userArrangements.array.forEach(arr => {
+    //   arrangementFeedbacks.array.forEach(feed => {
+    //     if(feed.arrangementId==arr.id){
+    //       selected.push(feed);
+    //     }
+    //   });
+    // });
+    // setMyArrangementFeedbacks(selected);
+  }, [isLoading]);
 
   return (
     <div className="company list page">
@@ -66,12 +83,12 @@ const FeedbackPage = () => {
           }))}</Scroll>
       </div>
       <div className="companyGrid">
-      <label className="feedback-title">My Arrangement Feedbacks</label>
+      <label className="feedback-title">Arrangement Feedbacks</label>
       <Scroll   direction="vertical" height={`480px`} scrollerClass={"scroller"}>
       {isLoading ? (
             <p>check</p>
           ) : (arrangementFeedbacks.map((feedb)=>{
-            return <div>{ (feedb.userFromId==id) && <div className="company-item"><FeedbackPost 
+            return <div key={feedb.id}>{ (feedb.userFromId==id) && <div className="company-item"><FeedbackPost 
             grade={feedb.grade}
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
             </div>}</div>

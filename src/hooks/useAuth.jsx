@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }) => {
   };
 
  const assignUserInfo = (data) =>{
-  console.log("assignUserInfo in useAuth: " + data.id);
   setUserInformation(data);
   // setLoggedInUserInfo(data);
  }
