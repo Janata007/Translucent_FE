@@ -11,13 +11,17 @@ import CompanyPost from "../CompanyPost";
 import Scroll from "react-scroll-component";
 import SectorPost from "../../Sector/SectorPost";
 import HeaderLoggedIn from "../../../layout/Header/HeaderLoggedIn";
+import UserService from "../../../api/UserService";
 
 
 const AllCompanies = () => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
   let navigate = useNavigate();
+  const {userInformation} = useAuth();
   const [companies, setCompanies] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
+
 
   async function deleteCompany(companyId) {
     await CompanyService.deleteCompanyById(token, companyId);
@@ -27,6 +31,9 @@ const AllCompanies = () => {
     await CompanyService.getAllCompanies(token)
       .then((data) => {
         setCompanies(data);
+      })
+      await UserService.getUser(userInformation.id, token).then((data)=>{
+        setUserInfo(data);
       })
       .finally(() => {
         setIsLoading(false);
@@ -46,12 +53,12 @@ const AllCompanies = () => {
             <p>check</p>
           ) : (companies.map((c)=>{
             return <div className="company-item"><CompanyPost company={c}></CompanyPost>
-            <button
+            {userInfo.role ==="ADMINISTRATOR" && <button
             type="button"
             className="form-button"
             onClick={() => deleteCompany(c.id)}> 
             Remove
-              </button>
+              </button>}
               <button
             type="button"
             className="form-button"
@@ -63,12 +70,12 @@ const AllCompanies = () => {
       </div>
       </Main>
       <div className="more-buttons">
-      <button
+      {userInfo.role ==="ADMINISTRATOR" && <button
           type="button"
           className="form-button"
           onClick={() => navigate(ROUTES.CREATE_COMPANY)}>
           Create new Company
-      </button>
+      </button>}
         <button
           type="button"
           className="form-button"
