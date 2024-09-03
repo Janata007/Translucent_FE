@@ -21,12 +21,17 @@ const FeedbackPage = () => {
   const [userFeedbacks, setUserFeedbacks] = useState([]);
   const [taskFeedbacks, setTaskFeedbacks] = useState([]);
   const [arrangementFeedbacks, setArrangementFeedbacks]= useState([]);
+  const [myFeedbacks, setMyFeedbacks] = useState([]);
 
 
   const fetchData = async () => {
     await FeedbackService.getUserFeedback(token, id)
       .then((data) => {
         setUserFeedbacks(data);
+      })
+      await FeedbackService.getUserFeedbackFrom(token, id)
+      .then((data) => {
+        setMyFeedbacks(data);
       })
       await FeedbackService.getAllTaskFeedbacks(token)
       .then((data) => {
@@ -66,6 +71,18 @@ const FeedbackPage = () => {
       {isLoading ? (
             <p>check</p>
           ) : (arrangementFeedbacks.map((feedb)=>{
+            return <div>{ (feedb.userFromId==id) && <div className="company-item"><FeedbackPost 
+            grade={feedb.grade}
+            percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
+            </div>}</div>
+          }))}</Scroll>
+      </div>
+      <div className="companyGrid">
+      <label className="feedback-title">My Feedbacks</label>
+      <Scroll   direction="vertical" height={`480px`} scrollerClass={"scroller"}>
+      {isLoading ? (
+            <p>check</p>
+          ) : (myFeedbacks.map((feedb)=>{
             return <div>{ (feedb.userFromId==id) && <div className="company-item"><FeedbackPost 
             grade={feedb.grade}
             percent={feedb.percent} description={feedb.description} offeredServices={[]}></FeedbackPost>
