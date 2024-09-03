@@ -10,16 +10,19 @@ import { ROUTES } from "../../constants/ROUTES";
 import CompanyMainPost from "./CompanyMainPost";
 import SectorPost from "../Sector/SectorPost";
 import HeaderLoggedIn from "../../layout/Header/HeaderLoggedIn";
+import UserService from "../../api/UserService";
 
 const Company = () => {
   const [loaded, setLoaded] = useState(false); //for rerender after promise is fulfilled
-  let { id } = useParams();
-  const {loggedInUserInfo} = useAuth();
+  // let { id } = window.location.href.substring(52);
+  let {id} = useParams();
+  const {userInformation} = useAuth();
   const { token } = useAuth();
   let navigate = useNavigate();
   const [hidden, setHidden] = useState(true); //for adding a sector to company
   const [sectors, setSectors] = useState([]);
   const [company, setCompany] = useState({});
+  const [userInfo, setUserInfo] = useState({});
   const redirect = (company) => {
     console.log(company.id);
     navigate(ROUTES.ADD_SECTOR_TO_COMPANY.replace(":id", company.id));
@@ -29,6 +32,9 @@ const Company = () => {
       setCompany(data);
       setSectors(data.sectorList);
     });
+    await UserService.getUser(userInformation.id, token).then((data)=>{
+      setUserInfo(data);
+    })
   }
   const removeSector = async (id) => {
     console.log(id);
@@ -39,6 +45,7 @@ const Company = () => {
       }
     );
   };
+
   useEffect(() => {
     fetchCompanyData();
   }, []);
@@ -61,7 +68,7 @@ const Company = () => {
                 description={sector.description}
                 offeredServices={[sector.offeredServices]}
               />
-              {loggedInUserInfo.role ==="ADMINISTRATOR" &&
+              {userInfo.role ==="ADMINISTRATOR" &&
               <button
                 type="button"
                 className="form-button2"
@@ -74,7 +81,7 @@ const Company = () => {
           ))}
         </div>
         </div>
-        {loggedInUserInfo.role ==="ADMINISTRATOR" &&
+        {userInfo.role ==="ADMINISTRATOR" &&
         <div className="sector-options">
         <button
           type="button"
