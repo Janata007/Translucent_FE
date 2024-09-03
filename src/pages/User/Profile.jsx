@@ -86,7 +86,7 @@ useEffect(() => {
       <HeaderLoggedIn />
       <Main>
       <div className="profile-info">
-      {userInfo.workVisible && <div>Your work is visible to others !</div>}
+      {userInfo.workVisible && <div>Work is visible to others </div>}
       {userInfo.sectorId &&
         <ProfileMainPost profile={userInfo}></ProfileMainPost>}
       </div>

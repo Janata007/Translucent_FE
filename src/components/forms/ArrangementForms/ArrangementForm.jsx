@@ -10,6 +10,7 @@ import DatePicker from "react-datepicker";
 import "react-time-picker/dist/TimePicker.css";
 import TimePicker from "react-time-picker";
 import "react-datepicker/dist/react-datepicker.css";
+import { DateTimePicker } from "@mui/x-date-pickers";
 
 const ArrangementForm = () => {
   const { token } = useAuth();
@@ -37,6 +38,22 @@ const ArrangementForm = () => {
   };
   const onCreate = async (e) => {
     e.preventDefault();
+    console.log("arrangement date before format " + date.toLocaleDateString());
+    let [startmonth, startday, startyear] =  date.toLocaleDateString().split('/');
+    if(startday.length==1){
+        startday='0'+startday;
+    }
+    if(startmonth.length==1){
+      startmonth='0'+startmonth;
+  }
+    setArrangement({...arrangement, startTime: (startyear+'-'+startmonth+'-'+startday + "T" +startTime+":00.000")})
+    console.log("arrangement start date " + arrangement.startTime);
+
+    arrangement.endTime= (startyear+'-'+startmonth+'-'+startday + "T" +endTime+":00.000");
+    setArrangement(arrangement);
+    arrangement.endTime= (startyear+'-'+startmonth+'-'+startday + "T" +endTime+":00.000");
+    console.log("arrangement end date " + arrangement.endTime);
+
     checkErrors();
     if (noEmptyFields()) {
       await ArrangementService.saveNewArrangement(arrangement, userId, token).then(
