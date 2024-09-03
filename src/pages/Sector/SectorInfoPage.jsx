@@ -21,7 +21,8 @@ const SectorInfoPage = () => {
   let navigate = useNavigate();
   const [sectorMemebers, setSectorMembers] = useState([]);
   const [userInfo, setUserInfo]=useState({});
-  const [sectorId, setSectorId] = useState(14)
+  const [sectorId, setSectorId] = useState(window.location.href.substring(52))
+  console.log(sectorId);
   const fetchData = async () => {
     await UserService.getUser(id, token)
       .then((data) => {
