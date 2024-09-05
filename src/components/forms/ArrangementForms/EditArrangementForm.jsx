@@ -10,7 +10,9 @@ import ArrangementService from "../../../api/ArrangementService";
 const EditArrangementForm = ({currentArrangement}) => {
   const [isLoading, setIsLoading] = useState(true); //for rerender after promise is fulfilled
   const { token } = useAuth();
-  const [id, setId]= useState(window.location.href.substring(55))
+  const {userInformation} = useAuth();
+  const [id, setId]= useState(userInformation.id)
+
   const [arrangementId, setArrangementId]= useState(8)
   const [participantId, setParticipantId]=useState(0)
   const dateDueRef = useRef();
@@ -63,7 +65,7 @@ const EditArrangementForm = ({currentArrangement}) => {
         <div className="form-links">
           <div className="login-link">
             <p>Back to Arrangements {`->`}</p>
-            <span onClick={() => navigate(ROUTES.ARRANGEMENTS.replace(":id", arrangementId))}></span>
+            <span onClick={() => navigate(ROUTES.ARRANGEMENTS.replace(":id", id))}></span>
           </div>
         </div>
       </form>
