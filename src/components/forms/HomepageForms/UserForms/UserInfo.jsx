@@ -41,7 +41,7 @@ const UserInfo = () => {
       </div>
       <div className="card">
         <div className="card-header">
-          {loggedInUserInfo.firstName} {loggedInUserInfo.lastName}
+          Logged in as : {userInformation.username}
         </div>
         <div className="card-body">
           <h5 className="card-title">{loggedInUserInfo.email}</h5>

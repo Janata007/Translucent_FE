@@ -80,14 +80,15 @@ const ArrangementPage = () => {
                   priority={arrangement.priority}
                   participants={arrangement.participants}/>}<div className="buttons">
                     <ul>
-            <button type="button" className="form-button2"
+           {/* <button type="button" className="form-button2"
             onClick={() => navigate(ROUTES.ARRANGEMENT_EDIT.replace(":id",arrangement.arrangementId))}> 
             Edit
            </button>
            <button type="button" className="form-button2"
             onClick={() => navigate(ROUTES.CREATE_ARRANGEMENT_FEEDBACK.replace(":id",arrangement.arrangementId))}> 
             Leave Feedback
-           </button></ul>
+           </button> */}
+           </ul>
            </div></div>;})}
            </div>);})}
            </div>}

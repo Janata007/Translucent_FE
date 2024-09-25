@@ -21,7 +21,7 @@ const Profile = () => {
     const { token } = useAuth();
     //todo: diff way to get id
   const [id, setId]= useState(window.location.href.substring(45))
-  // const [id, setId]= useState(loggedInUserInfo.userId)
+  
   let navigate = useNavigate();
   const [userTasks, setUserTasks] = useState([]);
   const [userInfo, setUserInfo]=useState({});
@@ -51,7 +51,7 @@ const Profile = () => {
         console.log("user info" + data)
         setUserInfo(data);
       })
-      window.location.reload();
+      // window.location.reload();
   }
 useEffect(() => {
   setIsLoading(true);
@@ -97,7 +97,7 @@ useEffect(() => {
         scrollerClass={"scroller"}>
         <div className="taskGrid">
           {isLoading ? (
-            <p>check</p>
+            <p></p>
           ) : (
             <div className="company-add">
             { <div className="tasks">
